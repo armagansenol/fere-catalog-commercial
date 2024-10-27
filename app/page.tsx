@@ -1,101 +1,288 @@
-import Image from "next/image";
+import { Marquee } from "@/components/animations/marquee"
+import s from "./home/home.module.scss"
+
+import MainSlider from "@/components/main-slider/MainSlider"
+
+import CardTestimonial from "@/components/card-testimonial/CardTestimonial"
+import { EmblaCarousel } from "@/components/utility/embla-carousel"
+import { Img } from "@/components/utility/img"
+import cx from "clsx"
+
+import Logo from "@/components/icons/logo"
+import sample from "@/public/img/sample.jpg"
+
+const companies = [
+  {
+    logo: <Logo />,
+  },
+  {
+    logo: <Logo />,
+  },
+  {
+    logo: <Logo />,
+  },
+  {
+    logo: <Logo />,
+  },
+  {
+    logo: <Logo />,
+  },
+]
+
+const testimonials = [
+  {
+    text: (
+      <>
+        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
+        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
+      </>
+    ),
+    author: {
+      name: <>Rene Schwab</>,
+      company: <>Şirket Adı</>,
+    },
+  },
+  {
+    text: (
+      <>
+        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
+        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
+      </>
+    ),
+    author: {
+      name: <>Rene Schwab</>,
+      company: <>Şirket Adı</>,
+    },
+  },
+  {
+    text: (
+      <>
+        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
+        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
+      </>
+    ),
+    author: {
+      name: <>Rene Schwab</>,
+      company: <>Şirket Adı</>,
+    },
+  },
+  {
+    text: (
+      <>
+        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
+        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
+      </>
+    ),
+    author: {
+      name: <>Rene Schwab</>,
+      company: <>Şirket Adı</>,
+    },
+  },
+  {
+    text: (
+      <>
+        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
+        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
+      </>
+    ),
+    author: {
+      name: <>Rene Schwab</>,
+      company: <>Şirket Adı</>,
+    },
+  },
+]
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // const howItWorksRef = useRef(null)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // useGSAP(
+  //   () => {
+  //     const tl = gsap.timeline()
+
+  //     tl.to(".phases", {
+  //       yPercent: -25,
+  //     })
+
+  //     ScrollTrigger.create({
+  //       animation: tl,
+  //       trigger: ".sticky-c",
+  //       markers: true,
+  //       pin: true,
+  //       scrub: true,
+  //     })
+  //   },
+  //   {
+  //     scope: howItWorksRef,
+  //   }
+  // )
+
+  return (
+    <>
+      <section>
+        <MainSlider />
+      </section>
+      <section className={cx(s.description)}>
+        <h1>
+          Dijital
+          <button className={cx("inline-flex items-center justify-center")}></button> kataloğunuzu oluşturun,
+          ürünlerinizi hızla ve etkili bir şekilde sergileyin.
+        </h1>
+        <div className={cx(s.stats, "grid grid-cols-3")}>
+          <div>
+            <h3>2K</h3>
+            <p>Ayda ortalama ürün satışı.</p>
+          </div>
+          <div>
+            <h3>
+              +40
+              <span>%</span>
+            </h3>
+            <p>Fere Katalog kullanan müşterilerimizin satış oranı artışı.</p>
+          </div>
+          <div>
+            <h3>
+              +50
+              <span>%</span>
+            </h3>
+            <p>İlk 6 ay içindeki yeni müşteri kazanma oranı.</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        <h2>
+          Hem tüketici hem de işletme odaklı kullanıcılar için tasarlanmış olan platformumuz, kesintisiz bir alışveriş
+          deneyimi sunar ve işinizin büyümesine katkı sağlar.
+        </h2>
+        <div className={s.marqueeC}>
+          <Marquee duration={40} repeat={2}>
+            <>
+              {companies.map((item, i) => {
+                return (
+                  <div className={s.item} key={i}>
+                    {item.logo}
+                  </div>
+                )
+              })}
+            </>
+          </Marquee>
+        </div>
+      </section>
+
+      <section className={s.howItWorks}>
+        <div className={s.intro}>
+          <h2>Nasıl Çalışır?</h2>
+          <p>
+            Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
+            artırabileceğinizi öğreneceksiniz.
+          </p>
+        </div>
+
+        <div className={cx(s.stickyC, "sticky-c", "grid grid-cols-2")}>
+          <div className={cx(s.phases, "phases")}>
+            <div>
+              <h3>Nasıl Çalışır?</h3>
+              <p>
+                Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
+                artırabileceğinizi öğreneceksiniz.
+              </p>
+            </div>
+            <div>
+              <h3>Nasıl Çalışır?</h3>
+              <p>
+                Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
+                artırabileceğinizi öğreneceksiniz.
+              </p>
+            </div>
+            <div>
+              <h3>Nasıl Çalışır?</h3>
+              <p>
+                Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
+                artırabileceğinizi öğreneceksiniz.
+              </p>
+            </div>
+          </div>
+          <div>
+            <Img alt="sample" src={sample} className="object-cover" />
+          </div>
+        </div>
+      </section>
+
+      <section className={s.specs}>
+        <div className={s.intro}>
+          <h2>Lorem ipsum dolor sit amet</h2>
+        </div>
+        <div className={cx(s.cards, "flex flex-wrap")}>
+          <div className={s.cardSpec}>
+            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <p>
+              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
+              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
+              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+            </p>
+            <button>Hemen Üye Ol</button>
+          </div>
+          <div className={s.cardSpec}>
+            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <p>
+              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
+              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
+              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+            </p>
+            <button>Hemen Üye Ol</button>
+          </div>
+          <div className={s.cardSpec}>
+            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <p>
+              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
+              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
+              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+            </p>
+            <button>Hemen Üye Ol</button>
+          </div>
+          <div className={s.cardSpec}>
+            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <p>
+              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
+              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
+              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+            </p>
+            <button>Hemen Üye Ol</button>
+          </div>
+        </div>
+      </section>
+
+      <section className={s.discover}>
+        <div className={cx(s.card, "grid grid-cols-2")}>
+          <div className={s.text}>
+            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <p>İşletmenizi en iyi şekilde desteklemek için özel olarak tasarlanmış çeşitli paketlerimizi keşfedin!</p>
+            <button>Hemen Üye Ol</button>
+          </div>
+          <div className={s.imgC}>
+            <Img alt="Sample" className="object-cover" src={sample} />
+          </div>
+        </div>
+      </section>
+
+      <section className={s.testimonials}>
+        <h3>
+          Müşterilerimizin <br /> Görüşleri
+        </h3>
+        <div className={s.sliderC}>
+          <EmblaCarousel
+            slideSpacing={30}
+            nextButton={<div className={cx(s.btn, s.next)}>next</div>}
+            prevButton={<div className={cx(s.btn, s.prev)}>prev</div>}
+            btnsClassName={s.navigation}
+          >
+            {testimonials.map((item, i) => {
+              return (
+                <div className={s.cardC} key={i}>
+                  <CardTestimonial {...item} />
+                </div>
+              )
+            })}
+          </EmblaCarousel>
+        </div>
+      </section>
+    </>
+  )
 }

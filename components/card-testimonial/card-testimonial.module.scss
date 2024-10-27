@@ -1,0 +1,29 @@
+.cardTestimonial {
+  @include dims(100%);
+  border-radius: desktop-vw(10px);
+  border: 1px solid var(--black);
+  padding: desktop-vw(32px);
+  padding-bottom: desktop-vw(50px);
+
+  > p {
+    font-family: var(--font-mukta);
+    font-size: desktop-vw(14px);
+    font-weight: 300;
+    margin-bottom: desktop-vw(20px);
+  }
+
+  > .author {
+    p {
+      font-family: var(--font-mukta);
+      font-size: desktop-vw(14px);
+      font-weight: 400;
+      margin-bottom: desktop-vw(4px);
+    }
+
+    small {
+      font-family: var(--font-mukta);
+      font-size: desktop-vw(14px);
+      font-weight: 200;
+    }
+  }
+}

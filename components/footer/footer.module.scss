@@ -1,0 +1,78 @@
+.footer {
+  .title {
+    display: inline-flex;
+    margin-bottom: desktop-vw(22px);
+
+    > h6 {
+      font-family: var(--font-albert-sans);
+      font-size: desktop-vw(20px);
+      font-weight: 400;
+    }
+  }
+
+  .navItem {
+    display: inline-flex;
+    margin-bottom: desktop-vw(10px);
+
+    > a {
+      font-family: var(--font-albert-sans);
+      font-size: desktop-vw(16px);
+      font-weight: 400;
+    }
+  }
+
+  .punch {
+    > h5 {
+      font-family: var(--font-albert-sans);
+      font-size: desktop-vw(70px);
+      font-weight: 400;
+    }
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+
+    &.social {
+      flex-direction: row;
+      gap: desktop-vw(14px);
+
+      .iconC {
+        @include dims(desktop-vw(16px));
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .links {
+    margin: 0 desktop-vw(80px);
+    gap: desktop-vw(120px);
+    padding: desktop-vw(64px) 0 desktop-vw(32px) 0;
+
+    .col {
+      &:last-child {
+        margin-left: auto;
+        margin-right: desktop-vw(120px);
+      }
+    }
+  }
+
+  .punchC {
+    margin: 0 desktop-vw(80px);
+    padding: desktop-vw(32px) 0;
+  }
+
+  .bottom {
+    border-top: 1px solid var(--black);
+    margin: 0 desktop-vw(80px);
+    padding: desktop-vw(40px) 0;
+
+    > small {
+      font-family: var(--font-albert-sans);
+      font-size: desktop-vw(15px);
+      font-weight: 400;
+    }
+  }
+}

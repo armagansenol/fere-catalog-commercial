@@ -1,0 +1,96 @@
+.mainSlider {
+  padding: desktop-vw(20px) 0;
+  position: relative;
+
+  .textC {
+    position: relative;
+    width: desktop-vw(600px);
+
+    .text {
+      @include position(absolute, desktop-vw(110px), auto, auto, desktop-vw(60px));
+      opacity: 0;
+      transition: 400ms opacity ease;
+      width: desktop-vw(400px);
+
+      &.visible {
+        opacity: 1;
+      }
+
+      > h2 {
+        font-family: var(--font-albert-sans);
+        font-size: desktop-vw(35px);
+        font-weight: 400;
+        margin-bottom: desktop-vw(20px);
+      }
+
+      > p {
+        font-family: var(--font-albert-sans);
+        font-size: desktop-vw(15px);
+        font-weight: 200;
+        margin-bottom: desktop-vw(40px);
+      }
+
+      > button {
+        font-size: desktop-vw(15px);
+      }
+    }
+  }
+
+  .visuals {
+    padding-right: desktop-vw(60px);
+
+    .mediaC {
+      @include dims(desktop-vw(745px), desktop-vw(520px));
+      border-radius: desktop-vw(5px);
+      overflow: hidden;
+      position: relative;
+
+      .media {
+        @include position(absolute, 0, 0, 0, 0);
+        opacity: 0;
+        transition: 800ms opacity ease;
+
+        &.visible {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .miniMapC {
+    @include position(absolute, auto, auto, desktop-vw(50px), desktop-vw(60px));
+    gap: desktop-vw(14px);
+
+    .miniMap {
+      gap: desktop-vw(12px);
+
+      .media {
+        @include dims(desktop-vw(40px));
+        border-radius: desktop-vw(5px);
+        filter: grayscale(1);
+        opacity: 0.3;
+        overflow: hidden;
+        transition: 800ms opacity ease, 800ms filter ease;
+
+        &.visible {
+          filter: grayscale(0);
+          opacity: 1;
+        }
+      }
+    }
+
+    .progressBar {
+      @include dims(100%, desktop-vw(1px));
+      background-color: var(--pinball);
+      border-radius: desktop-vw(4px);
+      overflow: hidden;
+
+      .bar {
+        @include dims(100%);
+        background-color: var(--black);
+        border-radius: desktop-vw(4px);
+        transform-origin: left center;
+      }
+    }
+  }
+}

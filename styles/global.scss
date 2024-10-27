@@ -1,0 +1,180 @@
+@import "./_reset.scss";
+@import "./_fonts.scss";
+@import "./_colors.scss";
+@import "./_easings.scss";
+@import "./_functions.scss";
+// @import './_layout.scss';
+@import "./_utils.scss";
+@import "./_themes.scss";
+@import "./_scroll.scss";
+
+:root {
+  --header-height: #{desktop-vw(125px)};
+  --page-padding-top: #{desktop-vw(50px)};
+  --upcoming-accordion-height: #{desktop-vw(30px)};
+  --nav-height: #{desktop-vw(50px)};
+
+  --font-nb-international-pro: NBInternationalPro;
+  --font-nb-international-pro-mono: NBInternationalProMono;
+
+  --s-14: #{desktop-vw(14px)};
+  --s-16: #{desktop-vw(16px)};
+  --s-18: #{desktop-vw(18px)};
+  --s-20: #{desktop-vw(20px)};
+  --s-24: #{desktop-vw(24px)};
+  --s-30: #{desktop-vw(30px)};
+  --s-35: #{desktop-vw(35px)};
+  --s-40: #{desktop-vw(40px)};
+  --s-45: #{desktop-vw(45px)};
+  --s-50: #{desktop-vw(50px)};
+  --s-60: #{desktop-vw(60px)};
+  --s-80: #{desktop-vw(80px)};
+  --s-100: #{desktop-vw(100px)};
+
+  --spacing-xs: #{desktop-vw(8px)};
+  --spacing-sm: #{desktop-vw(15px)};
+  --spacing-md: #{desktop-vw(30px)};
+  --spacing-lg: #{desktop-vw(50px)};
+  --spacing-xl: #{desktop-vw(75px)};
+
+  --br-xxs: #{desktop-vw(4px)};
+  --br-xs: #{desktop-vw(10px)};
+  --br-sm: #{desktop-vw(15px)};
+  --br-md: #{desktop-vw(25px)};
+  --br-lg: #{desktop-vw(50px)};
+  --br-xl: #{desktop-vw(100px)};
+
+  @include mobile {
+    --s-14: #{mobile-vw(14px)};
+    --s-16: #{mobile-vw(16px)};
+    --s-18: #{mobile-vw(18px)};
+    --s-20: #{mobile-vw(20px)};
+    --s-24: #{mobile-vw(24px)};
+    --s-30: #{mobile-vw(30px)};
+    --s-35: #{mobile-vw(35px)};
+    --s-40: #{mobile-vw(40px)};
+    --s-45: #{mobile-vw(45px)};
+    --s-50: #{mobile-vw(50px)};
+    --s-60: #{mobile-vw(60px)};
+    --s-80: #{mobile-vw(80px)};
+    --s-100: #{mobile-vw(100px)};
+
+    --header-height: #{mobile-vw(120px)};
+    --page-padding-top: #{mobile-vw(30px)};
+    --upcoming-accordion-height: #{mobile-vw(30px)};
+    --nav-height: #{mobile-vw(30px)};
+    --mobile-padding-x: #{mobile-vw(10px)};
+
+    --spacing-xs: #{mobile-vw(8px)};
+    --spacing-sm: #{mobile-vw(15px)};
+    --spacing-md: #{mobile-vw(30px)};
+    --spacing-lg: #{mobile-vw(50px)};
+    --spacing-xl: #{mobile-vw(75px)};
+
+    --br-xxs: #{mobile-vw(4px)};
+    --br-xs: #{mobile-vw(11px)};
+    --br-sm: #{mobile-vw(15px)};
+    --br-md: #{mobile-vw(25px)};
+    --br-lg: #{mobile-vw(50px)};
+    --br-xl: #{mobile-vw(100px)};
+  }
+}
+
+html {
+  color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+  pointer-events: auto;
+  // scrollbar-width: thin;
+  // @extend .noSelect;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+body {
+  background-color: var(--lotion);
+  line-height: 1;
+  min-height: 100vh;
+}
+
+main {
+  min-height: calc(100vh - var(--header-height));
+}
+
+a,
+button,
+input,
+label,
+textarea,
+select {
+  color: inherit;
+  cursor: pointer;
+}
+
+*::selection {
+  background-color: var(--fuego);
+  color: var(--black);
+}
+
+input {
+  @extend .remove-autofill-styles;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+}
+
+sup {
+  font-size: xx-small;
+  vertical-align: super;
+}
+
+// Be sure markers on top
+.gsap-marker-end,
+.gsap-marker-start,
+.gsap-marker-scroller-end,
+.gsap-marker-scroller-start {
+  z-index: z-index("gsap-markers") !important;
+}
+
+.input-required {
+  // box-shadow: var(--error) 0px 0px 0px 1px;
+  color: var(--error) !important;
+  transition: 200ms all ease;
+
+  * {
+    color: var(--error) !important;
+    transition: 200ms all ease;
+  }
+}
+
+.inherit-dims {
+  height: inherit;
+  width: inherit;
+}
+
+.cursor-none {
+  cursor: none;
+
+  * {
+    cursor: none;
+  }
+}
+
+.text-highlight {
+  color: var(--fuego);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding-right: 0.1ch;
+
+  @include mobile {
+    font-size: 1em;
+    font-weight: 500;
+    padding-right: unset;
+  }
+}

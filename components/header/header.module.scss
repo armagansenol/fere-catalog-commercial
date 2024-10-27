@@ -1,0 +1,19 @@
+.header {
+  font-family: var(--font-mukta);
+  height: var(--header-height);
+  padding: 0 desktop-vw(60px);
+  z-index: z-index("header");
+
+  .nav {
+    gap: desktop-vw(50px);
+    position: relative;
+
+    .part {
+      gap: desktop-vw(30px);
+    }
+
+    .logoC {
+      @include dims(desktop-vw(120px), desktop-vw(80px));
+    }
+  }
+}

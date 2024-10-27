@@ -1,0 +1,7 @@
+.hi {
+  flex-grow: 1;
+  position: relative;
+  overflow-y: scroll;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+}/*# sourceMappingURL=scrollable-box.module.css.map */

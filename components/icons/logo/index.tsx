@@ -5,7 +5,7 @@ type Props = {
   rotate?: number
 }
 
-const Logo = ({ fill = "red", rotate = 0 }: Props) => {
+const Logo = ({ rotate = 0 }: Props) => {
   return (
     <div
       className="flex-center"

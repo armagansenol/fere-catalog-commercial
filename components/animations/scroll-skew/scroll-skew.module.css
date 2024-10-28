@@ -1,8 +1,0 @@
-.scrollSkew {
-  transform: translateX(-175vw);
-  width: 300vw;
-}
-.scrollSkew .marqueeInner {
-  display: flex;
-  will-change: transform;
-}/*# sourceMappingURL=scroll-skew.module.css.map */

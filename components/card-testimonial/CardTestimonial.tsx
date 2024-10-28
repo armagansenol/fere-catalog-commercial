@@ -2,19 +2,19 @@ import s from "./card-testimonial.module.scss"
 
 import cx from "clsx"
 
-export interface CardTestimonialProps {}
+export interface CardTestimonialProps {
+  text: string
+  author: string
+  company: string
+}
 
 export default function CardTestimonial(props: CardTestimonialProps) {
   return (
     <div className={cx(s.cardTestimonial, "flex flex-col items-start justify-between")}>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum amet sit reprehenderit ut fugiat temporibus
-        architecto vitae soluta in totam! Quidem architecto voluptates quis, reprehenderit magni sunt nulla id, dolore
-        cumque culpa error, neque omnis. Fugit pariatur voluptate veritatis doloremque.
-      </p>
+      <p>{props.text}</p>
       <div className={s.author}>
-        <p>Rene Schwab</p>
-        <small>Company Name</small>
+        <p>{props.author}</p>
+        <small>{props.company}</small>
       </div>
     </div>
   )

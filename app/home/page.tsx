@@ -31,64 +31,24 @@ const companies = [
 
 const testimonials = [
   {
-    text: (
-      <>
-        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
-        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
-      </>
-    ),
-    author: {
-      name: <>Rene Schwab</>,
-      company: <>Şirket Adı</>,
-    },
+    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+    author: "Rene Schwab",
+    company: "Şirket Adı",
   },
   {
-    text: (
-      <>
-        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
-        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
-      </>
-    ),
-    author: {
-      name: <>Rene Schwab</>,
-      company: <>Şirket Adı</>,
-    },
+    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+    author: "Rene Schwab",
+    company: "Şirket Adı",
   },
   {
-    text: (
-      <>
-        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
-        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
-      </>
-    ),
-    author: {
-      name: <>Rene Schwab</>,
-      company: <>Şirket Adı</>,
-    },
+    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+    author: "Rene Schwab",
+    company: "Şirket Adı",
   },
   {
-    text: (
-      <>
-        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
-        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
-      </>
-    ),
-    author: {
-      name: <>Rene Schwab</>,
-      company: <>Şirket Adı</>,
-    },
-  },
-  {
-    text: (
-      <>
-        Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla,
-        ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.
-      </>
-    ),
-    author: {
-      name: <>Rene Schwab</>,
-      company: <>Şirket Adı</>,
-    },
+    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+    author: "Rene Schwab",
+    company: "Şirket Adı",
   },
 ]
 

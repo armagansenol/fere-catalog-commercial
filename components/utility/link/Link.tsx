@@ -1,50 +1,63 @@
 import NextLink from "next/link"
-import { forwardRef, useMemo } from "react"
+import type { LinkProps as NextLinkProps } from "next/link"
+import type { UrlObject } from "url"
+import React, { forwardRef, useMemo } from "react"
 
-const Link = forwardRef(
-  ({ href, children, className, scroll = false, ariaLabel = "go to page", ...props }: any, ref) => {
-    const attributes = {
-      ref,
-      className,
-      ...props,
-    }
+type Url = string | UrlObject
 
-    const isProtocol = useMemo(() => href?.startsWith("mailto:") || href?.startsWith("tel:"), [href])
+type LinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NextLinkProps> &
+  NextLinkProps & {
+    className?: string
+    scroll?: boolean
+    ariaLabel?: string
+    children: React.ReactNode
+    href: Url
+  }
 
-    const isAnchor = useMemo(() => href?.startsWith("#"), [href])
-    const isExternal = useMemo(() => href?.startsWith("http"), [href])
+const Link: React.ForwardRefRenderFunction<HTMLAnchorElement, LinkProps> = (
+  { href, children, className, scroll = false, ariaLabel = "go to page", ...props },
+  ref
+) => {
+  const isProtocol = useMemo(
+    () => typeof href === "string" && (href.startsWith("mailto:") || href.startsWith("tel:")),
+    [href]
+  )
+  const isAnchor = useMemo(() => typeof href === "string" && href.startsWith("#"), [href])
+  const isExternal = useMemo(() => typeof href === "string" && href.startsWith("http"), [href])
 
-    if (typeof href !== "string") {
-      return (
-        <button type="button" {...attributes}>
-          {children}
-        </button>
-      )
-    }
-
-    if (isProtocol || isExternal) {
-      return (
-        <a {...attributes} href={href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      )
-    }
-
+  if (typeof href === "object") {
     return (
-      <NextLink
-        aria-label={ariaLabel}
-        href={href}
-        passHref={isAnchor}
-        scroll={scroll}
-        {...attributes}
-        {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
-      >
+      <NextLink ref={ref} href={href} aria-label={ariaLabel} className={className} scroll={scroll} {...props}>
         {children}
       </NextLink>
     )
   }
-)
 
-Link.displayName = "Link"
+  if (isProtocol || isExternal) {
+    return (
+      <a ref={ref} href={href} className={className} target="_blank" rel="noopener noreferrer" {...props}>
+        {children}
+      </a>
+    )
+  }
 
-export default Link
+  return (
+    <NextLink
+      ref={ref}
+      href={href}
+      aria-label={ariaLabel}
+      className={className}
+      passHref={isAnchor}
+      scroll={scroll}
+      {...props}
+    >
+      {children}
+    </NextLink>
+  )
+}
+
+const ForwardedLink = forwardRef(Link)
+
+ForwardedLink.displayName = "Link"
+
+export default ForwardedLink

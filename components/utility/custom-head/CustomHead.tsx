@@ -14,7 +14,6 @@ export default function CustomHead({
   canonical,
   title,
   description,
-  image,
   keywords,
   themeColor = "#007538",
   twitter = { handle: "@ferecatalog" },

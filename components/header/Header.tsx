@@ -9,39 +9,39 @@ export default function Header() {
   return (
     <header className={cx(s.header, "flex items-center")}>
       <nav className={cx(s.nav, "flex items-center justify-between flex-1")}>
-        <div className={cx(s.navItem, s.logoC)}>
+        <div className={cx(s.navItem, s.logoC, "cursor-pointer")}>
           <Link href="/">
             <Logo />
           </Link>
         </div>
 
         <div className={cx(s.part, "flex items-center")}>
-          <div className={s.navItem}>
+          <div className={cx(s.navItem, "cursor-pointer")}>
             <Link href="/about">Hakkımızda</Link>
           </div>
-          <div className={s.navItem}>
-            <Link href="/about">Nasıl Çalışır?</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/how-to">Nasıl Çalışır?</Link>
           </div>
-          <div className={s.navItem}>
-            <Link href="/about">Fiyatlandırma</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/pricing">Fiyatlandırma</Link>
           </div>
-          <div className={s.navItem}>
-            <Link href="/about">Blog</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/blog">Blog</Link>
           </div>
-          <div className={s.navItem}>
-            <Link href="/about">Destek</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/support">Destek</Link>
           </div>
         </div>
 
         <div className={cx(s.part, "flex items-center")}>
-          <div className={s.navItem}>
-            <Link href="/about">Giriş Yap</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/login">Giriş Yap</Link>
           </div>
-          <div className={s.navItem}>
-            <Link href="/subscribe">Hemen Üye Ol</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/pricing">Hemen Üye Ol</Link>
           </div>
-          <div className={s.navItem}>
-            <Link href="/about">EN</Link>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <>EN</>
           </div>
         </div>
       </nav>

@@ -1,140 +1,105 @@
-import s from "./cursor.module.scss"
+"use client"
+
+import s from "./custom-cursor.module.scss"
 
 import useMousePosition from "@/hooks/use-mouse-position"
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
 import cx from "clsx"
 import { useRef, useState } from "react"
-import { useIsomorphicLayoutEffect } from "usehooks-ts"
+import { useIsomorphicLayoutEffect, useMediaQuery } from "usehooks-ts"
 
-import { MediaComponent } from "@/components/utility/media-component"
 import { useCursorStore } from "@/lib/store/cursor"
 import { useLenisStore } from "@/lib/store/lenis"
 import { CursorType } from "@/types"
+import { breakpoints } from "@/lib/utils"
 
-const Cursor = () => {
+export default function Cursor() {
+  const isMobile = useMediaQuery(`(max-width: ${breakpoints.tablet}px)`)
+
   const ref = useRef(null)
-  const { type, toggleVisibility, media, visible, reset } = useCursorStore()
+  const cursorStore = useCursorStore()
   const mouse = useMousePosition()
   const { lenis } = useLenisStore()
 
-  const [active, setActive] = useState(false)
   const [cursorUi, setCursorUi] = useState<CursorType>(CursorType.default)
-  const [mediaUi, setMediaUi] = useState(media)
 
-  // visibility
+  // control visibility
   useIsomorphicLayoutEffect(() => {
+    const handleMouseOver = () => {
+      if (!cursorStore.visible) cursorStore.toggleVisibility()
+    }
+
     const handleMouseEnter = () => {
-      if (!visible) toggleVisibility()
+      if (!cursorStore.visible) cursorStore.toggleVisibility()
     }
 
     const handleMouseLeave = () => {
-      if (visible) toggleVisibility()
+      if (cursorStore.visible) cursorStore.toggleVisibility()
     }
 
     document.body.addEventListener("mouseenter", handleMouseEnter)
+    document.body.addEventListener("mouseover", handleMouseOver)
     document.body.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
       document.body.removeEventListener("mouseenter", handleMouseEnter)
+      document.body.removeEventListener("mouseover", handleMouseOver)
       document.body.removeEventListener("mouseleave", handleMouseLeave)
     }
-  }, [visible])
+  }, [cursorStore])
 
-  // motion
   useGSAP(
     () => {
-      if (active) {
-        const quickX = gsap.quickTo(ref.current, "x", { duration: 0.1, ease: "power3" })
-        const quickY = gsap.quickTo(ref.current, "y", { duration: 0.1, ease: "power3" })
+      if (!cursorStore.visible) return
 
-        quickX(mouse.x ?? 0)
-        quickY(mouse.y ?? 0)
+      const quickX = gsap.quickSetter(ref.current, "x", "px")
+      const quickY = gsap.quickSetter(ref.current, "y", "px")
 
-        return
-      }
-
-      if (mouse.x !== null && mouse.y !== null) {
-        setActive(true)
-
-        gsap.set(ref.current, {
-          x: mouse.x ?? 0,
-          y: mouse.y ?? 0,
-          onComplete: () => {
-            if (!visible) toggleVisibility()
-          },
-        })
-      }
-    },
-    {
-      dependencies: [mouse, active],
-    }
-  )
-
-  // type
-  useGSAP(
-    () => {
-      setCursorUi(type)
+      quickX(mouse.x ?? 0)
+      quickY(mouse.y ?? 0)
     },
     {
       scope: ref,
-      dependencies: [type],
+      dependencies: [mouse, cursorStore.visible],
     }
   )
 
-  // text animation
   useGSAP(
     () => {
-      gsap.to(".text", {
-        opacity: type === "click" || type === "media" ? 1 : 0,
-        duration: 0.2,
-      })
+      if (!cursorStore.visible) return
+      setCursorUi(cursorStore.type)
     },
     {
       scope: ref,
-      dependencies: [type],
+      dependencies: [cursorStore.type],
     }
   )
 
-  // media
-  useGSAP(
-    () => {
-      setMediaUi(media)
-    },
-    {
-      scope: ref,
-      dependencies: [media],
-    }
-  )
-
-  // reset on scroll
   useIsomorphicLayoutEffect(() => {
-    if (type === "default") {
-      return
-    }
-
     lenis?.on("scroll", () => {
-      reset()
+      if (cursorStore.type !== CursorType.default) {
+        cursorStore.reset()
+      }
     })
-  }, [lenis, type])
+  }, [lenis])
+
+  if (isMobile) return
 
   return (
     <div
       className={cx(s.cursor, {
-        [s.visible]: visible,
+        [s.visible]: cursorStore.visible,
       })}
       ref={ref}
     >
       <div className={cx(s.c, "c", "flex items-center", [s[cursorUi]])}>
-        {type === "media" && (
-          <div className={cx(s.mediaC, "media-c")}>{mediaUi && <MediaComponent media={mediaUi} />}</div>
-        )}
-        <span className={cx(s.text, "text", { [s.active]: cursorUi === "click" || cursorUi === "media" })}>
-          Click to view
+        <span
+          className={cx(s.text, "text", { [s.active]: cursorUi === CursorType.email || cursorUi === CursorType.view })}
+        >
+          {cursorStore.type === CursorType.view ? "( View )" : "( Email )"}
         </span>
       </div>
     </div>
   )
 }
-
-export default Cursor

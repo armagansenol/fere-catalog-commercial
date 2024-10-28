@@ -69,7 +69,6 @@ export enum PageTransitionPhase {
 
 export enum CursorType {
   default = "default",
-  click = "click",
-  media = "media",
-  hide = "hide",
+  view = "view",
+  email = "email",
 }

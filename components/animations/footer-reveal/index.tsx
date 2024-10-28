@@ -1,3 +1,5 @@
+"use client"
+
 import s from "./footer-reveal.module.scss"
 
 import { gsap } from "@/lib/gsap"

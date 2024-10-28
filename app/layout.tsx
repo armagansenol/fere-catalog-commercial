@@ -1,10 +1,9 @@
+import "@/styles/global.scss"
 import type { Metadata } from "next"
 import { Albert_Sans, Mukta } from "next/font/google"
 import "./globals.css"
-import "@/styles/global.scss"
-
-import { Footer } from "@/components/footer"
-import { Header } from "@/components/header"
+import Providers from "@/components/providers"
+import { SmoothLayout } from "@/layouts/smooth"
 
 const albertSans = Albert_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -31,9 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${albertSans.variable} ${mukta.variable} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <SmoothLayout>{children}</SmoothLayout>
+        </Providers>
       </body>
     </html>
   )

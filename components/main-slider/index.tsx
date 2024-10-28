@@ -1,1 +1,1 @@
-import { default as MainSlider } from "./MainSlider"
+export { default as MainSlider } from "./MainSlider"

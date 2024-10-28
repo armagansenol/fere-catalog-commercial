@@ -1,12 +1,24 @@
 import { CursorType } from "@/types"
 import { create } from "zustand"
+import { MouseEventHandler } from "react"
+
+interface CursorEvents {
+  cursorEmail: {
+    onMouseEnter: MouseEventHandler
+    onMouseLeave: MouseEventHandler
+  }
+  cursorView: {
+    onMouseEnter: MouseEventHandler
+    onMouseLeave: MouseEventHandler
+  }
+}
 
 interface State {
   type: CursorType
   visible: boolean
   toggleVisibility: () => void
   setCursor: (type: CursorType) => void
-  events: any
+  events: CursorEvents
   reset: () => void
 }
 

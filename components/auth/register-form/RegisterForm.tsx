@@ -1,18 +1,18 @@
 "use client"
 
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { useMutation } from "@tanstack/react-query"
-import axios from "axios"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
+import axios from "axios"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import * as z from "zod"
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -66,6 +66,7 @@ export default function FormClient() {
       await mutation.mutateAsync(data)
     } catch (error) {
       // Error is handled in mutation.onError
+      console.log(error)
     } finally {
       setIsSubmitting(false)
     }

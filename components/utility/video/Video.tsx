@@ -27,18 +27,7 @@ const Video = forwardRef<HTMLVideoElement, VideoProps>((props, ref) => {
   const secondaryVideoSource = secondaryVideoUrl && <source src={secondaryVideoUrl} type={secondaryVideoType} />
 
   return (
-    <video
-      ref={ref}
-      className={cx(s.video, className)}
-      poster={poster}
-      aria-hidden
-      autoPlay
-      disableRemotePlayback
-      loop
-      muted
-      playsInline
-      {...rest}
-    >
+    <video ref={ref} className={cx(s.video, className)} poster={poster} aria-hidden disableRemotePlayback {...rest}>
       {primaryVideoSource}
       {secondaryVideoSource}
     </video>

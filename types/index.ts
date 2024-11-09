@@ -12,7 +12,7 @@ export interface Filter {
 }
 
 export interface Social {
-  icon: any
+  icon: string
   ui: string
   url: string
 }
@@ -71,4 +71,35 @@ export enum CursorType {
   default = "default",
   view = "view",
   email = "email",
+}
+
+interface MenuItem {
+  id: string
+  title: string
+  href: string
+}
+
+export interface SideNavigationProps {
+  title: string
+  items: MenuItem[]
+}
+
+interface FAQItem {
+  id: string
+  question: string
+  answer: string | string[]
+}
+
+export interface SupportFaqProps {
+  id: string
+  title: string
+  items: FAQItem[]
+}
+
+export enum SocialMedia {
+  tiktok = "tiktok",
+  facebook = "facebook",
+  instagram = "instagram",
+  x = "x",
+  youtube = "youtube",
 }

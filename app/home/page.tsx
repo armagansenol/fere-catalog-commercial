@@ -1,15 +1,18 @@
 import s from "./home.module.scss"
 
-import MainSlider from "@/components/main-slider/MainSlider"
-import { Marquee } from "@/components/animations/marquee"
+import cn from "clsx"
 
-import CardTestimonial from "@/components/card-testimonial/CardTestimonial"
+import { Marquee } from "@/components/animations/marquee"
+import { CardTestimonial } from "@/components/card-testimonial"
+import Logo from "@/components/icons/logo"
+import { MainSlider } from "@/components/main-slider"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
-import cx from "clsx"
+import { Video } from "@/components/utility/video"
 
-import Logo from "@/components/icons/logo"
-import sample from "@/public/img/sample.jpg"
+import employee from "@/public/img/employee.jpg"
+
+import { HowItWorks } from "@/components/how-it-works"
 
 const companies = [
   {
@@ -53,41 +56,19 @@ const testimonials = [
 ]
 
 export default function Home() {
-  // const howItWorksRef = useRef(null)
-
-  // useGSAP(
-  //   () => {
-  //     const tl = gsap.timeline()
-
-  //     tl.to(".phases", {
-  //       yPercent: -25,
-  //     })
-
-  //     ScrollTrigger.create({
-  //       animation: tl,
-  //       trigger: ".sticky-c",
-  //       markers: true,
-  //       pin: true,
-  //       scrub: true,
-  //     })
-  //   },
-  //   {
-  //     scope: howItWorksRef,
-  //   }
-  // )
-
   return (
     <>
-      <section>
-        <MainSlider />
-      </section>
-      <section className={cx(s.description)}>
-        <h1>
-          Dijital
-          <button className={cx("inline-flex items-center justify-center")}></button> kataloğunuzu oluşturun,
-          ürünlerinizi hızla ve etkili bir şekilde sergileyin.
-        </h1>
-        <div className={cx(s.stats, "grid grid-cols-3")}>
+      <MainSlider />
+      <section className={cn(s.island, "flex flex-col items-center")}>
+        <h1>Yeni Nesil Toptan Satış Online Katalog ve Sipariş Yönetimi</h1>
+        <p>
+          Müşterilerinizin online sipariş verebileceği dijital kataloğunuzu oluşturun, ürünlerinizi özelleştirilebilir
+          detaylarla sergileyin ve istediğinizde düzenleyin.
+        </p>
+        <div className={s.videoC}>
+          <Video primaryVideoUrl="/video/sample.mp4" primaryVideoType="mp4" autoPlay loop playsInline muted />
+        </div>
+        <div className={cn(s.stats, "w-full grid grid-cols-3")}>
           <div>
             <h3>2K</h3>
             <p>Ayda ortalama ürün satışı.</p>
@@ -108,8 +89,9 @@ export default function Home() {
           </div>
         </div>
         <h2>
-          Hem tüketici hem de işletme odaklı kullanıcılar için tasarlanmış olan platformumuz, kesintisiz bir alışveriş
-          deneyimi sunar ve işinizin büyümesine katkı sağlar.
+          Farklı sektör ve büyüklükte <strong>100+</strong> işletme, toptan satış süreçlerini dijitalleştirmek ve
+          verimliliği artırmak için Fere Catalog’u tercih ediyor. Siz de sektörünüzde lider bir konuma yükselmek ve
+          işletmenizin satış oranlarını artırmak için bize katılın.
         </h2>
         <div className={s.marqueeC}>
           <Marquee duration={40} repeat={2}>
@@ -125,99 +107,65 @@ export default function Home() {
           </Marquee>
         </div>
       </section>
-
-      <section className={s.howItWorks}>
-        <div className={s.intro}>
-          <h2>Nasıl Çalışır?</h2>
-          <p>
-            Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
-            artırabileceğinizi öğreneceksiniz.
-          </p>
-        </div>
-
-        <div className={cx(s.stickyC, "sticky-c", "grid grid-cols-2")}>
-          <div className={cx(s.phases, "phases")}>
-            <div>
-              <h3>Nasıl Çalışır?</h3>
-              <p>
-                Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
-                artırabileceğinizi öğreneceksiniz.
-              </p>
-            </div>
-            <div>
-              <h3>Nasıl Çalışır?</h3>
-              <p>
-                Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
-                artırabileceğinizi öğreneceksiniz.
-              </p>
-            </div>
-            <div>
-              <h3>Nasıl Çalışır?</h3>
-              <p>
-                Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
-                artırabileceğinizi öğreneceksiniz.
-              </p>
-            </div>
-          </div>
-          <div>
-            <Img alt="sample" src={sample} className="object-cover" />
-          </div>
-        </div>
-      </section>
-
+      <HowItWorks />
       <section className={s.specs}>
-        <div className={s.intro}>
-          <h2>Lorem ipsum dolor sit amet</h2>
-        </div>
-        <div className={cx(s.cards, "flex flex-wrap")}>
+        <div className={cn(s.cards, "grid grid-cols-3")}>
           <div className={s.cardSpec}>
-            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <h4>Kolay Ürün Yönetimi</h4>
             <p>
-              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
-              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
-              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+              Tüm Catalog içi işlemleri! Ürünlerinizi hangi değişikliğinize hangisinde sergilemiş olun değişimin sağını
+              solüklü verenlere etkileyebilir ve fireler kullanarak ürünlerinizi değişikli.
             </p>
-            <button>Hemen Üye Ol</button>
           </div>
           <div className={s.cardSpec}>
-            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <h4>Online Sipariş Oluşturma</h4>
             <p>
-              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
-              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
-              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+              Müşterileriniz, mağazanızın linkine tıklayarak tüm ürünlerinize kolayca erişebilir ve hızlıca
+              siparişlerini online olarak takip edebilir. Size özel mağaza linkiniz ile müşterileriniz katalog hem
+              tanıtımı veya ürün güncel görüntülenmesi gerek kalması.
             </p>
-            <button>Hemen Üye Ol</button>
           </div>
           <div className={s.cardSpec}>
-            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <h4>Ürün Gizliliği ve Koruma</h4>
             <p>
-              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
-              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
-              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+              Ürünlerinizin gizliliğini beraberynize. Ürünleriniz, yetkiniz sizin doğruluğunuz katalogta yer alır, aynı
+              şekilde değer görünmesi in üstünde bir şey değiştirilmez.
             </p>
-            <button>Hemen Üye Ol</button>
           </div>
           <div className={s.cardSpec}>
-            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+            <h4>Gelişmiş Yetki ve Erişim Kontrolü</h4>
             <p>
-              Dijital katalog sistemimiz, teknik bilgi gerektirmeden hızlı ve sorunsuz bir şekilde kurulabilir.
-              Kullanıcı dostu arayüzü sayesinde, katalog oluşturma ve yönetme işlemleri dakikalar içinde tamamlanır. Bu
-              özellik, işletmelerin zaman ve kaynak tasarrufu yapmasını sağlar.
+              Çalışanlarınız için detaylı erişim yönetimi belirlenebilirsiniz. Dilediğiniz gibi, istemiş ürün yönetimi
+              gibi özel işlemlerin doğruluğunuz tüm alanlarla sadece yetki işlemleri işlem yapılmasını
+              sağlayabilirsiniz.
             </p>
-            <button>Hemen Üye Ol</button>
+          </div>
+          <div className={s.cardSpec}>
+            <h4>Çoklu Dil Desteğiyle Global Müşteri Erişimi</h4>
+            <p>
+              Platformumuz, çoklu dil desteğiyle yurt dışındaki müşterilerinize de hitabet etme ve etkiletişim geçme
+              seçeneklerini sağlar. Böylece kullanıcısı paranızı büyütmeniz farkına kalırsın.
+            </p>
+          </div>
+          <div className={s.cardSpec}>
+            <h4>Toplam Satış & Gelir Analizi</h4>
+            <p>
+              Satış ve satış raporları ile ürün bazında zamana bağlı gelişiminizi analizi yapabilir ve müşterilerinizin
+              toplam sipariş takibi için sadece tek bir yerden görüntüleyebilirsiniz.
+            </p>
           </div>
         </div>
       </section>
 
       <section className={s.discover}>
-        <div className={cx(s.card, "grid grid-cols-2")}>
-          <div className={s.text}>
+        <div className={cn(s.card, "grid grid-cols-2")}>
+          <div className={cn(s.text, "flex flex-col justify-center")}>
             <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
             <p>İşletmenizi en iyi şekilde desteklemek için özel olarak tasarlanmış çeşitli paketlerimizi keşfedin!</p>
             <button>Hemen Üye Ol</button>
           </div>
           <div className={s.imgC}>
-            <Img alt="Sample" className="object-cover" src={sample} />
+            <Img alt="Employee on phone" className="object-cover" src={employee} />
           </div>
         </div>
       </section>
@@ -229,8 +177,8 @@ export default function Home() {
         <div className={s.sliderC}>
           <EmblaCarousel
             slideSpacing={30}
-            nextButton={<div className={cx(s.btn, s.next)}>next</div>}
-            prevButton={<div className={cx(s.btn, s.prev)}>prev</div>}
+            nextButton={<div className={cn(s.btn, s.next)}>next</div>}
+            prevButton={<div className={cn(s.btn, s.prev)}>prev</div>}
             btnsClassName={s.navigation}
           >
             {testimonials.map((item, i) => {

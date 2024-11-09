@@ -14,9 +14,6 @@
   --upcoming-accordion-height: #{desktop-vw(30px)};
   --nav-height: #{desktop-vw(50px)};
 
-  --font-nb-international-pro: NBInternationalPro;
-  --font-nb-international-pro-mono: NBInternationalProMono;
-
   --s-14: #{desktop-vw(14px)};
   --s-16: #{desktop-vw(16px)};
   --s-18: #{desktop-vw(18px)};
@@ -34,7 +31,7 @@
   --spacing-xs: #{desktop-vw(8px)};
   --spacing-sm: #{desktop-vw(15px)};
   --spacing-md: #{desktop-vw(30px)};
-  --spacing-lg: #{desktop-vw(50px)};
+  --spacing-lg: #{desktop-vw(60px)};
   --spacing-xl: #{desktop-vw(80px)};
 
   --br-xxs: #{desktop-vw(4px)};
@@ -94,15 +91,15 @@ body {
 }
 
 body {
-  background-color: var(--white);
+  background-color: var(--unbleached);
   line-height: 1;
   min-height: 100vh;
 }
 
 main {
-  background-color: var(--white);
+  background-color: var(--unbleached);
   min-height: calc(100vh - var(--header-height));
-  padding: 0 var(--spacing-xl);
+  padding: 0 var(--spacing-lg);
   position: relative;
   z-index: z-index("main");
 }
@@ -170,7 +167,7 @@ sup {
 }
 
 .text-highlight {
-  color: var(--fuego);
+  color: var(--white);
   font-style: italic;
   font-weight: 600;
   font-size: 1.1em;

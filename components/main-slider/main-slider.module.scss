@@ -1,5 +1,6 @@
 .mainSlider {
-  padding: desktop-vw(20px) 0;
+  --padding-bottom: #{desktop-vw(60px)};
+  padding: 0 0 var(--padding-bottom) 0;
   position: relative;
 
   .textC {
@@ -58,7 +59,7 @@
   }
 
   .miniMapC {
-    @include position(absolute, auto, auto, desktop-vw(50px), desktop-vw(60px));
+    @include position(absolute, auto, auto, calc(var(--padding-bottom) + desktop-vw(30px)), desktop-vw(60px));
     gap: desktop-vw(14px);
 
     .miniMap {

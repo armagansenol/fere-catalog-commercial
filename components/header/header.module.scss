@@ -1,7 +1,7 @@
 .header {
   font-family: var(--font-mukta);
   height: var(--header-height);
-  padding: 0 desktop-vw(60px);
+  padding: 0 var(--spacing-lg);
   z-index: z-index("header");
 
   .nav {

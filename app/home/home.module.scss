@@ -1,15 +1,18 @@
-.description {
+.island {
   background-color: var(--lynx-white);
   border-radius: desktop-vw(20px);
+  margin: 0 var(--spacing-sm);
   padding: desktop-vw(65px) desktop-vw(85px);
 
   > h1 {
-    @include dims(desktop-vw(860px), auto);
+    @include dims(desktop-vw(600px), auto);
     font-family: var(--font-albert-sans);
     font-size: desktop-vw(45px);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.25;
+    letter-spacing: -0.04em;
     margin-bottom: desktop-vw(50px);
+    text-align: center;
 
     > button {
       @include dims(desktop-vw(244px), desktop-vw(64px));
@@ -18,10 +21,33 @@
     }
   }
 
+  > p {
+    @include dims(desktop-vw(850px), auto);
+    font-family: var(--font-mukta);
+    font-size: desktop-vw(25px);
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: desktop-vw(50px);
+    text-align: center;
+
+    > button {
+      @include dims(desktop-vw(244px), desktop-vw(64px));
+      border-radius: desktop-vw(52px);
+      border: 1px solid var(--black);
+    }
+  }
+
+  > .videoC {
+    @include dims(desktop-vw(770px), desktop-vw(300px));
+    border-radius: desktop-vw(5px);
+    margin-bottom: desktop-vw(60px);
+    overflow: hidden;
+  }
+
   > h2 {
     @include dims(desktop-vw(640px), auto);
     font-family: var(--font-albert-sans);
-    font-size: desktop-vw(30px);
+    font-size: desktop-vw(28px);
     font-weight: 300;
     line-height: 1.25;
     margin-bottom: desktop-vw(140px);
@@ -30,6 +56,8 @@
   }
 
   .stats {
+    margin-bottom: desktop-vw(50px);
+
     &:hover {
       > div {
         opacity: 0.25;
@@ -82,9 +110,11 @@
       }
 
       p {
+        @include dims(desktop-vw(240px), auto);
         font-family: var(--font-mukta);
         font-size: desktop-vw(20px);
         font-weight: 200;
+        line-height: 1.25;
         position: relative;
         z-index: 10;
       }
@@ -119,106 +149,42 @@
   }
 }
 
-.howItWorks {
-  .intro {
-    padding: desktop-vw(100px) desktop-vw(120px);
-
-    h2 {
-      font-family: var(--font-mukta);
-      font-size: desktop-vw(45px);
-      font-weight: 300;
-      margin-bottom: desktop-vw(20px);
-    }
-
-    p {
-      font-family: var(--font-mukta);
-      font-size: desktop-vw(20px);
-      font-weight: 200;
-    }
-  }
-
-  .stickyC {
-    @include dims(auto, 100vh);
-    overflow: hidden;
-
-    .phases {
-      background-color: var(--lynx-white);
-
-      > div {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: desktop-vw(140px) desktop-vw(160px);
-
-        h3 {
-          border-bottom: 1px solid var(--black);
-          font-family: var(--font-mukta);
-          font-size: desktop-vw(25px);
-          font-weight: 300;
-          margin-bottom: desktop-vw(20px);
-          padding-bottom: desktop-vw(10px);
-          width: 100%;
-        }
-
-        p {
-          font-family: var(--font-mukta);
-          font-size: desktop-vw(18px);
-          font-weight: 200;
-          line-height: 1.25;
-        }
-      }
-    }
-  }
-}
-
 .specs {
-  .intro {
-    padding: desktop-vw(100px) desktop-vw(120px);
-
-    h2 {
-      font-family: var(--font-mukta);
-      font-size: desktop-vw(45px);
-      font-weight: 300;
-      margin-bottom: desktop-vw(20px);
-    }
-  }
+  padding: var(--spacing-xl);
 
   .cards {
-    gap: desktop-vw(80px) desktop-vw(60px);
+    gap: desktop-vw(40px) desktop-vw(140px);
     margin-left: auto;
 
     .cardSpec {
-      @include dims(desktop-vw(420px), auto);
-
       h4 {
+        color: var(--quarterdeck);
         font-family: var(--font-albert-sans);
-        font-size: desktop-vw(22px);
+        font-size: desktop-vw(24px);
         font-weight: 400;
+        letter-spacing: -0.04em;
+        line-height: 1.2;
         margin-bottom: desktop-vw(25px);
       }
 
       p {
         font-family: var(--font-mukta);
         font-size: desktop-vw(16px);
-        font-weight: 200;
-        line-height: 1.25;
+        font-weight: 300;
+        line-height: 1.35;
         margin-bottom: desktop-vw(40px);
-      }
-
-      button {
-        text-decoration: underline;
       }
     }
   }
 }
 
 .discover {
+  padding: 0 var(--spacing-xl);
+
   .card {
     background-color: var(--lynx-white);
     border-radius: desktop-vw(20px);
-    margin: 0 desktop-vw(95px);
-    padding: desktop-vw(32px);
+    padding: desktop-vw(40px);
 
     .text {
       @include dims(desktop-vw(470px), auto);
@@ -227,6 +193,7 @@
         font-family: var(--font-albert-sans);
         font-size: desktop-vw(50px);
         font-weight: 400;
+        line-height: 1.25;
         letter-spacing: desktop-vw(-2px);
         margin-bottom: desktop-vw(25px);
       }
@@ -257,7 +224,7 @@
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: desktop-vw(-6px);
-    margin: 0 desktop-vw(32px);
+    margin: 0 var(--spacing-xl);
     margin-bottom: desktop-vw(100px);
     display: flex;
     flex-direction: column;

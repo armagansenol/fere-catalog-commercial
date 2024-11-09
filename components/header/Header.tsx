@@ -14,35 +14,33 @@ export default function Header() {
             <Logo />
           </Link>
         </div>
-
         <div className={cx(s.part, "flex items-center")}>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/about">Hakkımızda</Link>
+            <Link href="/hakkimizda">Hakkımızda</Link>
           </div>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/how-to">Nasıl Çalışır?</Link>
+            <Link href="/nasil-calisir">Nasıl Çalışır?</Link>
           </div>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/pricing">Fiyatlandırma</Link>
+            <Link href="/fiyatlandirma">Fiyatlandırma</Link>
           </div>
-          <div className={cx(s.navItem, "cursor-pointer")}>
+          {/* <div className={cx(s.navItem, "cursor-pointer")}>
             <Link href="/blog">Blog</Link>
-          </div>
+          </div> */}
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/support">Destek</Link>
+            <Link href="/destek">Destek</Link>
           </div>
         </div>
-
         <div className={cx(s.part, "flex items-center")}>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/login">Giriş Yap</Link>
+            <Link href="/giris-yap">Giriş Yap</Link>
           </div>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/pricing">Hemen Üye Ol</Link>
+            <Link href="/fiyatlandirma">Hemen Üye Ol</Link>
           </div>
-          <div className={cx(s.navItem, "cursor-pointer")}>
+          {/* <div className={cx(s.navItem, "cursor-pointer")}>
             <>EN</>
-          </div>
+          </div> */}
         </div>
       </nav>
     </header>

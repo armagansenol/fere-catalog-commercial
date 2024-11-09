@@ -2,7 +2,7 @@
 
 // Each color filled here will create a css variable exposed globally
 $colors: (
-  "white": rgb(243, 242, 238),
+  "white": rgb(250, 249, 246),
   "black": rgb(21, 24, 25),
   "error": rgb(229, 72, 77),
   "quicksilver": rgb(166, 166, 166),
@@ -14,6 +14,7 @@ $colors: (
   "clouded-vision": rgb(209, 209, 209),
   "mystic-white": rgb(235, 234, 233),
   "quarterdeck": rgb(22, 110, 162),
+  "unbleached": rgb(251, 252, 246),
 );
 
 :root {

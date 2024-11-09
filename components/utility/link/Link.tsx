@@ -2,6 +2,7 @@ import NextLink from "next/link"
 import type { LinkProps as NextLinkProps } from "next/link"
 import type { UrlObject } from "url"
 import React, { forwardRef, useMemo } from "react"
+import cn from "clsx"
 
 type Url = string | UrlObject
 
@@ -46,7 +47,7 @@ const Link: React.ForwardRefRenderFunction<HTMLAnchorElement, LinkProps> = (
       ref={ref}
       href={href}
       aria-label={ariaLabel}
-      className={className}
+      className={cn("cursor-pointer", className)}
       passHref={isAnchor}
       scroll={scroll}
       {...props}

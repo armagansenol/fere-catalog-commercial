@@ -23,4 +23,4 @@ ScrollTrigger.defaults({
   // markers: process.env.NEXT_PUBLIC_NODE_ENV === "development"
 })
 
-export { CustomEase, EASE, ScrollTrigger, gsap }
+export { CustomEase, EASE, ScrollTrigger, gsap, useGSAP }

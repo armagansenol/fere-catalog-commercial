@@ -1,22 +1,18 @@
-"use client"
-
 import s from "./footer.module.scss"
 
 import cx from "clsx"
 
+import { FooterReveal } from "@/components/animations/footer-reveal"
 import { IconFacebook } from "@/components/icons/icon-facebook"
 import { IconInstagram } from "@/components/icons/icon-instagram"
 import { IconLinkedin } from "@/components/icons/icon-linkedin"
 import { IconX } from "@/components/icons/icon-x"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/utility/link"
-import { useFooterReveal } from "@/hooks/use-footer-reveal"
 
 export default function Footer() {
-  const { refCallback } = useFooterReveal()
-
   return (
-    <div className={s.revealC} ref={refCallback}>
+    <FooterReveal>
       <footer className={cx(s.footer, "flex flex-col")}>
         <div className={cx(s.punchC, "flex flex-col tablet:flex-row items-center justify-between")}>
           <h5 className={s.punch}>Hazırsanız Başlayalım.</h5>
@@ -92,7 +88,6 @@ export default function Footer() {
           </small>
         </div>
       </footer>
-      <div className={cx(s.overlay, "overlay")}></div>
-    </div>
+    </FooterReveal>
   )
 }

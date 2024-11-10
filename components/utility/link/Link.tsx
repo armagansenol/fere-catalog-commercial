@@ -16,7 +16,7 @@ type LinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NextL
   }
 
 const Link: React.ForwardRefRenderFunction<HTMLAnchorElement, LinkProps> = (
-  { href, children, className, scroll = false, ariaLabel = "go to page", ...props },
+  { href, children, className, scroll = true, ariaLabel = "go to page", ...props },
   ref
 ) => {
   const isProtocol = useMemo(

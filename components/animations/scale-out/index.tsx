@@ -2,20 +2,24 @@
 
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
+import React, { useRef } from "react"
 import { useWindowSize } from "usehooks-ts"
 
-export default function ScaleOut() {
+interface ScaleOutProps {
+  children: React.ReactNode
+}
+
+export default function ScaleOut({ children }: ScaleOutProps) {
   const windowSize = useWindowSize()
+  const scaleOutRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
-      if (ScrollTrigger.isTouch) {
+      if (ScrollTrigger.isTouch || !scaleOutRef.current) {
         return
       }
 
-      const scaleOut: HTMLDivElement | null = document.querySelector(".scale-out")
-
-      if (!scaleOut) return
+      const scaleOut = scaleOutRef.current
 
       const tl = gsap.timeline({
         paused: true,
@@ -30,12 +34,11 @@ export default function ScaleOut() {
       ScrollTrigger.create({
         animation: tl,
         id: `scale-out`,
-        trigger: document.querySelector(".scale-out"),
-        start: `bottom top+=${scaleOut.getBoundingClientRect().height + scaleOut.getBoundingClientRect().top}px`,
+        trigger: scaleOut,
+        start: () => `bottom top+=${scaleOut.getBoundingClientRect().height + scaleOut.getBoundingClientRect().top}px`,
         end: "bottom top",
         pin: true,
         pinSpacing: false,
-        //   markers: true,
         scrub: true,
       })
     },
@@ -45,5 +48,9 @@ export default function ScaleOut() {
     }
   )
 
-  return null
+  return (
+    <div ref={scaleOutRef} className="scale-out">
+      {children}
+    </div>
+  )
 }

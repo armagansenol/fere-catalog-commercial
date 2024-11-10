@@ -7,13 +7,14 @@ import { CardTestimonial } from "@/components/card-testimonial"
 import { HowItWorks } from "@/components/how-it-works"
 import Logo from "@/components/icons/logo"
 import { MainSlider } from "@/components/main-slider"
+import { Teaser } from "@/components/teaser"
 import { Button } from "@/components/ui/button"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
-import ScaleOut from "@/components/scale-out"
-import { Teaser } from "@/components/teaser"
 
+import ScaleIn from "@/components/animations/scale-in"
+import ScaleOut from "@/components/animations/scale-out"
 import employee from "@/public/img/employee.jpg"
 
 const companies = [
@@ -60,57 +61,59 @@ const testimonials = [
 export default function HomePage() {
   return (
     <>
-      <div className="scale-out">
+      <ScaleOut>
         <MainSlider />
-      </div>
-      <section className={cn(s.island, "flex flex-col items-center")}>
-        <h1>Yeni Nesil Toptan Satış Online Katalog ve Sipariş Yönetimi</h1>
-        <p>
-          Müşterilerinizin online sipariş verebileceği dijital kataloğunuzu oluşturun, ürünlerinizi özelleştirilebilir
-          detaylarla sergileyin ve istediğinizde düzenleyin.
-        </p>
-        <div className={s.teaserC}>
-          <Teaser />
-        </div>
-        <div className={cn(s.stats, "flex flex-col w-full gap-5 tablet:grid grid-cols-3 tablet:gap-0")}>
-          <div>
-            <h3>2K</h3>
-            <p>Ayda ortalama ürün satışı.</p>
+      </ScaleOut>
+      <ScaleIn>
+        <section className={cn(s.island, "flex flex-col items-center")}>
+          <h1>Yeni Nesil Toptan Satış Online Katalog ve Sipariş Yönetimi</h1>
+          <p>
+            Müşterilerinizin online sipariş verebileceği dijital kataloğunuzu oluşturun, ürünlerinizi özelleştirilebilir
+            detaylarla sergileyin ve istediğinizde düzenleyin.
+          </p>
+          <div className={s.teaserC}>
+            <Teaser />
           </div>
-          <div>
-            <h3>
-              +40
-              <span>%</span>
-            </h3>
-            <p>Fere Katalog kullanan müşterilerimizin satış oranı artışı.</p>
+          <div className={cn(s.stats, "flex flex-col w-full gap-5 tablet:grid grid-cols-3 tablet:gap-0")}>
+            <div>
+              <h3>2K</h3>
+              <p>Ayda ortalama ürün satışı.</p>
+            </div>
+            <div>
+              <h3>
+                +40
+                <span>%</span>
+              </h3>
+              <p>Fere Katalog kullanan müşterilerimizin satış oranı artışı.</p>
+            </div>
+            <div>
+              <h3>
+                +50
+                <span>%</span>
+              </h3>
+              <p>İlk 6 ay içindeki yeni müşteri kazanma oranı.</p>
+            </div>
           </div>
-          <div>
-            <h3>
-              +50
-              <span>%</span>
-            </h3>
-            <p>İlk 6 ay içindeki yeni müşteri kazanma oranı.</p>
+          <h2>
+            Farklı sektör ve büyüklükte <strong>100+</strong> işletme, toptan satış süreçlerini dijitalleştirmek ve
+            verimliliği artırmak için Fere Catalog’u tercih ediyor. Siz de sektörünüzde lider bir konuma yükselmek ve
+            işletmenizin satış oranlarını artırmak için bize katılın.
+          </h2>
+          <div className={s.marqueeC}>
+            <Marquee duration={40} repeat={2}>
+              <>
+                {companies.map((item, i) => {
+                  return (
+                    <div className={s.item} key={i}>
+                      {item.logo}
+                    </div>
+                  )
+                })}
+              </>
+            </Marquee>
           </div>
-        </div>
-        <h2>
-          Farklı sektör ve büyüklükte <strong>100+</strong> işletme, toptan satış süreçlerini dijitalleştirmek ve
-          verimliliği artırmak için Fere Catalog’u tercih ediyor. Siz de sektörünüzde lider bir konuma yükselmek ve
-          işletmenizin satış oranlarını artırmak için bize katılın.
-        </h2>
-        <div className={s.marqueeC}>
-          <Marquee duration={40} repeat={2}>
-            <>
-              {companies.map((item, i) => {
-                return (
-                  <div className={s.item} key={i}>
-                    {item.logo}
-                  </div>
-                )
-              })}
-            </>
-          </Marquee>
-        </div>
-      </section>
+        </section>
+      </ScaleIn>
       <HowItWorks />
       <section className={s.specs}>
         <div className={cn(s.cards, "flex flex-col items-center tablet:grid grid-cols-3 tablet:items-start")}>
@@ -160,27 +163,27 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className={s.discover}>
-        <div className={cn(s.card, "flex flex-col items-center gap-10 tablet:grid grid-cols-2")}>
-          <div className={cn(s.text, "flex flex-col items-center justify-center tablet:items-start")}>
-            <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
-            <p>
-              Her işletmeye özel olarak hazırlanmış paketlerimiz/planlarımız arasından ihtiyacınıza en uygun olanı
-              seçebilir ve 1 ay boyunca ücretsiz deneyebilirsiniz.
-            </p>
-            <Link href="/fiyatlandirma">
-              <Button className="px-16" size="lg">
-                Paketleri Gör
-              </Button>
-            </Link>
+      <ScaleIn>
+        <section className={s.discover}>
+          <div className={cn(s.card, "flex flex-col items-center gap-10 tablet:grid grid-cols-2")}>
+            <div className={cn(s.text, "flex flex-col items-center justify-center tablet:items-start")}>
+              <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
+              <p>
+                Her işletmeye özel olarak hazırlanmış paketlerimiz/planlarımız arasından ihtiyacınıza en uygun olanı
+                seçebilir ve 1 ay boyunca ücretsiz deneyebilirsiniz.
+              </p>
+              <Link href="/fiyatlandirma">
+                <Button className="px-16" size="lg">
+                  Paketleri Gör
+                </Button>
+              </Link>
+            </div>
+            <div className={s.imgC}>
+              <Img alt="Employee on phone" className="object-cover" src={employee} />
+            </div>
           </div>
-          <div className={s.imgC}>
-            <Img alt="Employee on phone" className="object-cover" src={employee} />
-          </div>
-        </div>
-      </section>
-
+        </section>
+      </ScaleIn>
       <section className={s.testimonials}>
         <h3>
           Müşterilerimizin <br /> Görüşleri
@@ -202,7 +205,6 @@ export default function HomePage() {
           </EmblaCarousel>
         </div>
       </section>
-      <ScaleOut />
     </>
   )
 }

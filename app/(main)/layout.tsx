@@ -2,10 +2,10 @@ import { SmoothLayout } from "@/layouts/smooth"
 import type { Metadata } from "next"
 import { Albert_Sans, Mukta } from "next/font/google"
 
-import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { Providers } from "@/components/providers"
 import { Modal } from "@/components/utility/modal"
+import { Footer } from "@/components/footer"
 
 const albertSans = Albert_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -33,8 +33,8 @@ export default async function MainLayout({ children }: { children: React.ReactNo
         <Header />
         <SmoothLayout>
           <main className="mt-[var(--header-height)] overflow-hidden">{children}</main>
+          <Footer />
         </SmoothLayout>
-        <Footer />
         <Modal />
       </div>
     </Providers>

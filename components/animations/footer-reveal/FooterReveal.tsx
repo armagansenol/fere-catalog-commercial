@@ -1,22 +1,23 @@
 "use client"
 
-import s from "./footer-reveal.module.scss"
+import React, { useCallback, useRef, useState } from "react"
 import { gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
-import cx from "clsx"
-import { ReactNode, useCallback, useRef, useState } from "react"
+import { usePathname } from "next/navigation"
 
-type Props = {
-  children: ReactNode
+interface FooterRevealProps {
+  children: React.ReactNode
 }
 
-const FooterReveal = ({ children }: Props) => {
+export default function FooterReveal({ children }: FooterRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const [height, setHeight] = useState<number>(0)
+  const pathname = usePathname()
 
-  const refElement = useCallback((node: HTMLDivElement | null) => {
+  const refCallback = useCallback((node: HTMLDivElement | null) => {
     if (node === null) return
     setHeight(node.getBoundingClientRect().height)
+    ref.current = node
   }, [])
 
   useGSAP(
@@ -53,25 +54,13 @@ const FooterReveal = ({ children }: Props) => {
         },
       })
     },
-    {
-      scope: ref,
-      dependencies: [height],
-      revertOnUpdate: true,
-    }
+    { scope: ref, dependencies: [height, pathname], revertOnUpdate: true }
   )
 
   return (
-    <div
-      className={s.revealC}
-      ref={(node) => {
-        ref.current = node
-        refElement(node)
-      }}
-    >
+    <div ref={refCallback} className="relative">
       {children}
-      <div className={cx(s.overlay, "overlay")}></div>
+      <div className="overlay absolute inset-0 bg-black pointer-events-none"></div>
     </div>
   )
 }
-
-export default FooterReveal

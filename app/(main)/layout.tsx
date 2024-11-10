@@ -20,8 +20,8 @@ const mukta = Mukta({
 })
 
 export const metadata: Metadata = {
-  title: "Mightyfull",
-  description: "This might be the best cookie ever!",
+  title: "Fere",
+  description: "Fere",
 }
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {

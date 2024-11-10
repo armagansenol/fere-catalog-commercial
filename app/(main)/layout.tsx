@@ -4,6 +4,7 @@ import { Albert_Sans, Mukta } from "next/font/google"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { Providers } from "@/components/providers"
 import { Modal } from "@/components/utility/modal"
 
 const albertSans = Albert_Sans({
@@ -25,15 +26,17 @@ export const metadata: Metadata = {
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className={`flex min-h-screen flex-col items-stretch justify-between ${albertSans.variable} ${mukta.variable} overflow-hidden`}
-    >
-      <Header />
-      <SmoothLayout>
-        <main className="mt-[var(--header-height)] overflow-hidden">{children}</main>
-      </SmoothLayout>
-      <Footer />
-      <Modal />
-    </div>
+    <Providers>
+      <div
+        className={`flex min-h-screen flex-col items-stretch justify-between ${albertSans.variable} ${mukta.variable} overflow-hidden`}
+      >
+        <Header />
+        <SmoothLayout>
+          <main className="mt-[var(--header-height)] overflow-hidden">{children}</main>
+        </SmoothLayout>
+        <Footer />
+        <Modal />
+      </div>
+    </Providers>
   )
 }

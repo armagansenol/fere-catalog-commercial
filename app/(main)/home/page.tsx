@@ -13,6 +13,7 @@ import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import ScaleOut from "@/components/scale-out"
 import { Teaser } from "@/components/teaser"
+
 import employee from "@/public/img/employee.jpg"
 
 const companies = [

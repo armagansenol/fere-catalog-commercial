@@ -5,18 +5,17 @@ import s from "./how-it-works.module.scss"
 import cn from "clsx"
 import { useRef } from "react"
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
-import { useMediaQuery } from "@uidotdev/usehooks"
 
 import { Img } from "@/components/utility/img"
 import { IconCartArrow, IconDots, IconHuman } from "@/components/icons"
 
 import ipad from "@/public/img/ipad-zoomed.jpg"
+import { useMediaQuery } from "usehooks-ts"
 
 export default function HowItWorks() {
   const howItWorksRef = useRef<HTMLElement>(null)
   const phasesRef = useRef<HTMLDivElement>(null)
   const stickyCRef = useRef<HTMLDivElement>(null)
-
   const isMobile = useMediaQuery("(max-width: 800px)")
 
   useGSAP(

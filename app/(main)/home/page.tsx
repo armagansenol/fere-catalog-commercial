@@ -4,15 +4,16 @@ import cn from "clsx"
 
 import { Marquee } from "@/components/animations/marquee"
 import { CardTestimonial } from "@/components/card-testimonial"
+import { HowItWorks } from "@/components/how-it-works"
 import Logo from "@/components/icons/logo"
 import { MainSlider } from "@/components/main-slider"
+import { Button } from "@/components/ui/button"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
-import { Video } from "@/components/utility/video"
-
+import { Link } from "@/components/utility/link"
+import ScaleOut from "@/components/scale-out"
+import { Teaser } from "@/components/teaser"
 import employee from "@/public/img/employee.jpg"
-
-import { HowItWorks } from "@/components/how-it-works"
 
 const companies = [
   {
@@ -55,20 +56,22 @@ const testimonials = [
   },
 ]
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <MainSlider />
+      <div className="scale-out">
+        <MainSlider />
+      </div>
       <section className={cn(s.island, "flex flex-col items-center")}>
         <h1>Yeni Nesil Toptan Satış Online Katalog ve Sipariş Yönetimi</h1>
         <p>
           Müşterilerinizin online sipariş verebileceği dijital kataloğunuzu oluşturun, ürünlerinizi özelleştirilebilir
           detaylarla sergileyin ve istediğinizde düzenleyin.
         </p>
-        <div className={s.videoC}>
-          <Video primaryVideoUrl="/video/sample.mp4" primaryVideoType="mp4" autoPlay loop playsInline muted />
+        <div className={s.teaserC}>
+          <Teaser />
         </div>
-        <div className={cn(s.stats, "w-full grid grid-cols-3")}>
+        <div className={cn(s.stats, "flex flex-col w-full gap-5 tablet:grid grid-cols-3 tablet:gap-0")}>
           <div>
             <h3>2K</h3>
             <p>Ayda ortalama ürün satışı.</p>
@@ -109,7 +112,7 @@ export default function Home() {
       </section>
       <HowItWorks />
       <section className={s.specs}>
-        <div className={cn(s.cards, "grid grid-cols-3")}>
+        <div className={cn(s.cards, "flex flex-col items-center tablet:grid grid-cols-3 tablet:items-start")}>
           <div className={s.cardSpec}>
             <h4>Kolay Ürün Yönetimi</h4>
             <p>
@@ -158,11 +161,18 @@ export default function Home() {
       </section>
 
       <section className={s.discover}>
-        <div className={cn(s.card, "grid grid-cols-2")}>
-          <div className={cn(s.text, "flex flex-col justify-center")}>
+        <div className={cn(s.card, "flex flex-col items-center gap-10 tablet:grid grid-cols-2")}>
+          <div className={cn(s.text, "flex flex-col items-center justify-center tablet:items-start")}>
             <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
-            <p>İşletmenizi en iyi şekilde desteklemek için özel olarak tasarlanmış çeşitli paketlerimizi keşfedin!</p>
-            <button>Hemen Üye Ol</button>
+            <p>
+              Her işletmeye özel olarak hazırlanmış paketlerimiz/planlarımız arasından ihtiyacınıza en uygun olanı
+              seçebilir ve 1 ay boyunca ücretsiz deneyebilirsiniz.
+            </p>
+            <Link href="/fiyatlandirma">
+              <Button className="px-16" size="lg">
+                Paketleri Gör
+              </Button>
+            </Link>
           </div>
           <div className={s.imgC}>
             <Img alt="Employee on phone" className="object-cover" src={employee} />
@@ -191,6 +201,7 @@ export default function Home() {
           </EmblaCarousel>
         </div>
       </section>
+      <ScaleOut />
     </>
   )
 }

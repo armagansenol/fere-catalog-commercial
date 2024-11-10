@@ -5,28 +5,37 @@ import s from "./how-it-works.module.scss"
 import cn from "clsx"
 import { useRef } from "react"
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { useMediaQuery } from "@uidotdev/usehooks"
 
 import { Img } from "@/components/utility/img"
+import { IconCartArrow, IconDots, IconHuman } from "@/components/icons"
 
-import ipad from "@/public/img/ipad.jpg"
-import { IconCartArrow, IconDots, IconHuman } from "../icons"
+import ipad from "@/public/img/ipad-zoomed.jpg"
 
 export default function HowItWorks() {
   const howItWorksRef = useRef<HTMLElement>(null)
   const phasesRef = useRef<HTMLDivElement>(null)
   const stickyCRef = useRef<HTMLDivElement>(null)
 
+  const isMobile = useMediaQuery("(max-width: 800px)")
+
   useGSAP(
     () => {
+      if (isMobile) return
+
       if (!phasesRef.current) return
       if (!howItWorksRef.current) return
       if (!stickyCRef.current) return
 
       const tl = gsap.timeline()
 
-      tl.to(".phases", {
-        y: (phasesRef.current.offsetHeight - stickyCRef.current.offsetHeight) * -1,
-      })
+      tl.to(
+        ".phases",
+        {
+          y: (phasesRef.current.offsetHeight - stickyCRef.current.offsetHeight) * -1,
+        },
+        "s"
+      )
 
       ScrollTrigger.create({
         animation: tl,
@@ -34,7 +43,7 @@ export default function HowItWorks() {
         markers: true,
         pin: true,
         scrub: true,
-        end: `+=5000px`,
+        end: `+=2500px`,
       })
     },
     {
@@ -51,17 +60,19 @@ export default function HowItWorks() {
           artırabileceğinizi öğreneceksiniz.
         </p>
       </div>
-
-      <div className={cn(s.stickyC, "sticky-c", "grid grid-cols-2")} ref={stickyCRef}>
-        <div className={cn(s.phases, "phases")} ref={phasesRef}>
-          <div>
+      <div
+        className={cn(s.stickyC, "sticky-c", "flex flex-col items-center tablet:grid grid-cols-2 tablet:items-start")}
+        ref={stickyCRef}
+      >
+        <div className={cn(s.phases, "phases space-y-10 tablet:space-y-0")} ref={phasesRef}>
+          <div className="phase-1">
             <div className={s.iconC}>
               <IconHuman />
             </div>
             <h3>Üye olun</h3>
             <p>Size uygun olan pakete karar verin sadece birkaç adımda abonelik işlemini tamamlayın.</p>
           </div>
-          <div>
+          <div className="phase-3">
             <div className={s.iconC}>
               <IconDots />
             </div>
@@ -71,7 +82,7 @@ export default function HowItWorks() {
               ve görseller ekleyin.
             </p>
           </div>
-          <div>
+          <div className="phase-3">
             <div className={s.iconC}>
               <IconCartArrow />
             </div>
@@ -81,7 +92,7 @@ export default function HowItWorks() {
               müşterilerinizle paylaşın. Artık sipariş almaya hazırsınız!
             </p>
           </div>
-          <div>
+          <div className="phase-4">
             <div className={s.iconC}>
               <IconCartArrow />
             </div>
@@ -92,7 +103,7 @@ export default function HowItWorks() {
             </p>
           </div>
         </div>
-        <div className="flex items-center justify-center">
+        <div className={cn(s.imgC, "flex items-center justify-center")}>
           <Img alt="Man holding an ipad" src={ipad} className="object-cover" />
         </div>
       </div>

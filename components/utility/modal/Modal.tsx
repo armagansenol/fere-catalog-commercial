@@ -1,24 +1,29 @@
+"use client"
+
 import s from "./modal.module.scss"
 
 import { ScrollTrigger, gsap } from "@/lib/gsap"
 import { useGSAP } from "@gsap/react"
 import { useRef } from "react"
+import cx from "clsx"
 
 import { useLenisStore } from "@/lib/store/lenis"
 import { useModalStore } from "@/lib/store/modal"
 import { useCursorStore } from "@/lib/store/cursor"
+import { Cross2Icon } from "@radix-ui/react-icons"
 
 const Modal = () => {
-  const { isOpen, content } = useModalStore()
+  const { isOpen, content, setIsOpen, setContent } = useModalStore()
   const cursorStore = useCursorStore()
-  const lenis = useLenisStore()
+  const { lenis } = useLenisStore()
   const ref = useRef(null)
-  const duration = 0.4
+  const duration = 0.2
 
   useGSAP(
     () => {
       if (isOpen) {
-        lenis.setIsStopped(true)
+        lenis?.stop()
+        cursorStore.reset()
         gsap.to(ref.current, {
           duration,
           opacity: 1,
@@ -30,7 +35,7 @@ const Modal = () => {
           opacity: 0,
           pointerEvents: "none",
           onComplete: () => {
-            lenis.setIsStopped(false)
+            lenis?.start()
             cursorStore.reset()
             ScrollTrigger.refresh()
           },
@@ -42,12 +47,17 @@ const Modal = () => {
     }
   )
 
+  function closeModal() {
+    setContent(null)
+    setIsOpen(false)
+  }
+
   return (
-    <div className={s.modal} ref={ref}>
-      {/* <div className={cx(s.iconClose, "cursor-pointer")} onClick={closeModal}>
-        <IconClose fill="var(--white)" />
-      </div> */}
-      {content}
+    <div className={cx(s.modal, "flex items-center justify-center")} ref={ref}>
+      <div className={cx(s.iconClose, "cursor-pointer z-10")} onClick={closeModal}>
+        <Cross2Icon className="w-full h-full" />
+      </div>
+      <div className="relative z-0">{content}</div>
     </div>
   )
 }

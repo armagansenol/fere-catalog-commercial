@@ -1,19 +1,63 @@
 .header {
-  font-family: var(--font-mukta);
+  @include position(fixed, 0, 0, auto, 0);
+  background-color: var(--unbleached);
   height: var(--header-height);
   padding: 0 var(--spacing-lg);
+  transition: 400ms all ease;
   z-index: z-index("header");
 
-  .nav {
-    gap: desktop-vw(50px);
-    position: relative;
+  &.hidden {
+    transform: translateY(-100%);
+  }
 
-    .part {
-      gap: desktop-vw(30px);
+  @include mobile {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .trigger {
+    @include mobile {
+      @include dims(mobile-vw(24px));
+      z-index: 200;
+
+      &.active {
+        color: var(--laurens-lace);
+      }
+    }
+  }
+
+  .logoC {
+    @include dims(desktop-vw(120px), desktop-vw(80px));
+
+    @include mobile {
+      @include dims(auto, mobile-vw(45px));
+      z-index: 200;
+    }
+  }
+
+  .nav {
+    @include mobile {
+      @include position(fixed, 0, 0, 0, 0);
+      background-color: var(--white);
+      opacity: 0;
+      padding: mobile-vw(16px);
+      pointer-events: none;
+      transition: 400ms opacity ease;
+      z-index: 100;
+
+      &.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
 
-    .logoC {
-      @include dims(desktop-vw(120px), desktop-vw(80px));
+    .navItem {
+      font-family: var(--font-mukta);
+      font-size: desktop-vw(16px);
+      font-weight: 400;
+
+      @include mobile {
+        font-size: mobile-vw(16px);
+      }
     }
   }
 }

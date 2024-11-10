@@ -483,6 +483,19 @@ export const IconCartArrow = (props: Props) => {
   )
 }
 
+export const IconPlay = (props: Props) => {
+  return (
+    <span className="inherit-dims block" style={{ transform: `rotate(${props.rotate ?? 0}deg)` }}>
+      <svg width="100%" height="100%" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M60 29.991C60.0013 31.0057 59.707 32.0033 59.1458 32.8862C58.5808 33.765 57.7633 34.4936 56.7774 34.9971L9.71961 59.2206C8.73461 59.7302 7.61617 59.999 6.47726 60C5.33836 60.001 4.21934 59.734 3.23325 59.2261C2.24716 58.7182 1.42894 57.9874 0.861237 57.1074C0.293534 56.2274 -0.00353892 55.2295 3.18134e-05 54.2144V5.76749C-0.00125259 4.75624 0.295811 3.76246 0.86143 2.88582C1.42705 2.00918 2.24134 1.28049 3.22264 0.772844C4.21627 0.267696 5.34015 0.00137612 6.48407 0C7.62117 0.00354953 8.73715 0.274092 9.71961 0.784379L56.7774 25.0078C57.7568 25.5145 58.5699 26.2414 59.1354 27.1158C59.7009 27.9903 59.999 28.9817 60 29.991Z"
+          fill="white"
+        />
+      </svg>
+    </span>
+  )
+}
+
 export const socialIcons: Record<SocialMedia, JSX.Element> = {
   [SocialMedia.tiktok]: <IconTiktok fill="var(--blue-ruin)" />,
   [SocialMedia.facebook]: <IconFacebook fill="var(--blue-ruin)" />,

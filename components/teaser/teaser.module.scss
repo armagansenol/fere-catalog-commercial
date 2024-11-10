@@ -1,0 +1,27 @@
+.teaser {
+  @include dims(inherit);
+  position: relative;
+
+  .play {
+    @include position(absolute, 0, 0, 0, 0);
+    z-index: 100;
+
+    .iconC {
+      @include dims(desktop-vw(50px));
+
+      @include mobile {
+        @include dims(mobile-vw(40px));
+      }
+    }
+  }
+}
+
+.modalContent {
+  .videoC {
+    @include dims(calc(100% - desktop-vw(250px)));
+
+    @include mobile {
+      @include dims(100%, auto);
+    }
+  }
+}

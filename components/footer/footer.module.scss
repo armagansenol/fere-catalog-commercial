@@ -2,32 +2,46 @@
   background-color: var(--lynx-white);
 
   .title {
+    font-family: var(--font-albert-sans);
+    font-size: desktop-vw(20px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
     display: inline-flex;
     margin-bottom: desktop-vw(22px);
 
-    > h6 {
-      font-family: var(--font-albert-sans);
-      font-size: desktop-vw(20px);
-      font-weight: 400;
+    @include mobile {
+      font-size: mobile-vw(24px);
+      font-weight: 500;
+      margin-bottom: mobile-vw(22px);
+      text-align: center;
     }
   }
 
   .navItem {
     display: inline-flex;
+    font-family: var(--mukta);
+    font-size: desktop-vw(16px);
+    font-weight: 300;
     margin-bottom: desktop-vw(10px);
 
-    > a {
-      font-family: var(--font-albert-sans);
-      font-size: desktop-vw(16px);
-      font-weight: 400;
+    @include mobile {
+      font-size: mobile-vw(15px);
+      margin-bottom: mobile-vw(10px);
+      text-align: center;
     }
   }
 
   .punch {
-    > h5 {
-      font-family: var(--font-albert-sans);
-      font-size: desktop-vw(70px);
-      font-weight: 400;
+    font-family: var(--font-albert-sans);
+    font-size: desktop-vw(70px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+
+    @include mobile {
+      font-size: mobile-vw(50px);
+      line-height: 1.15;
+      margin-bottom: mobile-vw(50px);
+      text-align: center;
     }
   }
 
@@ -35,15 +49,29 @@
     display: flex;
     flex-direction: column;
 
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+
     &.social {
       flex-direction: row;
       gap: desktop-vw(14px);
+
+      @include mobile {
+        gap: mobile-vw(18px);
+        margin-bottom: mobile-vw(30px);
+      }
 
       .iconC {
         @include dims(desktop-vw(16px));
         align-items: center;
         display: flex;
         justify-content: center;
+
+        @include mobile {
+          @include dims(mobile-vw(16px));
+        }
       }
     }
   }
@@ -51,19 +79,44 @@
   .links {
     margin: 0 desktop-vw(80px);
     gap: desktop-vw(120px);
-    padding: desktop-vw(64px) 0 desktop-vw(32px) 0;
+    padding: desktop-vw(32px) 0;
+
+    @include mobile {
+      margin: 0 mobile-vw(40px);
+      gap: mobile-vw(60px);
+      padding: mobile-vw(32px) 0 mobile-vw(16px) 0;
+    }
 
     .col {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      @include mobile {
+        align-items: center;
+        justify-content: center;
+      }
+
       &:last-child {
         margin-left: auto;
         margin-right: desktop-vw(120px);
+
+        @include mobile {
+          margin-right: auto;
+        }
       }
     }
   }
 
   .punchC {
     margin: 0 desktop-vw(80px);
-    padding: desktop-vw(32px) 0;
+    padding: desktop-vw(64px) 0 desktop-vw(16px) 0;
+
+    @include mobile {
+      margin: 0 mobile-vw(40px);
+      padding: mobile-vw(50px) 0;
+    }
   }
 
   .bottom {
@@ -71,10 +124,33 @@
     margin: 0 desktop-vw(80px);
     padding: desktop-vw(40px) 0;
 
+    @include mobile {
+      margin: 0 mobile-vw(40px);
+      padding: mobile-vw(30px) 0;
+    }
+
     > small {
       font-family: var(--font-albert-sans);
       font-size: desktop-vw(15px);
       font-weight: 400;
+
+      @include mobile {
+        font-size: mobile-vw(15px);
+      }
     }
+  }
+}
+
+.revealC {
+  position: relative;
+  will-change: transform;
+  z-index: z-index("footer");
+
+  .overlay {
+    @include position(absolute, 0, 0, 0, 0);
+    @include dims(100%);
+    background: #000000;
+    pointer-events: none;
+    z-index: z-index("footer-overlay");
   }
 }

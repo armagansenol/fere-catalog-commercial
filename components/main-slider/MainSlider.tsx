@@ -2,22 +2,17 @@
 
 import s from "./main-slider.module.scss"
 
-import { useGSAP } from "@gsap/react"
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
 import cx from "clsx"
 import { useRef, useState } from "react"
 
-import sample from "@/public/img/sample.jpg"
-import sample2 from "@/public/img/sample2.jpg"
-import sample3 from "@/public/img/sample3.jpg"
-import sample4 from "@/public/img/sample.jpg"
-import sample5 from "@/public/img/sample2.jpg"
-
+import { Button } from "@/components/ui/button"
 import { MediaComponent } from "@/components/utility/media-component"
-
 import { MediaType } from "@/types"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger)
+
+import { default as sample, default as sample4 } from "@/public/img/sample.jpg"
+import { default as sample2, default as sample5 } from "@/public/img/sample2.jpg"
+import sample3 from "@/public/img/sample3.jpg"
 
 const items = [
   {
@@ -149,19 +144,21 @@ export default function MainSlider() {
   })
 
   return (
-    <div className={cx(s.mainSlider, "flex items-stretch justify-between")} ref={ref}>
+    <div className={cx(s.mainSlider, "flex flex-col-reverse tablet:flex-row items-stretch justify-between")} ref={ref}>
       <div className={cx(s.textC, "text-c")}>
         {items.map((item, i) => {
           return (
             <div
-              className={cx(s.text, "flex flex-col", { [s.visible]: currentSlide === i })}
+              className={cx(s.text, "flex flex-col items-center tablet:items-start", {
+                [s.visible]: currentSlide === i,
+              })}
               key={i}
               onMouseEnter={mouseEnter}
               onMouseLeave={mouseLeave}
             >
               <h2>{item.title}</h2>
               <p>{item.description}</p>
-              <button>{item.button.ui}</button>
+              <Button>{item.button.ui}</Button>
             </div>
           )
         })}
@@ -177,25 +174,24 @@ export default function MainSlider() {
             )
           })}
         </div>
-      </div>
+        <div className={cx(s.miniMapC, "flex flex-col")}>
+          <div className={cx(s.miniMap, "flex items-center")}>
+            {items.map((item, i) => {
+              return (
+                <div
+                  className={cx(s.media, { [s.visible]: currentSlide === i })}
+                  key={i}
+                  onClick={() => setCurrentSlide(i)}
+                >
+                  <MediaComponent media={item.media} priority={true} />
+                </div>
+              )
+            })}
+          </div>
 
-      <div className={cx(s.miniMapC, "flex flex-col")}>
-        <div className={cx(s.miniMap, "flex items-center")}>
-          {items.map((item, i) => {
-            return (
-              <div
-                className={cx(s.media, { [s.visible]: currentSlide === i })}
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-              >
-                <MediaComponent media={item.media} priority={true} />
-              </div>
-            )
-          })}
-        </div>
-
-        <div className={s.progressBar}>
-          <div className={cx(s.bar, "bar")}></div>
+          <div className={s.progressBar}>
+            <div className={cx(s.bar, "bar")}></div>
+          </div>
         </div>
       </div>
     </div>

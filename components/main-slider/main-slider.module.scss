@@ -3,15 +3,29 @@
   padding: 0 0 var(--padding-bottom) 0;
   position: relative;
 
+  @include mobile {
+    --padding-bottom: #{mobile-vw(16px)};
+    padding: var(--padding-bottom) mobile-vw(16px);
+  }
+
   .textC {
+    @include dims(desktop-vw(600px), auto);
     position: relative;
-    width: desktop-vw(600px);
+
+    @include mobile {
+      @include dims(auto, mobile-vw(200px));
+    }
 
     .text {
       @include position(absolute, desktop-vw(110px), auto, auto, desktop-vw(60px));
+      @include dims(desktop-vw(400px), auto);
       opacity: 0;
       transition: 400ms opacity ease;
-      width: desktop-vw(400px);
+
+      @include mobile {
+        @include position(absolute, mobile-vw(16px), auto, auto, 0);
+        @include dims(auto);
+      }
 
       &.visible {
         opacity: 1;
@@ -21,30 +35,50 @@
         font-family: var(--font-albert-sans);
         font-size: desktop-vw(35px);
         font-weight: 400;
+        line-height: 1.25;
         margin-bottom: desktop-vw(20px);
+
+        @include mobile {
+          font-size: mobile-vw(20px);
+          margin-bottom: mobile-vw(10px);
+          text-align: center;
+        }
       }
 
       > p {
         font-family: var(--font-albert-sans);
         font-size: desktop-vw(15px);
         font-weight: 200;
+        line-height: 1.35;
         margin-bottom: desktop-vw(40px);
-      }
 
-      > button {
-        font-size: desktop-vw(15px);
+        @include mobile {
+          font-size: mobile-vw(15px);
+          margin-bottom: mobile-vw(20px);
+          text-align: center;
+        }
       }
     }
   }
 
   .visuals {
     padding-right: desktop-vw(60px);
+    position: relative;
+
+    @include mobile {
+      padding-right: 0;
+    }
 
     .mediaC {
       @include dims(desktop-vw(745px), desktop-vw(520px));
       border-radius: desktop-vw(5px);
       overflow: hidden;
       position: relative;
+
+      @include mobile {
+        @include dims(100%, mobile-vw(260px));
+        border-radius: mobile-vw(5px);
+      }
 
       .media {
         @include position(absolute, 0, 0, 0, 0);
@@ -59,11 +93,25 @@
   }
 
   .miniMapC {
-    @include position(absolute, auto, auto, calc(var(--padding-bottom) + desktop-vw(30px)), desktop-vw(60px));
-    gap: desktop-vw(14px);
+    @include position(absolute, auto, auto, 0, 0);
+    background-color: var(--unbleached);
+    gap: desktop-vw(6px);
+    padding: desktop-vw(8px);
+    border-top-right-radius: desktop-vw(10px);
+
+    @include mobile {
+      @include position(absolute, auto, auto, 0, 0);
+      border-top-right-radius: mobile-vw(8px);
+      gap: mobile-vw(6px);
+      padding: mobile-vw(6px);
+    }
 
     .miniMap {
-      gap: desktop-vw(12px);
+      gap: desktop-vw(10px);
+
+      @include mobile {
+        gap: mobile-vw(6px);
+      }
 
       .media {
         @include dims(desktop-vw(40px));
@@ -72,6 +120,11 @@
         opacity: 0.3;
         overflow: hidden;
         transition: 800ms opacity ease, 800ms filter ease;
+
+        @include mobile {
+          @include dims(mobile-vw(30px));
+          border-radius: mobile-vw(5px);
+        }
 
         &.visible {
           filter: grayscale(0);
@@ -86,11 +139,20 @@
       border-radius: desktop-vw(4px);
       overflow: hidden;
 
+      @include mobile {
+        @include dims(100%, mobile-vw(1px));
+        border-radius: mobile-vw(4px);
+      }
+
       .bar {
         @include dims(100%);
         background-color: var(--black);
         border-radius: desktop-vw(4px);
         transform-origin: left center;
+
+        @include mobile {
+          border-radius: mobile-vw(4px);
+        }
       }
     }
   }

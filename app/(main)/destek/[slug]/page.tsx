@@ -4,12 +4,19 @@ import { getSupportDetail } from "@/services/support-detail"
 import { SideNavigationProps } from "@/types"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
-import { useParams } from "next/navigation"
 import Navigation from "./components/navigation"
 
-export default function Page() {
-  const { supportCategory } = useParams()
-  const data = getSupportDetail({ url: supportCategory as string, lang: "tr" })
+interface PageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = params
+  console.log("slug", slug)
+
+  const data = await getSupportDetail({ url: slug as string, lang: "tr" })
   console.log(data)
 
   const mockNavigation: SideNavigationProps = {

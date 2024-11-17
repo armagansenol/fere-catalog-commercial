@@ -1,17 +1,7 @@
 import apiClient from "@/lib/api"
+import { FAQItem } from "@/types"
 import { useMutation } from "@tanstack/react-query"
 
-interface SupportArticle {
-  id: number
-  image: {
-    src: string
-    alt: string
-  }
-  title: string
-  description: string
-  url: string
-}
-
 interface SupportSearchParams {
   keyword: string
   lang?: string
@@ -22,10 +12,12 @@ interface SupportSearchParams {
   lang?: string
 }
 
-const getSupportArticles = async (params: SupportSearchParams): Promise<SupportArticle[]> => {
+const getSupportArticles = async (params: SupportSearchParams): Promise<FAQItem[]> => {
   try {
-    const response = await apiClient.post<SupportArticle[]>("/support.php", {
-      ...params,
+    const response = await apiClient.get<FAQItem[]>("/support.php", {
+      params: {
+        ...params,
+      },
     })
     return response.data
   } catch (error) {
@@ -35,7 +27,7 @@ const getSupportArticles = async (params: SupportSearchParams): Promise<SupportA
 }
 
 export const useSupportSearch = () => {
-  return useMutation<SupportArticle[], Error, SupportSearchParams>({
+  return useMutation<FAQItem[], Error, SupportSearchParams>({
     mutationFn: getSupportArticles,
     onError: (error) => {
       console.error("Support search error:", error)

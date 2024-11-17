@@ -1,12 +1,17 @@
 import { ContactForm } from "@/components/contact-form"
 import { Img } from "@/components/utility/img"
-import { SideNavigationProps, SupportFaqProps } from "@/types"
+import { getSupportDetail } from "@/services/support-detail"
+import { SideNavigationProps } from "@/types"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
+import { useParams } from "next/navigation"
 import Navigation from "./components/navigation"
-import SupportFaq from "./components/support-faq"
 
 export default function Page() {
+  const { supportCategory } = useParams()
+  const data = getSupportDetail({ url: supportCategory as string, lang: "tr" })
+  console.log(data)
+
   const mockNavigation: SideNavigationProps = {
     title: "En Çok Merak Edilenler",
     items: [
@@ -53,33 +58,6 @@ export default function Page() {
     ],
   }
 
-  const mockSupportFaq: SupportFaqProps = {
-    id: "1",
-    title: "Üyelik Türleri ve Fiyatlandırma",
-    items: [
-      {
-        id: "membership",
-        question: "Nasıl üye olurum?",
-        answer: [
-          "İlk olarak, hemen üye ol butonuna tıklayın.",
-          "Üyelik Formununda bulunan bilgileri doldurun.",
-          "Verdiğiniz bilgileri doğrulayın ve gerekirse e-posta veya telefon numaranızı onaylayın.",
-          "Üyelik işlemi tamamlandığında, platforma giriş yapabilir ve kullanmaya başlayabilirsiniz.",
-        ],
-      },
-      {
-        id: "business",
-        question: "Üye olmak için işletme sahibi olmam gerekir mi?",
-        answer: "Hayır, bireysel kullanıcılar da üye olabilir.",
-      },
-      {
-        id: "payment",
-        question: "Ürün satışı için ödeme altyapısı sağlanıyor mu?",
-        answer: "Evet, güvenli ödeme altyapımız mevcuttur.",
-      },
-    ],
-  }
-
   return (
     <div className="pb-40 pt-10 px-[var(--spacing-lg)] space-y-12">
       <div className="grid grid-cols-12">
@@ -109,7 +87,7 @@ export default function Page() {
           <div className="h-98">
             <Img src={"/img/sample.jpg"} height={500} width={500} alt={"Sample"} className="object-cover" />
           </div>
-          <SupportFaq {...mockSupportFaq} />
+          {/* <SupportFaq {...data} /> */}
         </div>
       </div>
       <section className="grid grid-cols-12 gap-20 py-16">

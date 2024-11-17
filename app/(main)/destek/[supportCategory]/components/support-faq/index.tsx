@@ -15,7 +15,7 @@ export default function SupportFaq(props: SupportFaqProps) {
           {items.map((item) => (
             <AccordionItem key={item.id} value={item.id}>
               <AccordionTrigger className="text-16 font-albert-sans font-medium">{item.question}</AccordionTrigger>
-              <AccordionContent className="text-16 font-mukta font-normal leading-snug">{item.answer}</AccordionContent>
+              <AccordionContent className="text-16 font-mukta font-normal leading-snug">{item.reply}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

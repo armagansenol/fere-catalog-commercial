@@ -5,7 +5,6 @@ import cn from "clsx"
 import { Marquee } from "@/components/animations/marquee"
 import { CardTestimonial } from "@/components/card-testimonial"
 import { HowItWorks } from "@/components/how-it-works"
-import Logo from "@/components/icons/logo"
 import { MainSlider } from "@/components/main-slider"
 import { Teaser } from "@/components/teaser"
 import { Button } from "@/components/ui/button"
@@ -16,6 +15,9 @@ import { Link } from "@/components/utility/link"
 import ScaleIn from "@/components/animations/scale-in"
 import ScaleOut from "@/components/animations/scale-out"
 import employee from "@/public/img/employee.jpg"
+import { getMainSlider } from "@/services/main-slider"
+import { getTestimonials } from "@/services/testimonials"
+import Logo from "@/components/icons/logo"
 
 const companies = [
   {
@@ -35,34 +37,40 @@ const companies = [
   },
 ]
 
-const testimonials = [
-  {
-    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-    author: "Rene Schwab",
-    company: "Şirket Adı",
-  },
-  {
-    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-    author: "Rene Schwab",
-    company: "Şirket Adı",
-  },
-  {
-    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-    author: "Rene Schwab",
-    company: "Şirket Adı",
-  },
-  {
-    text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-    author: "Rene Schwab",
-    company: "Şirket Adı",
-  },
-]
+// const testimonials = [
+//   {
+//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+//     author: "Rene Schwab",
+//     company: "Şirket Adı",
+//   },
+//   {
+//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+//     author: "Rene Schwab",
+//     company: "Şirket Adı",
+//   },
+//   {
+//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+//     author: "Rene Schwab",
+//     company: "Şirket Adı",
+//   },
+//   {
+//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
+//     author: "Rene Schwab",
+//     company: "Şirket Adı",
+//   },
+// ]
 
-export default function HomePage() {
+export default async function HomePage() {
+  const sliderData = await getMainSlider()
+  const testimonialsData = await getTestimonials()
+
+  console.log("slider", sliderData)
+  console.log("testimonials", testimonialsData)
+
   return (
     <>
       <ScaleOut>
-        <MainSlider />
+        <MainSlider items={sliderData} />
       </ScaleOut>
       <ScaleIn>
         <section className={cn(s.island, "flex flex-col items-center")}>
@@ -173,9 +181,7 @@ export default function HomePage() {
                 seçebilir ve 1 ay boyunca ücretsiz deneyebilirsiniz.
               </p>
               <Link href="/fiyatlandirma">
-                <Button className="px-16" size="lg">
-                  Paketleri Gör
-                </Button>
+                <Button className="px-16">Paketleri Gör</Button>
               </Link>
             </div>
             <div className={s.imgC}>
@@ -195,10 +201,10 @@ export default function HomePage() {
             prevButton={<div className={cn(s.btn, s.prev)}>prev</div>}
             btnsClassName={s.navigation}
           >
-            {testimonials.map((item, i) => {
+            {testimonialsData.map((item) => {
               return (
-                <div className={s.cardC} key={i}>
-                  <CardTestimonial {...item} />
+                <div className={s.cardC} key={item.id}>
+                  <CardTestimonial name={item.name} company={item.company} comment={item.comment} />
                 </div>
               )
             })}

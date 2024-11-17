@@ -84,16 +84,12 @@ export default function Header() {
           </div>
         </div>
         <div className={"flex flex-col tablet:flex-row items-center gap-5"}>
-          <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/giris-yap">
-              <Button variant="outline">Giriş Yap</Button>
-            </Link>
-          </div>
-          <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/fiyatlandirma">
-              <Button>Hemen Üye Ol</Button>
-            </Link>
-          </div>
+          <Button className={cx(s.navItem, "cursor-pointer")} variant="outline" asChild>
+            <Link href="/giris-yap">Giriş Yap</Link>
+          </Button>
+          <Button className={cx(s.navItem, "cursor-pointer")} asChild>
+            <Link href="/fiyatlandirma">Hemen Üye Ol</Link>
+          </Button>
           {/* <div className={cx(s.navItem, "cursor-pointer")}>
             <>EN</>
           </div> */}

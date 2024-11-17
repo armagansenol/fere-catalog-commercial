@@ -40,6 +40,7 @@ export default function FooterReveal({ children }: FooterRevealProps) {
           start: "center bottom",
           end: () => `center bottom-=${height}`,
           scrub: true,
+          refreshPriority: 100,
         },
       })
 
@@ -51,6 +52,7 @@ export default function FooterReveal({ children }: FooterRevealProps) {
           start: "center bottom",
           end: () => `center bottom-=${height}`,
           scrub: true,
+          refreshPriority: 110,
         },
       })
     },

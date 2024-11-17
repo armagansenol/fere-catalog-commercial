@@ -84,10 +84,10 @@ export interface SideNavigationProps {
   items: MenuItem[]
 }
 
-interface FAQItem {
+export interface FAQItem {
   id: string
   question: string
-  answer: string | string[]
+  reply: string
 }
 
 export interface SupportFaqProps {
@@ -144,4 +144,8 @@ export interface SupportArticle {
 export interface SupportSearchParams {
   keyword: string
   lang?: string
+}
+
+export interface SupportFAQProps {
+  faqItems: FAQItem[]
 }

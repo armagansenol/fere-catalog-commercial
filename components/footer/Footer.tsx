@@ -16,11 +16,9 @@ export default function Footer() {
       <footer className={cx(s.footer, "flex flex-col")}>
         <div className={cx(s.punchC, "flex flex-col tablet:flex-row items-center justify-between")}>
           <h5 className={s.punch}>Hazırsanız Başlayalım.</h5>
-          <Link href="/fiyatlandirma">
-            <Button className="px-20" variant="default" size="lg">
-              Hemen Üye Ol
-            </Button>
-          </Link>
+          <Button size="lg" className="px-20" asChild>
+            <Link href="/fiyatlandirma">Hemen Üye Ol</Link>
+          </Button>
         </div>
         <nav className={cx(s.links, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
           <div className={s.col}>

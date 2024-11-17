@@ -178,3 +178,11 @@ sup {
     padding-right: unset;
   }
 }
+
+.shadcn-select {
+  z-index: z-index("preloader");
+}
+
+[data-radix-popper-content-wrapper] {
+  z-index: z-index("preloader") !important;
+}

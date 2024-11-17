@@ -1,23 +1,26 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
+import debounce from "lodash/debounce"
 import { Search } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useCallback, useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 
 const searchSchema = z.object({
-  query: z.string().min(1, "Search query is required").max(100, "Search query is too long"),
+  query: z.string().max(100, "Search query is too long"),
 })
 
 type SearchFormValues = z.infer<typeof searchSchema>
 
-export default function Searchbar({ initialQuery = "" }: { initialQuery?: string }) {
-  const router = useRouter()
-
+interface SearchbarProps {
+  initialQuery?: string
+  onSearch: (query: string) => void
+}
+export default function Searchbar({ initialQuery = "", onSearch }: SearchbarProps) {
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
@@ -25,13 +28,29 @@ export default function Searchbar({ initialQuery = "" }: { initialQuery?: string
     },
   })
 
-  const onSubmit = (values: SearchFormValues) => {
-    router.push(`/search?query=${encodeURIComponent(values.query)}`)
-  }
+  const debouncedSearch = useCallback(
+    debounce((value: string) => {
+      onSearch(value)
+    }, 300),
+    [onSearch]
+  )
+
+  useEffect(() => {
+    debouncedSearch(initialQuery)
+  }, [])
+
+  useEffect(() => {
+    const subscription = form.watch((value, { name }) => {
+      if (name === "query") {
+        debouncedSearch(value.query || initialQuery)
+      }
+    })
+    return () => subscription.unsubscribe()
+  }, [form, debouncedSearch, initialQuery])
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center space-x-4">
+      <form className="w-96">
         <FormField
           control={form.control}
           name="query"
@@ -40,14 +59,12 @@ export default function Searchbar({ initialQuery = "" }: { initialQuery?: string
               <FormControl>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input placeholder="Enter your search query" className="pl-10" {...field} />
+                  <Input placeholder="Enter your search query" className="pl-10 rounded-full w-full" {...field} />
                 </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Search</Button>
       </form>
     </Form>
   )

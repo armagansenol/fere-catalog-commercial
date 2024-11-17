@@ -103,3 +103,45 @@ export enum SocialMedia {
   x = "x",
   youtube = "youtube",
 }
+
+export interface BannerImage {
+  src: string
+  alt: string
+}
+
+export interface MainSliderProps {
+  id: number
+  duration: number
+  image: BannerImage
+  title: string
+  description: string
+  button: { ui: string; url: string } | null
+}
+
+export interface Testimonial {
+  id: number
+  name: string
+  company: string
+  comment: string
+}
+
+export interface Sector {
+  id: string
+  name: string
+}
+
+export interface SupportArticle {
+  id: number
+  image: {
+    src: string
+    alt: string
+  }
+  title: string
+  description: string
+  url: string
+}
+
+export interface SupportSearchParams {
+  keyword: string
+  lang?: string
+}

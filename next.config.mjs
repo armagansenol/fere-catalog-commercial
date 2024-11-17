@@ -11,6 +11,15 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
     prependData: `@import 'styles/_functions';`,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cms.ferecatalog.com",
+        pathname: "**",
+      },
+    ],
+  },
   redirects: async () => {
     return [
       {

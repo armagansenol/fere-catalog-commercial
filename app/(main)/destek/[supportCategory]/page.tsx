@@ -81,7 +81,7 @@ export default function Page() {
   }
 
   return (
-    <div className="pb-40 pt-10 space-y-12">
+    <div className="pb-40 pt-10 px-[var(--spacing-lg)] space-y-12">
       <div className="grid grid-cols-12">
         <nav
           className="col-span-4 flex items-center mb-auto space-x-1 text-14 font-albert-sans text-muted-foreground"
@@ -124,7 +124,7 @@ export default function Page() {
         </div>
         <div className="col-span-6">
           <div>
-            <Img src="/img/employee.jpg" alt="Sample" height={1000} width={1000} />
+            <Img src="/img/support-form.jpg" alt="Sample" height={1000} width={1000} />
           </div>
         </div>
       </section>

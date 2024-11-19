@@ -1,5 +1,3 @@
-"use server"
-
 import apiClient from "@/lib/api"
 import { MainSliderProps } from "@/types"
 import { AxiosRequestConfig } from "axios"

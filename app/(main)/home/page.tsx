@@ -1,23 +1,23 @@
+"use client"
+
 import s from "./home.module.scss"
 
 import cn from "clsx"
 
 import { Marquee } from "@/components/animations/marquee"
-import { CardTestimonial } from "@/components/card-testimonial"
 import { HowItWorks } from "@/components/how-it-works"
 import { MainSlider } from "@/components/main-slider"
 import { Teaser } from "@/components/teaser"
 import { Button } from "@/components/ui/button"
-import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 
 import ScaleIn from "@/components/animations/scale-in"
 import ScaleOut from "@/components/animations/scale-out"
-import employee from "@/public/img/employee.jpg"
-import { getMainSlider } from "@/services/main-slider"
-import { getTestimonials } from "@/services/testimonials"
 import Logo from "@/components/icons/logo"
+import employee from "@/public/img/employee.jpg"
+import { MainSliderProps } from "@/types"
+import useSWR from "swr"
 
 const companies = [
   {
@@ -60,18 +60,67 @@ const companies = [
 //   },
 // ]
 
-export default async function HomePage() {
-  const sliderData = await getMainSlider()
-  const testimonialsData = await getTestimonials()
+// async function getMainSlider(): Promise<MainSliderProps[]> {
+//   const baseUrl = "https://cms.ferecatalog.com/services/banner.php"
 
-  console.log("slider", sliderData)
-  console.log("testimonials", testimonialsData)
+//   try {
+//     const response = await fetch(baseUrl, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       cache: "no-store",
+//       credentials: "include", // Include credentials if required
+//     })
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`)
+//     }
+
+//     const data = await response.json()
+//     return data as MainSliderProps[]
+//   } catch (error) {
+//     console.error("Error fetching banners:", error)
+//     throw error
+//   }
+// }
+
+const fetcher = (url: string) =>
+  fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json())
+
+export default function HomePage() {
+  const { data } = useSWR<MainSliderProps[]>("https://cms.ferecatalog.com/services/banner", fetcher)
+
+  console.log("data", data)
+
+  // useEffect(() => {
+  //   getMainSlider()
+  //     .then((data) => {
+  //       console.log("Fetched data:", data)
+  //       setSliderData(data)
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error in component:", err)
+  //     })
+  // }, [])
+
+  // const sliderData = await getMainSlider()
+  // const testimonialsData = await getTestimonials()
+
+  // console.log("slider", sliderData)
+  // console.log("testimonials", testimonialsData)
 
   return (
     <>
-      <ScaleOut>
-        <MainSlider items={sliderData} />
-      </ScaleOut>
+      {data && data.length > 0 && (
+        <ScaleOut>
+          <MainSlider items={data} />
+        </ScaleOut>
+      )}
       <ScaleIn>
         <section className={cn(s.island, "flex flex-col items-center")}>
           <h1>Yeni Nesil Toptan Satış Online Katalog ve Sipariş Yönetimi</h1>
@@ -190,7 +239,7 @@ export default async function HomePage() {
           </div>
         </section>
       </ScaleIn>
-      <section className={s.testimonials}>
+      {/* <section className={s.testimonials}>
         <h3>
           Müşterilerimizin <br /> Görüşleri
         </h3>
@@ -210,7 +259,7 @@ export default async function HomePage() {
             })}
           </EmblaCarousel>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }

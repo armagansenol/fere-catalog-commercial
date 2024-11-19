@@ -176,7 +176,14 @@ export default function MainSlider(props: Props) {
           {props.items.map((item, i) => {
             return (
               <div className={cx(s.media, { [s.visible]: currentSlide === i || currentSlide === i + 1 })} key={i}>
-                <Img src={item.image.src} alt={item.image.alt} priority={true} width={1000} height={1000} />
+                <Img
+                  className="object-cover"
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  priority={true}
+                  width={1000}
+                  height={1000}
+                />
               </div>
             )
           })}

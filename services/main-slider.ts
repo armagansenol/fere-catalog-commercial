@@ -20,8 +20,6 @@
 //   }
 // }
 
-"use server"
-
 import { MainSliderProps } from "@/types"
 
 export async function getMainSlider(lang?: string): Promise<MainSliderProps[]> {

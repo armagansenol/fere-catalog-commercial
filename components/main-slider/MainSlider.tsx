@@ -190,12 +190,18 @@ export default function MainSlider(props: Props) {
                   key={i}
                   onClick={() => setCurrentSlide(i)}
                 >
-                  <Img src={item.image.src} alt={item.image.alt} priority={true} width={100} height={100} />
+                  <Img
+                    className="object-cover"
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    priority={true}
+                    width={100}
+                    height={100}
+                  />
                 </div>
               )
             })}
           </div>
-
           <div className={s.progressBar}>
             <div className={cx(s.bar, "bar")}></div>
           </div>

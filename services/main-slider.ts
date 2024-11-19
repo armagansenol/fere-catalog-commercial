@@ -32,7 +32,6 @@ export async function getMainSlider(lang?: string): Promise<MainSliderProps[]> {
       method: "POST",
       body: lang ? JSON.stringify({ lang }) : undefined,
       cache: "no-store",
-      next: { revalidate: 0 },
     })
 
     if (!response.ok) {

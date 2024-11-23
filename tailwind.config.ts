@@ -37,6 +37,7 @@ const config: Config = {
       colors: {
         white: "var(--white)",
         quarterdeck: "var(--quarterdeck)",
+        lynxWhite: "var(--lynx-white)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

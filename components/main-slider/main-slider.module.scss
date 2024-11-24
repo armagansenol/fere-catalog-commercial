@@ -6,7 +6,7 @@
     position: relative;
 
     @include mobile {
-      @include dims(100%, mobile-vw(300px));
+      @include dims(100%, mobile-vw(330px));
       order: 3;
     }
 
@@ -42,14 +42,13 @@
       > p {
         font-family: var(--font-albert-sans);
         font-size: desktop-vw(18px);
-        font-weight: 200;
+        font-weight: 300;
         line-height: 1.35;
         margin-bottom: desktop-vw(40px);
 
         @include mobile {
           font-size: mobile-vw(18px);
-          font-weight: 300;
-          margin-bottom: mobile-vw(20px);
+          margin-bottom: mobile-vw(30px);
           text-align: center;
         }
       }

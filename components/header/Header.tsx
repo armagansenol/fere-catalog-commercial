@@ -2,9 +2,10 @@
 
 import s from "./header.module.scss"
 
-import cx from "clsx"
-import { useEffect, useState } from "react"
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons"
+import cx from "clsx"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 import Logo from "@/components/icons/logo"
 import { Button } from "@/components/ui/button"
@@ -15,6 +16,7 @@ export default function Header() {
   const { lenis } = useLenisStore()
   const [hamburgerOpen, setHamburgerOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     return hamburgerOpen ? lenis?.stop() : lenis?.start()
@@ -35,6 +37,10 @@ export default function Header() {
       }
     })
   }, [hidden, lenis])
+
+  useEffect(() => {
+    setHamburgerOpen(false)
+  }, [pathname])
 
   return (
     <header

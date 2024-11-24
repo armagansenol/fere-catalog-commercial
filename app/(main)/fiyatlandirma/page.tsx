@@ -61,15 +61,13 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <div className="flex flex-col items-center mx-auto px-10 py-8 pb-32">
-      <h1 className="text-30 font-normal font-albert-sans leading-tight text-center max-w-lg mb-16 tracking-tighter">
+    <div className="flex flex-col items-center mx-auto px-4 tablet:px-10 py-8 pb-8 tablet:pb-32">
+      <h1 className="text-30 font-normal font-albert-sans leading-tight text-center max-w-lg mb-8 tablet:mb-16 tracking-tighter">
         Üyelik oluşturmak için öncelikle size en uygun paketi seçin.
       </h1>
-
       <PricingToggle plans={plans} />
-
       {plans.length > 0 && (
-        <section className="w-full px-32 mt-14">
+        <section className="w-full px-0 tablet:px-32 mt-14">
           <Table>
             <TableHeader>
               <TableRow>

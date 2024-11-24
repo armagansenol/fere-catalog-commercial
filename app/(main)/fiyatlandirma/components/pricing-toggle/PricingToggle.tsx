@@ -35,7 +35,7 @@ export default function PricingToggle({ plans }: PricingToggleProps) {
       <Toggle
         pressed={isYearly}
         onPressedChange={setIsYearly}
-        className={cn(s.toggle, "flex items-stretch rounded-full mb-20")}
+        className={cn(s.toggle, "flex items-stretch rounded-full mb-10 tablet:mb-20")}
       >
         <span
           className={cn(s.toggleItem, `rounded-full flex items-center justify-center cursor-pointer`, {
@@ -52,8 +52,7 @@ export default function PricingToggle({ plans }: PricingToggleProps) {
           Yıllık
         </span>
       </Toggle>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-32">
+      <div className="flex flex-col items-stretch tablet:grid grid-cols-1 md:grid-cols-3 gap-8 px-0 tablet:px-32">
         {plans.map((plan, index) => (
           <Card
             key={index}

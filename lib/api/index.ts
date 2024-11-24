@@ -5,12 +5,17 @@ type FetchOptions = RequestInit & {
 export async function fetchWithErrorHandling<T>(url: string, options: FetchOptions = {}): Promise<T> {
   const defaultOptions: FetchOptions = {
     cache: "no-cache",
-    headers: {
-      "Content-Type": "application/json",
-    },
   }
 
   const mergedOptions = { ...defaultOptions, ...options }
+
+  // If the body is FormData, don't set the Content-Type header
+  if (!(mergedOptions.body instanceof FormData)) {
+    mergedOptions.headers = {
+      "Content-Type": "application/json",
+      ...mergedOptions.headers,
+    }
+  }
 
   try {
     const response = await fetch(`https://cms.ferecatalog.com/services/${url}`, mergedOptions)

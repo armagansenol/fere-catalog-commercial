@@ -11,22 +11,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { submitContactForm } from "@/services/contact-form"
 import { getSectors } from "@/services/form-field-sector"
 import { Sector } from "@/types"
-
-const countryCodes = [
-  { value: "+1", label: "United States (+1)" },
-  { value: "+44", label: "United Kingdom (+44)" },
-  { value: "+91", label: "India (+91)" },
-  { value: "+81", label: "Japan (+81)" },
-  { value: "+86", label: "China (+86)" },
-  { value: "+49", label: "Germany (+49)" },
-  { value: "+33", label: "France (+33)" },
-  { value: "+7", label: "Russia (+7)" },
-  { value: "+55", label: "Brazil (+55)" },
-  { value: "+61", label: "Australia (+61)" },
-]
+import { submitContactForm } from "@/lib/api/mutations"
+import { countryPhoneCodes } from "@/lib/constants"
+import { useState } from "react"
 
 export const formSchema = z.object({
   name: z.string().min(1, { message: "Ad Soyad gereklidir" }),
@@ -41,6 +30,8 @@ export const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 export default function ContactForm() {
+  const [otherSector, setOtherSector] = useState(false)
+
   const { data: sectors } = useQuery<Sector[], Error>({
     queryKey: ["sectors"],
     queryFn: () => getSectors(),
@@ -81,6 +72,11 @@ export default function ContactForm() {
 
   const isFormValid = form.formState.isValid
 
+  function handleOtherSector() {
+    setOtherSector(true)
+    form.setValue("sector", "")
+  }
+
   return (
     <FormProvider {...form}>
       <Form {...form}>
@@ -113,7 +109,7 @@ export default function ContactForm() {
               />
             </div>
             <div>
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="sector"
                 render={({ field }) => (
@@ -140,6 +136,39 @@ export default function ContactForm() {
                     <FormMessage />
                   </FormItem>
                 )}
+              /> */}
+
+              <FormField
+                control={form.control}
+                name="sector"
+                render={({ field }) => (
+                  <FormItem>
+                    {otherSector ? (
+                      <Input placeholder="Diğer" {...field} />
+                    ) : (
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Sektör seçin" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent data-lenis-prevent className="shadcn-select">
+                          {sectors &&
+                            sectors.length > 0 &&
+                            sectors.map((item) => (
+                              <SelectItem key={item.id} value={item.name}>
+                                {item.name}
+                              </SelectItem>
+                            ))}
+                          <Button value="other" onClick={handleOtherSector}>
+                            Diğer
+                          </Button>
+                        </SelectContent>
+                      </Select>
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
             </div>
             <div className="flex">
@@ -151,13 +180,13 @@ export default function ContactForm() {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a country code" />
+                          <SelectValue placeholder="Ülke kodu" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent data-lenis-prevent className="shadcn-select">
-                        {countryCodes.map((code) => (
-                          <SelectItem key={code.value} value={code.value}>
-                            {code.label}
+                        {countryPhoneCodes.map((code) => (
+                          <SelectItem key={code.name} value={code.code}>
+                            {code.name} - {code.code}
                           </SelectItem>
                         ))}
                       </SelectContent>

@@ -1,4 +1,5 @@
 "use client"
+
 import s from "./img.module.scss"
 
 import cx from "clsx"
@@ -14,7 +15,6 @@ const Img = (props: ImageProps) => {
     loading = "eager",
     priority = false,
     src,
-    style,
     quality = 100,
     width,
     placeholder,
@@ -32,7 +32,6 @@ const Img = (props: ImageProps) => {
       onLoad={() => setLoaded(true)}
       priority={priority}
       src={src}
-      style={{ ...style }}
       quality={quality}
       {...(blurDataURL && { blurDataURL })}
       {...(placeholder && { placeholder })}

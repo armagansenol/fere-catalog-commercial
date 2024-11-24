@@ -23,7 +23,6 @@ export default function Header() {
   useEffect(() => {
     lenis?.on("scroll", () => {
       if (lenis.scroll < window.innerHeight - window.innerHeight / 4) return
-      console.log(lenis.scroll, lenis.actualScroll)
 
       if (lenis.velocity > 0) {
         if (!hidden) {
@@ -81,6 +80,9 @@ export default function Header() {
           </div> */}
           <div className={cx(s.navItem, "cursor-pointer")}>
             <Link href="/destek">Destek</Link>
+          </div>
+          <div className={cx(s.navItem, "cursor-pointer")}>
+            <Link href="/iletisim">İletişim</Link>
           </div>
         </div>
         <div className={"flex flex-col tablet:flex-row items-center gap-5"}>

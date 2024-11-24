@@ -61,7 +61,7 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <div className="flex flex-col items-center mx-auto px-10 py-8">
+    <div className="flex flex-col items-center mx-auto px-10 py-8 pb-32">
       <h1 className="text-30 font-normal font-albert-sans leading-tight text-center max-w-lg mb-16 tracking-tighter">
         Üyelik oluşturmak için öncelikle size en uygun paketi seçin.
       </h1>
@@ -69,26 +69,32 @@ export default function PricingPage() {
       <PricingToggle plans={plans} />
 
       {plans.length > 0 && (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Özellikler</TableHead>
-              {plans.map((plan, index) => (
-                <TableHead key={index}>{plan.name}</TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {Object.keys(plans[0].features).map((feature, index) => (
-              <TableRow key={index}>
-                <TableCell className="text-16 font-medium">{feature}</TableCell>
-                {plans.map((plan, planIndex) => (
-                  <TableCell key={planIndex}>{plan.features[feature as keyof typeof plan.features]}</TableCell>
+        <section className="w-full px-32 mt-14">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-14 font-albert-sans font-semibold py-8">Özellikler</TableHead>
+                {plans.map((plan, index) => (
+                  <TableHead className="text-14 font-albert-sans font-semibold py-8" key={index}>
+                    {plan.name}
+                  </TableHead>
                 ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {Object.keys(plans[0].features).map((feature, index) => (
+                <TableRow key={index}>
+                  <TableCell className="text-14 font-albert-sans font-medium py-5">{feature}</TableCell>
+                  {plans.map((plan, planIndex) => (
+                    <TableCell className="text-14 font-albert-sans font-medium py-5" key={planIndex}>
+                      {plan.features[feature as keyof typeof plan.features]}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </section>
       )}
     </div>
   )

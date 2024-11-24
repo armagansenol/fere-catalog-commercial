@@ -99,7 +99,7 @@ export default function SupportPage() {
                   cards.map((item) => (
                     <Link href={`/${routes.tr.support.path}/${item.url}`} key={item.id}>
                       <Card className="flex flex-col items-center tablet:items-start">
-                        <CardHeader className="p-0">
+                        <CardHeader className="p-0 h-64">
                           <Img
                             src={item.image.src}
                             height={500}

@@ -1,6 +1,10 @@
 "use client"
 
+import s from "./pricing-toggle.module.scss"
+
+import cn from "clsx"
 import { useState } from "react"
+
 import { Toggle } from "@/components/ui/toggle"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -27,31 +31,60 @@ export default function PricingToggle({ plans }: PricingToggleProps) {
   }
 
   return (
-    <div className="flex flex-col items-center mb-8">
-      <Toggle pressed={isYearly} onPressedChange={setIsYearly} className="flex bg-gray-200 rounded-full mb-8 p-1">
-        <span className={`px-4 py-2 rounded-full ${isYearly ? "" : "bg-primary text-primary-foreground"}`}>Aylık</span>
-        <span className={`px-4 py-2 rounded-full ${isYearly ? "bg-primary text-primary-foreground" : ""}`}>Yıllık</span>
+    <div className="flex flex-col items-center">
+      <Toggle
+        pressed={isYearly}
+        onPressedChange={setIsYearly}
+        className={cn(s.toggle, "flex items-stretch rounded-full mb-20")}
+      >
+        <span
+          className={cn(s.toggleItem, `rounded-full flex items-center justify-center cursor-pointer`, {
+            [s.active]: !isYearly,
+          })}
+        >
+          Aylık
+        </span>
+        <span
+          className={cn(s.toggleItem, `rounded-full flex items-center justify-center cursor-pointer`, {
+            [s.active]: isYearly,
+          })}
+        >
+          Yıllık
+        </span>
       </Toggle>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-32">
         {plans.map((plan, index) => (
-          <Card key={index} className={`${plan.popular ? "border-primary" : ""} relative`}>
+          <Card
+            key={index}
+            className={cn(s.planCard, `${plan.popular ? "border-primary" : ""} relative rounded-3xl`, {
+              [s.active]: plan.popular,
+            })}
+          >
             {plan.popular && (
-              <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-2 py-1 text-xs rounded-bl">
+              <div className="absolute -top-2 right-5 bg-[var(--white)] text-[var(--quarterdeck)] text-16 border-[1px] border-[var(--quarterdeck)] border-solid px-4 py-2 text-xs rounded-full rotate-3">
                 En Çok Tercih Edilen
               </div>
             )}
             <CardHeader>
-              <CardTitle>{plan.name}</CardTitle>
-              <CardDescription>{plan.description}</CardDescription>
+              <CardTitle className="text-20 font-albert-sans font-medium mb-3">{plan.name}</CardTitle>
+              <CardDescription className="text-16 font-mukta font-thin pr-5 leading-tight">
+                {plan.description}
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-4xl font-bold">${isYearly ? plan.yearlyPrice : plan.monthlyPrice}</p>
-              <p className="text-sm text-muted-foreground">{isYearly ? "yıllık ücret" : "aylık ücret"}</p>
+              <p className="text-50 font-mukta font-normal tracking-tight leading-none">
+                ${isYearly ? plan.yearlyPrice : plan.monthlyPrice}
+                <span className="text-14 font-mukta font-thin ml-1 tracking-normal">
+                  {isYearly ? "yıllık ücret" : "aylık ücret"}
+                </span>
+              </p>
             </CardContent>
             <CardFooter>
               <Link className="w-full" href="/kayit-ol">
-                <Button className="w-full">Get Started</Button>
+                <Button variant="ghost" className="w-full">
+                  Get Started
+                </Button>
               </Link>
             </CardFooter>
           </Card>

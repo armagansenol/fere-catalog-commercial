@@ -1,0 +1,28 @@
+.toggle {
+  border: 1px solid var(--black);
+  padding: 2px;
+  gap: 2px;
+
+  .toggleItem {
+    font-family: var(--font-mukta);
+    font-size: desktop-vw(16px);
+    font-weight: 300;
+    padding: desktop-vw(8px) desktop-vw(40px);
+    transition: 200ms all ease;
+
+    &.active {
+      background-color: var(--quarterdeck);
+      color: var(--white);
+    }
+  }
+}
+
+.planCard {
+  background-color: var(--lynx-white);
+  color: var(--black);
+
+  &.active {
+    background-color: var(--quarterdeck);
+    color: var(--white);
+  }
+}

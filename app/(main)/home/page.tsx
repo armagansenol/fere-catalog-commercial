@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import s from "./home.module.scss"
 
 import cn from "clsx"

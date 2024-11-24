@@ -1,23 +1,22 @@
-"use client"
-
 import s from "./home.module.scss"
 
 import cn from "clsx"
 
 import { Marquee } from "@/components/animations/marquee"
+import ScaleIn from "@/components/animations/scale-in"
+import ScaleOut from "@/components/animations/scale-out"
+import { CardTestimonial } from "@/components/card-testimonial"
 import { HowItWorks } from "@/components/how-it-works"
+import Logo from "@/components/icons/logo"
 import { MainSlider } from "@/components/main-slider"
 import { Teaser } from "@/components/teaser"
 import { Button } from "@/components/ui/button"
+import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
+import { getMainSlider, getTestimonials } from "@/lib/api/queries"
 
-import ScaleIn from "@/components/animations/scale-in"
-import ScaleOut from "@/components/animations/scale-out"
-import Logo from "@/components/icons/logo"
 import employee from "@/public/img/employee.jpg"
-import { MainSliderProps } from "@/types"
-import useSWR from "swr"
 
 const companies = [
   {
@@ -37,88 +36,17 @@ const companies = [
   },
 ]
 
-// const testimonials = [
-//   {
-//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-//     author: "Rene Schwab",
-//     company: "Şirket Adı",
-//   },
-//   {
-//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-//     author: "Rene Schwab",
-//     company: "Şirket Adı",
-//   },
-//   {
-//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-//     author: "Rene Schwab",
-//     company: "Şirket Adı",
-//   },
-//   {
-//     text: "Fere, işimizi kolaylaştırmada gerçekten bir kurtarıcı oldu. Müşteri odaklı tasarımı ve kullanımıyla, ürünlerimizi sergilemek ve müşterilerimize sunduğumuz hizmetleri göstermek artık çok daha etkili ve çekici.",
-//     author: "Rene Schwab",
-//     company: "Şirket Adı",
-//   },
-// ]
-
-// async function getMainSlider(): Promise<MainSliderProps[]> {
-//   const baseUrl = "https://cms.ferecatalog.com/services/banner.php"
-
-//   try {
-//     const response = await fetch(baseUrl, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       cache: "no-store",
-//       credentials: "include", // Include credentials if required
-//     })
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! status: ${response.status}`)
-//     }
-
-//     const data = await response.json()
-//     return data as MainSliderProps[]
-//   } catch (error) {
-//     console.error("Error fetching banners:", error)
-//     throw error
-//   }
-// }
-
-const fetcher = (url: string) =>
-  fetch(url, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => res.json())
-
-export default function HomePage() {
-  const { data } = useSWR<MainSliderProps[]>("https://cms.ferecatalog.com/services/banner", fetcher)
-
-  console.log("data", data)
-
-  // useEffect(() => {
-  //   getMainSlider()
-  //     .then((data) => {
-  //       console.log("Fetched data:", data)
-  //       setSliderData(data)
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error in component:", err)
-  //     })
-  // }, [])
-
-  // const sliderData = await getMainSlider()
-  // const testimonialsData = await getTestimonials()
-
-  // console.log("slider", sliderData)
-  // console.log("testimonials", testimonialsData)
+export default async function HomePage() {
+  const sliderData = await getMainSlider()
+  const testimonials = await getTestimonials()
 
   return (
     <>
-      {data && data.length > 0 && (
+      {sliderData && sliderData.length > 0 && (
         <ScaleOut>
-          <MainSlider items={data} />
+          <section className="px-[var(--spacing-lg)]">
+            <MainSlider items={sliderData} />
+          </section>
         </ScaleOut>
       )}
       <ScaleIn>
@@ -239,7 +167,7 @@ export default function HomePage() {
           </div>
         </section>
       </ScaleIn>
-      {/* <section className={s.testimonials}>
+      <section className={s.testimonials}>
         <h3>
           Müşterilerimizin <br /> Görüşleri
         </h3>
@@ -250,7 +178,7 @@ export default function HomePage() {
             prevButton={<div className={cn(s.btn, s.prev)}>prev</div>}
             btnsClassName={s.navigation}
           >
-            {testimonialsData.map((item) => {
+            {testimonials.map((item) => {
               return (
                 <div className={s.cardC} key={item.id}>
                   <CardTestimonial name={item.name} company={item.company} comment={item.comment} />
@@ -259,7 +187,7 @@ export default function HomePage() {
             })}
           </EmblaCarousel>
         </div>
-      </section> */}
+      </section>
     </>
   )
 }

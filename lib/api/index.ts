@@ -1,13 +1,35 @@
-import axios from "axios"
+type FetchOptions = RequestInit & {
+  cache?: RequestCache
+}
 
-const apiClient = axios.create({
-  baseURL: "https://cms.ferecatalog.com/services",
-  headers: {
-    "Content-Type": "application/json",
-    "Cache-Control": "no-cache",
-    Pragma: "no-cache",
-    Expires: "0",
-  },
-})
+export async function fetchWithErrorHandling<T>(url: string, options: FetchOptions = {}): Promise<T> {
+  const defaultOptions: FetchOptions = {
+    cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
 
-export default apiClient
+  const mergedOptions = { ...defaultOptions, ...options }
+
+  try {
+    const response = await fetch(`https://cms.ferecatalog.com/services/${url}`, mergedOptions)
+
+    if (!response.ok) {
+      // You can customize error handling based on status codes
+      if (response.status === 404) {
+        throw new Error("Resource not found")
+      } else if (response.status === 401) {
+        throw new Error("Unauthorized")
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+    }
+
+    return await response.json()
+  } catch (error) {
+    // Log the error or send it to an error tracking service
+    console.error("Fetch error:", error)
+    throw error // Re-throw the error so it can be handled by the caller if needed
+  }
+}

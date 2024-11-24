@@ -28,7 +28,14 @@ const Link: React.ForwardRefRenderFunction<HTMLAnchorElement, LinkProps> = (
 
   if (typeof href === "object") {
     return (
-      <NextLink ref={ref} href={href} aria-label={ariaLabel} className={className} scroll={scroll} {...props}>
+      <NextLink
+        ref={ref}
+        href={href}
+        aria-label={ariaLabel}
+        className={cn("cursor-pointer", className)}
+        scroll={scroll}
+        {...props}
+      >
         {children}
       </NextLink>
     )
@@ -36,7 +43,14 @@ const Link: React.ForwardRefRenderFunction<HTMLAnchorElement, LinkProps> = (
 
   if (isProtocol || isExternal) {
     return (
-      <a ref={ref} href={href} className={className} target="_blank" rel="noopener noreferrer" {...props}>
+      <a
+        ref={ref}
+        href={href}
+        className={cn("cursor-pointer", className)}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
         {children}
       </a>
     )

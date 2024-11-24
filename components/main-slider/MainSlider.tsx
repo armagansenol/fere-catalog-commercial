@@ -170,7 +170,6 @@ export default function MainSlider(props: Props) {
           )
         })}
       </div>
-
       <div className={s.visuals}>
         <div className={s.mediaC} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
           {props.items.map((item, i) => {
@@ -188,30 +187,30 @@ export default function MainSlider(props: Props) {
             )
           })}
         </div>
-        <div className={cx(s.miniMapC, "flex flex-col")}>
-          <div className={cx(s.miniMap, "flex items-center")}>
-            {props.items.map((item, i) => {
-              return (
-                <div
-                  className={cx(s.media, { [s.visible]: currentSlide === i })}
-                  key={i}
-                  onClick={() => setCurrentSlide(i)}
-                >
-                  <Img
-                    className="object-cover"
-                    src={item.image.src}
-                    alt={item.image.alt}
-                    priority={true}
-                    width={100}
-                    height={100}
-                  />
-                </div>
-              )
-            })}
-          </div>
-          <div className={s.progressBar}>
-            <div className={cx(s.bar, "bar")}></div>
-          </div>
+      </div>
+      <div className={cx(s.miniMapC, "flex flex-col")}>
+        <div className={cx(s.miniMap, "flex items-center")}>
+          {props.items.map((item, i) => {
+            return (
+              <div
+                className={cx(s.media, "cursor-pointer", { [s.visible]: currentSlide === i })}
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+              >
+                <Img
+                  className="object-cover"
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  priority={true}
+                  width={100}
+                  height={100}
+                />
+              </div>
+            )
+          })}
+        </div>
+        <div className={s.progressBar}>
+          <div className={cx(s.bar, "bar")}></div>
         </div>
       </div>
     </div>

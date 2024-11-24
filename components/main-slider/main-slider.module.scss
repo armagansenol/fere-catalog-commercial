@@ -1,12 +1,5 @@
 .mainSlider {
-  --padding-bottom: #{desktop-vw(60px)};
-  padding: 0 0 var(--padding-bottom) 0;
   position: relative;
-
-  @include mobile {
-    --padding-bottom: #{mobile-vw(16px)};
-    padding: var(--padding-bottom) mobile-vw(16px);
-  }
 
   .textC {
     @include dims(desktop-vw(600px), auto);
@@ -17,8 +10,8 @@
     }
 
     .text {
-      @include position(absolute, desktop-vw(110px), auto, auto, desktop-vw(60px));
-      @include dims(desktop-vw(400px), auto);
+      @include position(absolute, desktop-vw(50px), auto, auto, 0);
+      @include dims(desktop-vw(460px), auto);
       opacity: 0;
       transition: 400ms opacity ease;
 
@@ -33,10 +26,10 @@
 
       > h2 {
         font-family: var(--font-albert-sans);
-        font-size: desktop-vw(35px);
+        font-size: desktop-vw(30px);
         font-weight: 400;
         line-height: 1.25;
-        margin-bottom: desktop-vw(20px);
+        margin-bottom: desktop-vw(30px);
 
         @include mobile {
           font-size: mobile-vw(20px);
@@ -47,7 +40,7 @@
 
       > p {
         font-family: var(--font-albert-sans);
-        font-size: desktop-vw(15px);
+        font-size: desktop-vw(18px);
         font-weight: 200;
         line-height: 1.35;
         margin-bottom: desktop-vw(40px);
@@ -62,16 +55,11 @@
   }
 
   .visuals {
-    padding-right: desktop-vw(60px);
     position: relative;
-
-    @include mobile {
-      padding-right: 0;
-    }
 
     .mediaC {
       @include dims(desktop-vw(745px), desktop-vw(520px));
-      border-radius: desktop-vw(5px);
+      border-radius: desktop-vw(8px);
       overflow: hidden;
       position: relative;
 

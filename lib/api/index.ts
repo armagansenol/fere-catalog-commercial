@@ -4,7 +4,7 @@ type FetchOptions = RequestInit & {
 
 export async function fetchWithErrorHandling<T>(url: string, options: FetchOptions = {}): Promise<T> {
   const defaultOptions: FetchOptions = {
-    cache: "force-cache",
+    cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
     },

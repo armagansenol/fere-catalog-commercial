@@ -9,7 +9,7 @@ interface ScaleInProps {
   children: React.ReactNode
 }
 
-export default function ScaleIn({ children }: ScaleInProps) {
+export function ScaleIn({ children }: ScaleInProps) {
   const windowSize = useWindowSize()
   const scaleInRef = useRef<HTMLDivElement>(null)
 

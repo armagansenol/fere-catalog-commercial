@@ -147,7 +147,13 @@ export default function MainSlider(props: Props) {
   })
 
   return (
-    <div className={cx(s.mainSlider, "flex flex-col-reverse tablet:flex-row items-stretch justify-between")} ref={ref}>
+    <div
+      className={cx(
+        s.mainSlider,
+        "flex flex-col tablet:flex-row items-center tablet:items-stretch justify-between gap-2"
+      )}
+      ref={ref}
+    >
       <div className={cx(s.textC, "text-c")}>
         {props.items.map((item, i) => {
           return (
@@ -162,7 +168,7 @@ export default function MainSlider(props: Props) {
               <h2>{item.title}</h2>
               <p>{item.description}</p>
               {item.button && (
-                <Button asChild>
+                <Button asChild theme="quarterdeck">
                   <Link href={item.button?.url}>{item.button?.ui}</Link>
                 </Button>
               )}

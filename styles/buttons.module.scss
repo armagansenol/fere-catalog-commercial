@@ -1,79 +1,30 @@
 .default {
-  background-color: var(--quarterdeck);
-  border: 1px solid var(--quarterdeck);
-  color: var(--white);
-  display: inline-flex;
   font-family: var(--font-bomstad-display);
   line-height: 1;
   transition: 200ms all ease;
-
-  @include hover {
-    &:hover {
-      background-color: transparent;
-      border: 1px solid var(--quarterdeck);
-      color: var(--quarterdeck);
-    }
-  }
 }
 
 .outline {
-  background-color: transparent;
-  border: 1px solid var(--quarterdeck);
-  color: var(--quarterdeck);
-  display: inline-flex;
   font-family: var(--font-bomstad-display);
   line-height: 1;
   transition: 200ms all ease;
-
-  @include hover {
-    &:hover {
-      background-color: var(--quarterdeck);
-      border: 1px solid var(--quarterdeck);
-      color: var(--white);
-    }
-  }
 }
 
 .ghost {
-  background-color: transparent;
-  border: 1px solid var(--quarterdeck);
-  color: var(--quarterdeck);
-  display: inline-flex;
   font-family: var(--font-bomstad-display);
   font-weight: 900;
   line-height: 1;
   transition: 200ms all ease;
-
-  @include hover {
-    &:hover {
-      background-color: var(--quarterdeck);
-      border: 1px solid var(--white);
-      color: var(--white);
-    }
-  }
 }
 
 .themed {
-  background-color: var(--text-color);
-  border: 1px solid var(--text-color);
-  color: var(--white);
-  display: inline-flex;
   font-family: var(--font-bomstad-display);
   font-weight: 600;
   line-height: 1;
   transition: 200ms all ease;
-
-  @include hover {
-    &:hover {
-      background-color: var(--bg-color);
-      border: 1px solid var(--text-color);
-      color: var(--text-color);
-    }
-  }
 }
 
 .naked {
-  background-color: transparent;
   display: inline-flex;
   font-family: var(--font-bomstad-display);
   font-weight: 900;
@@ -81,7 +32,7 @@
   transition: 200ms all ease;
 }
 
-.defaultSize {
+.md {
   font-size: desktop-vw(14px);
   font-weight: 400;
   padding: desktop-vw(16px) desktop-vw(32px);
@@ -100,5 +51,16 @@
   @include mobile {
     font-size: mobile-vw(18px);
     padding: mobile-vw(12px) mobile-vw(30px);
+  }
+}
+
+.quarterdeck {
+  background-color: var(--quarterdeck);
+  color: var(--white);
+  border: 1px solid var(--quarterdeck);
+
+  @include hover {
+    background-color: var(--white);
+    color: var(--quarterdeck);
   }
 }

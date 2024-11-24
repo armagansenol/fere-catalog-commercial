@@ -3,17 +3,13 @@
   width: 100%;
 
   @include mobile {
-    --slide-spacing: #{var(--slide-spacing)};
+    --slide-spacing: 0px !important;
   }
 
   .emblaViewport {
     overflow: hidden;
     position: relative;
     width: 100%;
-
-    @include mobile {
-      padding: var(--slide-spacing);
-    }
   }
 
   .emblaContainer {
@@ -21,19 +17,34 @@
     display: flex;
     touch-action: pan-y;
     margin-left: calc(var(--slide-spacing) * -1);
-    // width: 100%;
 
     .emblaSlide {
-      // width: 100%;
-
       min-width: 0;
       padding-left: var(--slide-spacing);
       position: relative;
       flex-shrink: 0;
 
-      .emblaSlideContent {
-        // overflow: hidden;
-        // width: 100%;
+      @include mobile {
+        width: 100vw;
+        display: flex;
+        justify-items: center;
+        padding: 0 mobile-vw(16px);
+      }
+
+      &:first-child {
+        margin-left: var(--spacing-xl);
+
+        @include mobile {
+          margin-left: 0;
+        }
+      }
+
+      &:last-child {
+        margin-right: var(--spacing-xl);
+
+        @include mobile {
+          margin-right: 0;
+        }
       }
     }
   }
@@ -41,6 +52,7 @@
   .btns {
     @include position(absolute, 50%, desktop-vw(40px), auto, auto);
     transform: translateY(-50%);
+    background-color: var(--quarterdeck);
   }
 
   .prev,

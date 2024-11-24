@@ -16,7 +16,12 @@ const buttonVariants = cva(
       },
       size: {
         default: s.defaultSize,
+        md: s.md,
         lg: s.lg,
+      },
+      theme: {
+        quarterdeck: s.quarterdeck,
+        black: s.black,
       },
     },
     defaultVariants: {
@@ -33,11 +38,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+  ({ className, variant = "default", size = "md", theme = "quarterdeck", asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn("rounded-full cursor-pointer", buttonVariants({ variant, size, className }))}
+        className={cn("rounded-full cursor-pointer ", buttonVariants({ variant, size, theme, className }))}
         ref={ref}
         {...props}
       />

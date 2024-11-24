@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react"
 import React, { ReactNode, useCallback, useEffect, useState } from "react"
 
 import { NextButton, PrevButton } from "./buttons"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 interface Props {
   children: ReactNode[]
@@ -80,13 +81,13 @@ const EmblaCarousel = (props: Props) => {
         <div className={props.btnsClassName}>
           <div className={s.emblaButtons}>
             <PrevButton className={s.prev} onClick={scrollPrev} disabled={prevBtnDisabled}>
-              {props.prevButton}
+              <ArrowLeft />
             </PrevButton>
           </div>
 
           <div className={s.emblaButtons}>
             <NextButton className={s.next} onClick={scrollNext} disabled={nextBtnDisabled}>
-              {props.nextButton}
+              <ArrowRight />
             </NextButton>
           </div>
         </div>

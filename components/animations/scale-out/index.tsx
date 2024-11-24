@@ -9,7 +9,7 @@ interface ScaleOutProps {
   children: React.ReactNode
 }
 
-export default function ScaleOut({ children }: ScaleOutProps) {
+export function ScaleOut({ children }: ScaleOutProps) {
   const windowSize = useWindowSize()
   const scaleOutRef = useRef<HTMLDivElement>(null)
 

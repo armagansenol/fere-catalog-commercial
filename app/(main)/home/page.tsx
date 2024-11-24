@@ -1,12 +1,10 @@
-// export const dynamic = 'force-dynamic';
-
 import s from "./home.module.scss"
 
 import cn from "clsx"
 
 import { Marquee } from "@/components/animations/marquee"
-import ScaleIn from "@/components/animations/scale-in"
-import ScaleOut from "@/components/animations/scale-out"
+import { ScaleIn } from "@/components/animations/scale-in"
+import { ScaleOut } from "@/components/animations/scale-out"
 import { CardTestimonial } from "@/components/card-testimonial"
 import { HowItWorks } from "@/components/how-it-works"
 import Logo from "@/components/icons/logo"
@@ -46,7 +44,7 @@ export default async function HomePage() {
     <>
       {sliderData && sliderData.length > 0 && (
         <ScaleOut>
-          <section className="px-[var(--spacing-lg)]">
+          <section className="px-4 tablet:px-[var(--spacing-lg)] py-4">
             <MainSlider items={sliderData} />
           </section>
         </ScaleOut>
@@ -103,49 +101,50 @@ export default async function HomePage() {
       </ScaleIn>
       <HowItWorks />
       <section className={s.specs}>
-        <div className={cn(s.cards, "flex flex-col items-center tablet:grid grid-cols-3 tablet:items-start")}>
+        <div className={"flex flex-col items-center tablet:grid grid-cols-3 tablet:items-start gap-16 tablet:gap-32"}>
           <div className={s.cardSpec}>
             <h4>Kolay Ürün Yönetimi</h4>
             <p>
-              Tüm Catalog içi işlemleri! Ürünlerinizi hangi değişikliğinize hangisinde sergilemiş olun değişimin sağını
-              solüklü verenlere etkileyebilir ve fireler kullanarak ürünlerinizi değişikli.
+              Fere Catalog sizi sınırlamaz! Ürünlerinizi kendi oluşturduğunuz kategorilerde sergileyip ürün çeşidinize
+              uygun özellikler, varyantlar ekleyebilir ve düzenleyebilirsiniz. Müşterileriniz ihtiyacına göre filtreler
+              kullanarak ürünlerinize ulaşabilir.
             </p>
           </div>
           <div className={s.cardSpec}>
             <h4>Online Sipariş Oluşturma</h4>
             <p>
-              Müşterileriniz, mağazanızın linkine tıklayarak tüm ürünlerinize kolayca erişebilir ve hızlıca
-              siparişlerini online olarak takip edebilir. Size özel mağaza linkiniz ile müşterileriniz katalog hem
-              tanıtımı veya ürün güncel görüntülenmesi gerek kalması.
+              Müşterileriniz, mağazanızın linkine tıklayarak tüm ürünlerinize kolayca erişebilir ve toptan siparişlerini
+              online olarak oluşturabilir. Sipariş vermek isteyen müşterileriniz için manuel katalog hazırlamanıza veya
+              ürün görseli göndermenize gerek kalmaz.
             </p>
           </div>
           <div className={s.cardSpec}>
             <h4>Ürün Gizliliği ve Koruma</h4>
             <p>
-              Ürünlerinizin gizliliğini beraberynize. Ürünleriniz, yetkiniz sizin doğruluğunuz katalogta yer alır, aynı
-              şekilde değer görünmesi in üstünde bir şey değiştirilmez.
+              Ürünlerinizin gizliliğini önemsiyoruz. Ürünleriniz, yalnızca sizin oluşturduğunuz katalogta yer alır, aynı
+              sektördeki diğer işletmelerin ürünleriyle bir arada satışa sunulmaz.
             </p>
           </div>
           <div className={s.cardSpec}>
             <h4>Gelişmiş Yetki ve Erişim Kontrolü</h4>
             <p>
-              Çalışanlarınız için detaylı erişim yönetimi belirlenebilirsiniz. Dilediğiniz gibi, istemiş ürün yönetimi
-              gibi özel işlemlerin doğruluğunuz tüm alanlarla sadece yetki işlemleri işlem yapılmasını
+              Çalışanlarınız için detaylı erişim seviyeleri belirleyebilirsiniz. Dilerseniz gelir, sipariş, ürün
+              yönetimi gibi özel olduğunu düşündüğünüz tüm alanlarda sadece yetkili kişilerin işlem yapabilmesini
               sağlayabilirsiniz.
             </p>
           </div>
           <div className={s.cardSpec}>
             <h4>Çoklu Dil Desteğiyle Global Müşteri Erişimi</h4>
             <p>
-              Platformumuz, çoklu dil desteğiyle yurt dışındaki müşterilerinize de hitabet etme ve etkiletişim geçme
-              seçeneklerini sağlar. Böylece kullanıcısı paranızı büyütmeniz farkına kalırsın.
+              Platformumuz, çoklu dil desteğiyle yurt dışındaki müşterilerinize de hizmet verir ve rahatlıkla sipariş
+              verebilmelerini sağlar, böylece uluslararası pazarda büyümenize katkıda bulunur.
             </p>
           </div>
           <div className={s.cardSpec}>
             <h4>Toplam Satış & Gelir Analizi</h4>
             <p>
-              Satış ve satış raporları ile ürün bazında zamana bağlı gelişiminizi analizi yapabilir ve müşterilerinizin
-              toplam sipariş takibi için sadece tek bir yerden görüntüleyebilirsiniz.
+              Gelir ve satış raporları ile, ürün bazında zamana dayalı performans analizi yapabilir ve müşterilerinizin
+              toptan sipariş sıklığını takip ederek satış stratejisi geliştirebilirsiniz.
             </p>
           </div>
         </div>
@@ -173,7 +172,7 @@ export default async function HomePage() {
         <h3>
           Müşterilerimizin <br /> Görüşleri
         </h3>
-        <div className={s.sliderC}>
+        <div className={cn(s.sliderC, "flex flex-col items-center")}>
           <EmblaCarousel
             slideSpacing={30}
             nextButton={<div className={cn(s.btn, s.next)}>next</div>}

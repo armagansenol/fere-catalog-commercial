@@ -39,7 +39,6 @@ export default function HowItWorks() {
       ScrollTrigger.create({
         animation: tl,
         trigger: ".sticky-c",
-        markers: true,
         pin: true,
         scrub: true,
         end: `+=2500px`,

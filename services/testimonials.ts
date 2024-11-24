@@ -1,6 +1,6 @@
 "use server"
 
-import apiClient from "@/lib/api"
+import apiClient from "@/lib/api/axios"
 import { Testimonial } from "@/types"
 
 export async function getTestimonials(lang?: string) {

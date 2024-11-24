@@ -37,6 +37,8 @@ export async function getMainSlider(lang?: string): Promise<MainSliderProps[]> {
     }
 
     const data = await response.json()
+    console.log("data", data)
+
     return data as MainSliderProps[]
   } catch (error) {
     console.error("Error fetching banners:", error)

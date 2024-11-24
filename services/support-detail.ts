@@ -13,9 +13,11 @@ interface SupportDetailParams {
 
 export const getSupportDetail = async (params: SupportDetailParams): Promise<SupportDetailResponse> => {
   const queryParams = new URLSearchParams({
-    URL: params.url, // Note: URL parameter is case-sensitive
+    url: params.url, // Note: URL parameter is case-sensitive
     ...(params.lang && { lang: params.lang }),
   }).toString()
+
+  console.log(queryParams)
 
   const response = await fetch(`https://cms.ferecatalog.com/services/supportDetail.php?${queryParams}`, {
     method: "GET",

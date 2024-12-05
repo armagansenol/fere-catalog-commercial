@@ -41,7 +41,7 @@ export default async function HowItWorksPage() {
       <section className="flex flex-col items-center py-16 tablet:py-40 px-4 tablet:px-[var(--spacing-xl)] bg-lynxWhite rounded-2xl mx-0 tablet:mx-6 mb-0 tablet:mb-20">
         <div className="space-y-20">
           {howToData.map((item, i) => (
-            <Step {...item} index={i} length={howToData.length} />
+            <Step key={i} {...item} index={i} length={howToData.length} />
           ))}
         </div>
         <Button className="mt-8 mx-auto tablet:mt-8" size="lg" padding="wide" asChild>

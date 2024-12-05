@@ -73,15 +73,11 @@ export enum CursorType {
   email = "email",
 }
 
-interface MenuItem {
-  id: string
-  title: string
-  href: string
-}
-
 export interface SideNavigationProps {
-  title: string
-  items: MenuItem[]
+  items: {
+    id: string
+    title: string
+  }[]
 }
 
 export interface FAQItem {
@@ -91,7 +87,6 @@ export interface FAQItem {
 }
 
 export interface SupportFaqProps {
-  id: string
   title: string
   items: FAQItem[]
 }
@@ -148,4 +143,68 @@ export interface SupportSearchParams {
 
 export interface SupportFAQProps {
   faqItems: FAQItem[]
+}
+
+type Image = {
+  src: string
+  alt: string
+}
+
+type Page = {
+  id: number
+  image: Image
+  title: string
+  description: string
+  seoTitle: string
+  seoDescription: string
+}
+
+// type Question = {
+//   id: number
+//   question: string
+//   reply: string
+// }
+
+export type TableOfContentEntry = {
+  id: number
+  question: string
+}
+
+export interface SupportDetailResponse {
+  page: Page
+  questions: FAQItem[]
+  tableOfContent: TableOfContentEntry[]
+}
+
+export interface HowToItem {
+  id: number
+  image: {
+    src: string
+    alt: string
+  }
+  title: string
+  description: string
+}
+
+// Define the structure for the features array
+type Feature = [string, ...string[]]
+
+// Define the structure for the main object
+type PricingData = {
+  packages: null | string[] // If packages could be added later, use string[]; otherwise null
+  features: Feature[]
+}
+
+// Define the array type
+export type PricingArray = PricingData[]
+
+export interface Plan {
+  id: number
+  planType: "monthly" | string
+  title: string
+  description: string
+  price: string
+  priceText: string
+  recommended: boolean
+  features: string[]
 }

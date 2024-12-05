@@ -1,5 +1,6 @@
 "use client"
 
+import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 
 import { Searchbar } from "@/components/searchbar"
@@ -12,7 +13,6 @@ import { routes } from "@/lib/constants"
 import { useSearchSupport } from "@/services/support"
 import { getSupportCards } from "@/services/supportCards"
 import { FAQItem, SupportArticle } from "@/types"
-import { useQuery } from "@tanstack/react-query"
 
 // type SupportCategory = {
 //   id: number
@@ -49,7 +49,7 @@ import { useQuery } from "@tanstack/react-query"
 //   },
 // ]
 
-export default function SupportPage() {
+export default function Page() {
   const { data: cards } = useQuery<SupportArticle[], Error>({
     queryKey: ["cards"],
     queryFn: () => getSupportCards(),
@@ -58,10 +58,11 @@ export default function SupportPage() {
   const [searchResults, setSearchResults] = useState<FAQItem[]>([])
   const { searchArticles, isSearching } = useSearchSupport()
 
-  console.log("search results", searchResults)
-
   const handleSearch = async (query: string) => {
-    const results = await searchArticles(query)
+    if (!query) {
+      setSearchResults([])
+    }
+    const results = await searchArticles(query, "tr")
     setSearchResults(results)
   }
 
@@ -89,17 +90,17 @@ export default function SupportPage() {
             </Accordion>
           </>
         ) : (
-          <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-32 gap-6 tablet:gap-10">
-            {isSearching && searchResults.length === 0 ? (
-              <div className="w-full h-full flex items-center justify-center">LOADING</div>
+          <div>
+            {searchResults && searchResults.length === 0 ? (
+              <>{isSearching && <div className="w-full h-screen flex items-center justify-center">LOADING</div>}</>
             ) : (
-              <>
+              <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-32 gap-6 tablet:gap-x-5 tablet:gap-y-24">
                 {cards &&
                   cards.length > 0 &&
                   cards.map((item) => (
                     <Link href={`/${routes.tr.support.path}/${item.url}`} key={item.id}>
-                      <Card className="flex flex-col items-center tablet:items-start">
-                        <CardHeader className="p-0 h-64">
+                      <Card className="w-full h-full flex flex-col items-center tablet:items-start justify-start">
+                        <CardHeader className="p-0 h-72 w-full rounded-lg overflow-hidden">
                           <Img
                             src={item.image.src}
                             height={500}
@@ -109,22 +110,22 @@ export default function SupportPage() {
                           />
                         </CardHeader>
                         <CardContent className="mt-4 mb-8 space-y-2 p-0">
-                          <h2 className="text-30 font-albert-sans font-normal text-center tablet:text-left">
+                          <h2 className="text-30 font-albert-sans font-normal text-center tablet:text-left tracking-tighter">
                             {item.title}
                           </h2>
                           <p className="text-16 font-mukta font-light text-center tablet:text-left">
                             {item.description}
                           </p>
                         </CardContent>
-                        <CardFooter className="p-0">
-                          <Button variant="outline" size="lg">
+                        <CardFooter className="p-0 w-3/4 mt-auto">
+                          <Button variant="bw" size="lg" className="tablet:px-20">
                             Tümünü Gör
                           </Button>
                         </CardFooter>
                       </Card>
                     </Link>
                   ))}
-              </>
+              </div>
             )}
           </div>
         )}

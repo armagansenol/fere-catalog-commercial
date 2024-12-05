@@ -1,66 +1,124 @@
 .default {
-  font-family: var(--font-bomstad-display);
+  background-color: var(--quarterdeck);
+  border: 1px solid var(--quarterdeck);
+  color: var(--unbleached);
+  font-family: var(--font-mukta);
+  font-weight: 400;
   line-height: 1;
   transition: 200ms all ease;
+
+  @include hover {
+    &:hover {
+      background-color: var(--unbleached);
+      color: var(--quarterdeck);
+    }
+  }
 }
 
-.outline {
-  font-family: var(--font-bomstad-display);
+.inverted {
+  background-color: var(--unbleached);
+  border: 1px solid var(--unbleached);
+  color: var(--quarterdeck);
+  font-family: var(--font-mukta);
+  font-weight: 400;
   line-height: 1;
   transition: 200ms all ease;
+
+  @include hover {
+    &:hover {
+      background-color: var(--quarterdeck);
+      color: var(--unbleached);
+    }
+  }
 }
 
-.ghost {
-  font-family: var(--font-bomstad-display);
+.bw {
+  background-color: var(--unbleached);
+  border: 1px solid var(--black);
+  color: var(--black);
+  font-family: var(--font-mukta);
+  font-weight: 400;
+  line-height: 1;
+  transition: 200ms all ease;
+
+  @include hover {
+    &:hover {
+      background-color: var(--black);
+      color: var(--unbleached);
+    }
+  }
+}
+
+.highlighted {
+  background-color: var(--quarterdeck);
+  border: 1px solid var(--quarterdeck);
+  color: var(--unbleached);
+  font-family: var(--font-mukta);
   font-weight: 900;
   line-height: 1;
   transition: 200ms all ease;
-}
 
-.themed {
-  font-family: var(--font-bomstad-display);
-  font-weight: 600;
-  line-height: 1;
-  transition: 200ms all ease;
+  @include hover {
+    &:hover {
+      background-color: var(--bg-color);
+      color: var(--unbleached);
+    }
+  }
 }
 
 .naked {
+  background-color: transparent;
   display: inline-flex;
-  font-family: var(--font-bomstad-display);
-  font-weight: 900;
+  font-family: var(--font-mukta);
+  font-weight: 400;
   line-height: 1;
-  transition: 200ms all ease;
+}
+
+// .primary {
+//   background-color: var(--quarterdeck);
+//   color: var(--unbleached);
+
+//   @include hover {
+//     &:hover {
+//       background-color: var(--quarterdeck);
+//       color: var(--unbleached);
+//     }
+//   }
+// }
+
+// .secondary {
+//   background-color: var(--quarterdeck);
+//   border: 1px solid var(--quarterdeck);
+//   color: var(--unbleached);
+
+//   @include hover {
+//     &:hover {
+//       background-color: var(--quarterdeck);
+//       color: var(--unbleached);
+//     }
+//   }
+// }
+
+.sm {
+  font-size: desktop-vw(14px);
+
+  @include mobile {
+    font-size: mobile-vw(14px);
+  }
 }
 
 .md {
-  font-size: desktop-vw(14px);
-  font-weight: 400;
-  padding: desktop-vw(16px) desktop-vw(32px);
+  font-size: desktop-vw(16px);
 
   @include mobile {
-    font-size: mobile-vw(20px);
-    padding: mobile-vw(16px) mobile-vw(32px);
+    font-size: mobile-vw(16px);
   }
 }
 
 .lg {
-  font-size: desktop-vw(18px);
-  font-weight: 400;
-  padding: desktop-vw(14px) desktop-vw(80px);
+  font-size: desktop-vw(20px);
 
   @include mobile {
-    font-size: mobile-vw(18px);
-    padding: mobile-vw(12px) mobile-vw(30px);
-  }
-}
-
-.quarterdeck {
-  background-color: var(--quarterdeck);
-  color: var(--white);
-  border: 1px solid var(--quarterdeck);
-
-  @include hover {
-    background-color: var(--white);
-    color: var(--quarterdeck);
+    font-size: mobile-vw(20px);
   }
 }

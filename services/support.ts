@@ -1,4 +1,4 @@
-import apiClient from "@/lib/api/axios"
+import { fetchWithErrorHandling } from "@/lib/api"
 import { FAQItem } from "@/types"
 import { useMutation } from "@tanstack/react-query"
 
@@ -14,12 +14,13 @@ interface SupportSearchParams {
 
 const getSupportArticles = async (params: SupportSearchParams): Promise<FAQItem[]> => {
   try {
-    const response = await apiClient.get<FAQItem[]>("/support.php", {
-      params: {
-        ...params,
-      },
-    })
-    return response.data
+    const response = fetchWithErrorHandling<FAQItem[]>(
+      `support?keyword=${encodeURIComponent(params.keyword)}&lang=${params.lang}`,
+      {
+        method: "GET",
+      }
+    )
+    return response
   } catch (error) {
     console.error("Error fetching support articles:", error)
     throw error

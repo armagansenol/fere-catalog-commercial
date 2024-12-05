@@ -55,17 +55,10 @@ export default function Header() {
       <Link className={cx(s.navItem, s.logoC, "cursor-pointer")} href="/">
         <Logo />
       </Link>
-      <div
-        className={cx(s.trigger, "block tablet:hidden", { [s.active]: hamburgerOpen })}
-        onClick={() => setHamburgerOpen((prev) => !prev)}
-      >
-        {hamburgerOpen ? <Cross1Icon className="w-full h-full" /> : <HamburgerMenuIcon className="w-full h-full" />}
-      </div>
-
       <nav
         className={cx(
           s.nav,
-          "flex flex-col gap-10 tablet:flex-row items-center justify-center tablet:justify-between tablet:gap-80",
+          "flex flex-col gap-10 tablet:flex-row items-center justify-center tablet:justify-center tablet:gap-40",
           {
             [s.active]: hamburgerOpen,
           }
@@ -92,17 +85,23 @@ export default function Header() {
           </div>
         </div>
         <div className={"flex flex-col tablet:flex-row items-center gap-5"}>
-          <Button className={cx(s.navItem, "cursor-pointer")} variant="outline" asChild>
-            <Link href="/giris-yap">Giriş Yap</Link>
+          <Button className={cx(s.navItem, "cursor-pointer")} variant="inverted" size="sm" asChild>
+            <Link href="https://panel.ferecatalog.com">Giriş Yap</Link>
           </Button>
-          <Button className={cx(s.navItem, "cursor-pointer")} asChild>
-            <Link href="/fiyatlandirma">Hemen Üye Ol</Link>
+          <Button className={cx(s.navItem, "cursor-pointer")} size="sm" asChild>
+            <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
           </Button>
           {/* <div className={cx(s.navItem, "cursor-pointer")}>
             <>EN</>
           </div> */}
         </div>
       </nav>
+      <div
+        className={cx(s.trigger, "block tablet:hidden", { [s.active]: hamburgerOpen })}
+        onClick={() => setHamburgerOpen((prev) => !prev)}
+      >
+        {hamburgerOpen ? <Cross1Icon className="w-full h-full" /> : <HamburgerMenuIcon className="w-full h-full" />}
+      </div>
     </header>
   )
 }

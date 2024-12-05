@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import debounce from "lodash/debounce"
 import { Search } from "lucide-react"
-import { useCallback, useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -20,6 +20,7 @@ interface SearchbarProps {
   initialQuery?: string
   onSearch: (query: string) => void
 }
+
 export default function Searchbar({ initialQuery = "", onSearch }: SearchbarProps) {
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchSchema),
@@ -28,25 +29,35 @@ export default function Searchbar({ initialQuery = "", onSearch }: SearchbarProp
     },
   })
 
-  const debouncedSearch = useCallback(
-    debounce((value: string) => {
-      onSearch(value)
-    }, 300),
+  // Use useMemo to create the debounced function and track dependencies correctly
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((query: string) => {
+        onSearch(query)
+      }, 300),
     [onSearch]
   )
 
+  // Trigger search for the initial query on mount
   useEffect(() => {
-    debouncedSearch(initialQuery)
-  }, [])
+    if (initialQuery) {
+      debouncedSearch(initialQuery)
+    }
+    // Cleanup debounce when component unmounts
+    return () => {
+      debouncedSearch.cancel()
+    }
+  }, [initialQuery, debouncedSearch])
 
+  // Watch form changes and trigger debounced search
   useEffect(() => {
     const subscription = form.watch((value, { name }) => {
       if (name === "query") {
-        debouncedSearch(value.query || initialQuery)
+        debouncedSearch(value.query as string)
       }
     })
     return () => subscription.unsubscribe()
-  }, [form, debouncedSearch, initialQuery])
+  }, [form, debouncedSearch])
 
   return (
     <Form {...form}>

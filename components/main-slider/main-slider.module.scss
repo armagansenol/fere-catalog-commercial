@@ -6,7 +6,7 @@
     position: relative;
 
     @include mobile {
-      @include dims(100%, mobile-vw(330px));
+      @include dims(100%, mobile-vw(190px));
       order: 3;
     }
 
@@ -14,15 +14,18 @@
       @include position(absolute, desktop-vw(50px), auto, auto, 0);
       @include dims(desktop-vw(460px), auto);
       opacity: 0;
+      pointer-events: none;
       transition: 400ms opacity ease;
 
       @include mobile {
         @include position(absolute, mobile-vw(16px), auto, auto, 0);
-        @include dims(auto);
+        @include dims(100%);
+        padding-bottom: mobile-vw(30px);
       }
 
       &.visible {
         opacity: 1;
+        pointer-events: auto;
       }
 
       > h2 {
@@ -34,7 +37,7 @@
 
         @include mobile {
           font-size: mobile-vw(24px);
-          margin-bottom: mobile-vw(10px);
+          margin-bottom: mobile-vw(20px);
           text-align: center;
         }
       }
@@ -47,6 +50,8 @@
         margin-bottom: desktop-vw(40px);
 
         @include mobile {
+          display: none;
+
           font-size: mobile-vw(18px);
           margin-bottom: mobile-vw(30px);
           text-align: center;

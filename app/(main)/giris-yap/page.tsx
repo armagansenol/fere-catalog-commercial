@@ -33,7 +33,7 @@ export default function Page() {
                 <p className="text-sm">
                   Henüz bir hesabınız yok mu?{" "}
                   <Link href="/register" className="text-primary hover:underline">
-                    HEMEN ÜYE OL
+                    ÜCRETSİZ DENEMEYE BAŞLA
                   </Link>
                 </p>
               </div>

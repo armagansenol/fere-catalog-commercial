@@ -158,7 +158,7 @@ export default function MainSlider(props: Props) {
         {props.items.map((item, i) => {
           return (
             <div
-              className={cx(s.text, "flex flex-col items-center tablet:items-start", {
+              className={cx(s.text, "flex flex-col items-center tablet:items-start justify-between", {
                 [s.visible]: currentSlide === i,
               })}
               key={item.id}
@@ -168,7 +168,7 @@ export default function MainSlider(props: Props) {
               <h2>{item.title}</h2>
               <p>{item.description}</p>
               {item.button && (
-                <Button asChild theme="quarterdeck">
+                <Button variant="bw" asChild size="sm">
                   <Link href={item.button?.url}>{item.button?.ui}</Link>
                 </Button>
               )}

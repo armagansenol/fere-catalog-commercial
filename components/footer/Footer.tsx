@@ -14,8 +14,8 @@ export default function Footer() {
     <footer className={cx(s.footer, "flex flex-col")}>
       <div className={cx(s.punchC, "flex flex-col tablet:flex-row items-center justify-between")}>
         <h5 className={s.punch}>Hazırsanız Başlayalım.</h5>
-        <Button size="lg" className="px-20" asChild>
-          <Link href="/fiyatlandirma">Hemen Üye Ol</Link>
+        <Button size="lg" padding="wide" asChild>
+          <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
         </Button>
       </div>
       <nav className={cx(s.links, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
@@ -29,14 +29,14 @@ export default function Footer() {
               <Link href="/nasil-calisir">Nasıl Çalışır?</Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/fiyatlandırma">Fiyatlandırma</Link>
+              <Link href="/fiyatlandirma">Fiyatlandırma</Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/sikca-sorulan-sorular">Sıkça Sorulan Sorular</Link>
+              <Link href="/destek">Destek</Link>
             </div>
-            <div className={s.navItem}>
+            {/* <div className={s.navItem}>
               <Link href="/blog">Blog</Link>
-            </div>
+            </div> */}
             <div className={s.navItem}>
               <Link href="/iletisim">İletişim</Link>
             </div>

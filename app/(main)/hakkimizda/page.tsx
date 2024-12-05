@@ -7,6 +7,13 @@ import { Img } from "@/components/utility/img"
 
 import employee from "@/public/img/employee.jpg"
 import ipad from "@/public/img/ipad.jpg"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Fere Catalog | Yılların Deneyimiyle Kaliteli Hizmet",
+  description:
+    "Biz Fere Catalog olarak, kaliteli hizmet ve yenilikçi çözümler sunmayı hedefliyoruz. Hakkımızda daha fazla bilgi için hemen tıklayın.",
+}
 
 export default function AboutPage() {
   return (

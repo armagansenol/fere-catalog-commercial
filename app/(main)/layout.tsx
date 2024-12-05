@@ -20,8 +20,9 @@ const mukta = Mukta({
 })
 
 export const metadata: Metadata = {
-  title: "Fere",
-  description: "Fere",
+  title: "Fere Catalog | Online Katalog ve Sipariş Platformu",
+  description:
+    "Fere ile online mağazanızı kolayca oluşturun, ürünlerinizi kategorize edin ve siparişlerinizi tek bir platformdan yönetin. Hemen ücretsiz denemeye başlayın!",
 }
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {

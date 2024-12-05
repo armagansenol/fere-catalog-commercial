@@ -61,7 +61,7 @@ export default async function HomePage() {
           </div>
           <div className={cn(s.stats, "flex flex-col w-full gap-5 tablet:grid grid-cols-3 tablet:gap-0")}>
             <div>
-              <h3>2K</h3>
+              <h3>2M</h3>
               <p>Ayda ortalama ürün satışı.</p>
             </div>
             <div>
@@ -69,14 +69,14 @@ export default async function HomePage() {
                 +40
                 <span>%</span>
               </h3>
-              <p>Fere Katalog kullanan müşterilerimizin satış oranı artışı.</p>
+              <p>Fere Katalog kullanan müşterilerimizin ortalama satış oranı artışı.</p>
             </div>
             <div>
               <h3>
                 +50
                 <span>%</span>
               </h3>
-              <p>İlk 6 ay içindeki yeni müşteri kazanma oranı.</p>
+              <p>İlk 6 ay içindeki ortalama yeni müşteri kazanma oranı.</p>
             </div>
           </div>
           <h2>
@@ -155,8 +155,8 @@ export default async function HomePage() {
             <div className={cn(s.text, "flex flex-col items-center justify-center tablet:items-start")}>
               <h4>İşletmenize Özel Paketlerimizi Keşfedin!</h4>
               <p>
-                Her işletmeye özel olarak hazırlanmış paketlerimiz/planlarımız arasından ihtiyacınıza en uygun olanı
-                seçebilir ve 1 ay boyunca ücretsiz deneyebilirsiniz.
+                Her işletmeye özel olarak hazırlanmış paketlerimiz arasından ihtiyacınıza en uygun olanı seçebilir ve 1
+                ay boyunca ücretsiz deneyebilirsiniz.
               </p>
               <Link href="/fiyatlandirma">
                 <Button className="px-16">Paketleri Gör</Button>

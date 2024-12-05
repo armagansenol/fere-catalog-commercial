@@ -11,6 +11,7 @@ import { IconCartArrow, IconDots, IconHuman } from "@/components/icons"
 
 import ipad from "@/public/img/ipad-zoomed.jpg"
 import { useMediaQuery } from "usehooks-ts"
+import { Link } from "../utility/link"
 
 export default function HowItWorks() {
   const howItWorksRef = useRef<HTMLElement>(null)
@@ -52,7 +53,9 @@ export default function HowItWorks() {
   return (
     <section className={s.howItWorks} ref={howItWorksRef}>
       <div className={s.intro}>
-        <h2>Nasıl Çalışır?</h2>
+        <Link href="/nasil-calisir">
+          <h2>Nasıl Çalışır?</h2>
+        </Link>
         <p>
           Adım adım rehberimizle, ürünlerinizi online katalogda nasıl sergileyebileceğinizi ve satışlarınızı nasıl
           artırabileceğinizi öğreneceksiniz.

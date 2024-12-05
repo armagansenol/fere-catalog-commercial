@@ -1,7 +1,7 @@
-import { MainSliderProps } from "@/types"
+import { HowToItem } from "@/types"
 
-export async function getMainSlider(lang?: string): Promise<MainSliderProps[]> {
-  const url = "https://cms.ferecatalog.com/services/banner.php"
+export async function getHowTo(lang?: string): Promise<HowToItem[]> {
+  const url = "https://cms.ferecatalog.com/services/howto.php"
 
   try {
     const response = await fetch(url, {
@@ -13,11 +13,9 @@ export async function getMainSlider(lang?: string): Promise<MainSliderProps[]> {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
-
     const data = await response.json()
     console.log("data", data)
-
-    return data as MainSliderProps[]
+    return data as HowToItem[]
   } catch (error) {
     console.error("Error fetching banners:", error)
     throw new Error("Failed to fetch banners")

@@ -29,7 +29,7 @@ export default function Navigation(props: NavigationProps) {
                 className="flex items-center justify-between text-12 font-mukta cursor-pointer"
                 onClick={() => lenis?.scrollTo(`#scroll-${item.id}`)}
               >
-                <span className="flex-grow">{item.question}</span>
+                <span className="flex-grow max-w-60">{item.question}</span>
                 <ChevronRight className="shrink-0 h-4 w-4 text-muted-foreground" />
               </div>
             ))}

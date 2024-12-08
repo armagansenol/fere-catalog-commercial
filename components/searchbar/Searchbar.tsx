@@ -61,7 +61,7 @@ export default function Searchbar({ initialQuery = "", onSearch }: SearchbarProp
 
   return (
     <Form {...form}>
-      <form className="w-96">
+      <form className="w-full tablet:w-96">
         <FormField
           control={form.control}
           name="query"
@@ -70,7 +70,7 @@ export default function Searchbar({ initialQuery = "", onSearch }: SearchbarProp
               <FormControl>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input placeholder="Enter your search query" className="pl-10 rounded-full w-full" {...field} />
+                  <Input placeholder="Arama" className="pl-10 rounded-full w-full" {...field} />
                 </div>
               </FormControl>
             </FormItem>

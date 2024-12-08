@@ -41,6 +41,7 @@
   --br-lg: #{desktop-vw(50px)};
   --br-xl: #{desktop-vw(100px)};
 
+  --img-sm: #{desktop-vw(270px)};
   --img-md: #{desktop-vw(400px)};
 
   @include mobile {
@@ -77,6 +78,7 @@
     --br-lg: #{mobile-vw(50px)};
     --br-xl: #{mobile-vw(100px)};
 
+    --img-sm: #{mobile-vw(220px)};
     --img-md: #{mobile-vw(240px)};
   }
 }

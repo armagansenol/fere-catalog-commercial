@@ -116,9 +116,9 @@
 }
 
 .lg {
-  font-size: desktop-vw(20px);
+  font-size: desktop-vw(18px);
 
   @include mobile {
-    font-size: mobile-vw(20px);
+    font-size: mobile-vw(16px);
   }
 }

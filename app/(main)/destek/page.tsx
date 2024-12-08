@@ -13,6 +13,7 @@ import { routes } from "@/lib/constants"
 import { useSearchSupport } from "@/services/support"
 import { getSupportCards } from "@/services/supportCards"
 import { FAQItem, SupportArticle } from "@/types"
+import { IconLoading } from "@/components/icons"
 
 export default function Page() {
   const { data: cards } = useQuery<SupportArticle[], Error>({
@@ -33,17 +34,25 @@ export default function Page() {
 
   return (
     <>
-      <section className="flex flex-col tablet:flex-row items-stretch tablet:items-end justify-between mb-8 space-y-10 px-4 tablet:px-[var(--spacing-lg)] py-4 tablet:py-8">
+      <section className="flex flex-col tablet:flex-row items-stretch tablet:items-end justify-between mb-0 tablet:mb-8 space-y-10 px-4 tablet:px-[var(--spacing-lg)] py-4 tablet:py-8">
         <div>
           <h1 className="text-40 font-albert-sans font-normal text-center tablet:text-left">Destek</h1>
           <p className="text-20 font-mukta font-light text-center tablet:text-left">Size nasıl yardımcı olabiliriz?</p>
         </div>
         <Searchbar onSearch={handleSearch} />
       </section>
-      <section className="px-4 tablet:px-[var(--spacing-lg)]">
+      <section className="px-4 tablet:px-[var(--spacing-lg)] pb-10 tablet:pb-20">
         <>
           {(isSearching || !cards) && (
-            <>{isSearching && <div className="w-full h-screen flex items-center justify-center">LOADING</div>}</>
+            <>
+              {isSearching && (
+                <div className="w-full h-screen flex items-center justify-center">
+                  <div>
+                    <IconLoading />
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </>
 
@@ -56,7 +65,7 @@ export default function Page() {
                     <AccordionTrigger className="text-16 font-albert-sans font-medium">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-16 font-mukta font-normal leading-snug p-8">
+                    <AccordionContent className="text-14 tablet:text-16 font-mukta font-normal leading-snug p-4 tablet:p-8">
                       <div dangerouslySetInnerHTML={{ __html: item.reply }}></div>
                     </AccordionContent>
                   </AccordionItem>
@@ -66,11 +75,11 @@ export default function Page() {
           ) : (
             <>
               {cards && cards.length > 0 && (
-                <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-32 gap-6 tablet:gap-x-5 tablet:gap-y-24">
+                <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-16 gap-16 tablet:gap-x-5 tablet:gap-y-24 mt-5">
                   {cards.map((item) => (
                     <Link href={`/${routes.tr.support.path}/${item.url}`} key={item.id}>
                       <Card className="w-full h-full flex flex-col items-center tablet:items-start justify-start">
-                        <CardHeader className="p-0 h-72 w-full rounded-lg overflow-hidden">
+                        <CardHeader className="p-0 h-img-sm w-full rounded-lg overflow-hidden">
                           <Img
                             src={item.image.src}
                             height={500}
@@ -87,8 +96,8 @@ export default function Page() {
                             {item.description}
                           </p>
                         </CardContent>
-                        <CardFooter className="p-0 w-3/4 mt-auto">
-                          <Button variant="bw" size="lg" className="tablet:px-20">
+                        <CardFooter className="p-0 w-2/4 tablet:w-2/4 mt-auto">
+                          <Button variant="bw" size="lg" className="w-full">
                             Tümünü Gör
                           </Button>
                         </CardFooter>

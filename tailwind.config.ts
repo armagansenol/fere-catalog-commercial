@@ -11,6 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       spacing: {
+        "img-sm": "var(--img-sm)",
         "img-md": "var(--img-md)",
       },
       screens: {

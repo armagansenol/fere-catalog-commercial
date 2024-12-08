@@ -16,6 +16,7 @@ import { submitContactForm } from "@/lib/api/mutations"
 import { countryPhoneCodes } from "@/lib/constants"
 import { getSectors } from "@/services/form-field-sector"
 import { Sector } from "@/types"
+import { IconLoading } from "../icons"
 
 export const formSchema = z
   .object({
@@ -120,7 +121,7 @@ export default function ContactForm() {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center tablet:items-start">
           <div className="space-y-3">
-            <div className="flex space-x-3">
+            <div className="flex flex-col tablet:flex-row gap-3">
               <FormField
                 control={form.control}
                 name="name"
@@ -203,7 +204,7 @@ export default function ContactForm() {
                 control={form.control}
                 name="countryCode"
                 render={({ field }) => (
-                  <FormItem className="w-40">
+                  <FormItem className="w-28 tablet:w-40">
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -268,25 +269,7 @@ export default function ContactForm() {
             />
           </div>
           <Button className="w-64 mt-12" type="submit" size="md" padding="fat">
-            {mutation.isPending ? (
-              <>
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path
-                    className="opacity-75"
-                    fill="var(--quarterdeck)"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              </>
-            ) : (
-              "Gönder"
-            )}
+            {mutation.isPending ? <IconLoading /> : "Gönder"}
           </Button>
           {showMessage && mutation.isSuccess && (
             <p className="text-green-500 text-12 font-mukta font-light mt-3">{mutation.data.message}</p>

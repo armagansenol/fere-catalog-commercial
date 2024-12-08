@@ -7,7 +7,6 @@
   }
 
   .emblaViewport {
-    overflow: hidden;
     position: relative;
     width: 100%;
   }
@@ -25,10 +24,18 @@
       flex-shrink: 0;
 
       @include mobile {
-        width: 100vw;
+        width: 90vw;
         display: flex;
         justify-items: center;
-        padding: 0 mobile-vw(16px);
+        padding: 0 mobile-vw(12px);
+
+        &:first-child {
+          padding-left: mobile-vw(24px);
+        }
+
+        &:last-child {
+          padding-right: mobile-vw(24px);
+        }
       }
 
       &:first-child {
@@ -57,7 +64,12 @@
 
   .prev,
   .next {
+    @include dims(mobile-vw(50px));
+    background-color: var(--lynx-white);
+    border-radius: 50%;
+    border: 2px solid var(--black);
     cursor: pointer;
+    padding: mobile-vw(10px);
     transition: 400ms opacity ease;
 
     &:disabled {

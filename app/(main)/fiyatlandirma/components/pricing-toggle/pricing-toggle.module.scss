@@ -36,3 +36,17 @@
     color: var(--white);
   }
 }
+
+.cardsMobile {
+  position: relative;
+
+  .navigation {
+    @include position(absolute, 50%, auto, auto, 50%);
+    @include dims(100vw, auto);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 mobile-vw(8px);
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

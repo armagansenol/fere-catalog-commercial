@@ -29,7 +29,7 @@
     @include dims(desktop-vw(120px), desktop-vw(80px));
 
     @include mobile {
-      @include dims(auto, mobile-vw(45px));
+      @include dims(mobile-vw(60px), mobile-vw(45px));
       z-index: 200;
     }
   }

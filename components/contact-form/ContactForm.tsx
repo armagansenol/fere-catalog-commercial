@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { IconLoading } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -16,7 +17,6 @@ import { submitContactForm } from "@/lib/api/mutations"
 import { countryPhoneCodes } from "@/lib/constants"
 import { getSectors } from "@/services/form-field-sector"
 import { Sector } from "@/types"
-import { IconLoading } from "../icons"
 
 export const formSchema = z
   .object({
@@ -48,7 +48,7 @@ export const formSchema = z
     }
   })
 
-type FormData = z.infer<typeof formSchema>
+type FormValues = z.infer<typeof formSchema>
 
 export default function ContactForm() {
   const [showMessage, setShowMessage] = useState(false)
@@ -58,7 +58,7 @@ export default function ContactForm() {
     queryFn: () => getSectors(),
   })
 
-  const form = useForm<FormData>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -94,7 +94,7 @@ export default function ContactForm() {
     }
   }, [mutation.isSuccess, mutation.isError])
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: FormValues) => {
     console.log("form data", data)
 
     let newData
@@ -108,9 +108,9 @@ export default function ContactForm() {
       newData = { ...data }
     }
 
-    delete (newData as Partial<FormData>).sectorOther
+    delete (newData as Partial<FormValues>).sectorOther
 
-    mutation.mutate(newData as FormData)
+    mutation.mutate(newData as FormValues)
   }
 
   // const isFormValid = form.formState.isValid

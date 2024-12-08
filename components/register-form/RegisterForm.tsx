@@ -2,10 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery } from "@tanstack/react-query"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
-import * as z from "zod"
+import { z } from "zod"
 
+import { IconLoading } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -18,28 +19,46 @@ import { getChannels } from "@/services/form-field-channels"
 import { getSectors } from "@/services/form-field-sector"
 import { Sector } from "@/types"
 
-export const formSchema = z.object({
-  name: z.string().min(2, { message: "Name is required" }),
-  surname: z.string().min(2, { message: "Name is required" }),
-  email: z.string().email({ message: "Name is required" }),
-  countryCode: z.string().min(1, { message: "Ülke kodu seçiniz" }),
-  phoneNumber: z.string().min(1, { message: "Name is required" }),
-  companyName: z.string().min(1, { message: "Name is required" }),
-  address: z.string().min(1, { message: "Name is required" }),
-  city: z.string().min(1, { message: "Name is required" }),
-  country: z.string().min(1, { message: "Name is required" }),
-  sector: z.string().min(1, { message: "Sektör gereklidir" }),
-  whereDidYouHear: z.string(),
-  taxOffice: z.string().min(1, { message: "Name is required" }),
-  taxNumber: z.string().min(1, { message: "Name is required" }),
-  consent: z.boolean().refine((val) => val === true, "You must accept the terms"),
-})
+export const formSchema = z
+  .object({
+    name: z.string().min(1, { message: "Ad boş bırakılamaz" }),
+    surname: z.string().min(1, { message: "Soyad boş bırakılamaz" }),
+    email: z.string().email({ message: "Geçerli bir e-posta adresi giriniz" }),
+    countryCode: z.string().min(1, { message: "Ülke kodu seçiniz" }),
+    phoneNumber: z.string().min(1, { message: "Geçerli bir telefon numarası giriniz" }),
+    companyName: z.string().min(1, { message: "Firma ismi boş bırakılamaz" }),
+    address: z.string().min(1, { message: "Adres boş bırakılamaz" }),
+    city: z.string().min(1, { message: "Şehir boş bırakılamaz" }),
+    country: z.string().min(1, { message: "Ülke boş bırakılamaz" }),
+    sector: z.string().min(1, { message: "Sektör boş bırakılamaz" }),
+    sectorOther: z.string().optional(),
+    whereDidYouHear: z.string().min(1, { message: "Bu alan boş bırakılamaz" }),
+    taxOffice: z.string().min(1, { message: "Vergi dairesi boş bırakılamaz" }),
+    taxNumber: z.string().min(1, { message: "Vergi numarası boş bırakılamaz" }),
+    consent: z.boolean(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.sector === "other" && (!data.sectorOther || data.sectorOther.trim() === "")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Diğer sektör belirtilmelidir",
+        path: ["sectorOther"],
+      })
+    }
+
+    if (!data.consent) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "KVKK Onayı gereklidir",
+        path: ["consent"],
+      })
+    }
+  })
 
 type FormValues = z.infer<typeof formSchema>
 
-export default function FormClient() {
-  // const [otherSector, setOtherSector] = useState(false)
-  // const [otherHeard, setOtherHeard] = useState(false)
+export default function RegisterForm() {
+  const [showMessage, setShowMessage] = useState(false)
 
   const { data: channels } = useQuery<Sector[], Error>({
     queryKey: ["channels"],
@@ -81,16 +100,38 @@ export default function FormClient() {
     },
   })
 
+  useEffect(() => {
+    if (mutation.isSuccess || mutation.isError) {
+      setShowMessage(true)
+      const timer = setTimeout(() => {
+        setShowMessage(false)
+      }, 5000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [mutation.isSuccess, mutation.isError])
+
   const onSubmit = (data: FormValues) => {
     console.log("form data", data)
-    mutation.mutate(data)
+
+    let newData
+
+    if (data.sector === "other") {
+      newData = {
+        ...data,
+        sector: data.sectorOther,
+      }
+    } else {
+      newData = { ...data }
+    }
+
+    delete (newData as Partial<FormValues>).sectorOther
+
+    mutation.mutate(newData as FormValues)
   }
 
-  const isFormValid = form.formState.isValid
-
-  useEffect(() => {
-    console.log("fff", form.getValues())
-  }, [form])
+  // const isFormValid = form.formState.isValid
+  const sector = form.watch("sector")
 
   return (
     <FormProvider {...form}>
@@ -209,6 +250,20 @@ export default function FormClient() {
               </FormItem>
             )}
           />
+          {sector === "other" && (
+            <FormField
+              control={form.control}
+              name="sectorOther"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Diğer sektör" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <div>
             <FormField
               control={form.control}
@@ -299,57 +354,36 @@ export default function FormClient() {
               </FormItem>
             )}
           />
-          {/* {form.getValues("whereDidYouHear") && (
-          <FormField
-            control={form.control}
-            name="whereDidYouHearOther"
-            render={({ field }) => (
-              <FormItem>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Bizi nereden duydunuz" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent data-lenis-prevent className="shadcn-select">
-                    {whereDidYouHear &&
-                      whereDidYouHear.length > 0 &&
-                      whereDidYouHear.map((item, i) => (
-                        <SelectItem key={i} value={item.name}>
-                          {item.name}
-                        </SelectItem>
-                      ))}
-                    <SelectItem value="other">Diğer</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        )} */}
           <FormField
             control={form.control}
             name="consent"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="text-12 font-mukta font-light">
+              <FormItem>
+                <div className="flex flex-row items-start gap-3 space-y-0">
+                  <FormControl>
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
+                  <FormLabel className="text-12 font-mukta font-light leading-tight text-muted-foreground">
                     Kişisel verilerimin işlenmesi ve tarafıma SMS, e-posta veya telefon yoluyla kampanya, duyuru ve
                     bilgilendirme yapılması amacıyla iletişime geçilmesine Açık Rıza Metni ve KVKK Aydınlatma Metni
                     kapsamında onay veriyorum.
                   </FormLabel>
                 </div>
+                <FormMessage />
               </FormItem>
             )}
           />
-          <Button className="mt-12" type="submit" size="md" padding="fat" disabled={mutation.isPending || !isFormValid}>
-            {mutation.isPending ? "Gönderiliyor..." : "Gönder"}
+          <Button
+            className="mt-12"
+            type="submit"
+            size="md"
+            padding="fat"
+            // disabled={mutation.isPending || !isFormValid}
+          >
+            {mutation.isPending ? <IconLoading /> : "Gönder"}
           </Button>
-          {mutation.isSuccess && <p className="text-green-500">{mutation.data.message}</p>}
-          {mutation.isError && <p className="text-red-500">Bir hata oluştu. Lütfen tekrar deneyin.</p>}
+          {showMessage && mutation.isSuccess && <p className="text-green-500">{mutation.data.message}</p>}
+          {showMessage && mutation.isError && <p className="text-red-500">Bir hata oluştu. Lütfen tekrar deneyin.</p>}
         </form>
       </Form>
     </FormProvider>

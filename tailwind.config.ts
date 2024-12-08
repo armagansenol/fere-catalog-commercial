@@ -10,11 +10,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        "img-md": "var(--img-md)",
+      },
       screens: {
         tablet: "800px",
         desktop: "1024px",
       },
-
       fontFamily: {
         mukta: "var(--font-mukta)",
         "albert-sans": "var(--font-albert-sans)",
@@ -37,7 +39,7 @@ const config: Config = {
       colors: {
         white: "var(--white)",
         quarterdeck: "var(--quarterdeck)",
-        lynxWhite: "var(--lynx-white)",
+        "lynx-white": "var(--lynx-white)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

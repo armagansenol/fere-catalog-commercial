@@ -20,11 +20,11 @@ export default async function HowItWorksPage() {
     <>
       <section className="py-6 md:py-12 px-4 pb-12 tablet:px-[var(--spacing-lg)]">
         <div className="flex flex-col-reverse tablet:grid grid-cols-2 gap-4 tablet:gap-8 items-center">
-          <div className="flex flex-col gap-4 items-center tablet:items-start">
-            <h1 className="font-albert-sans font-normal text-30 leading-snug text-center tablet:text-left tracking-tighter">
+          <div className="flex flex-col gap-4 items-center tablet:items-start text-center tablet:text-left">
+            <h1 className="font-albert-sans font-normal text-30 leading-snug tracking-tighter">
               Adım Adım Kullanım Kılavuzu
             </h1>
-            <p className="font-mukta font-extralight text-20 max-w-xl text-center tablet:text-left">
+            <p className="font-mukta font-extralight text-18 tablet:text-20 tablet:max-w-xl">
               Platformumuzu nasıl kullanacağınızı adım adım keşfedin. Aşağıda yer alan yönergeleri takip ederek
               mağazanızı oluşturabilir, demo mağazamızı inceleyebilirsiniz.
             </p>
@@ -32,38 +32,34 @@ export default async function HowItWorksPage() {
               <Link href="https://catalog.ferecatalog.com/logoipsum">Demo Mağazayı İncele</Link>
             </Button>
           </div>
-          <div className="relative h-60 tablet:h-[400px]">
+          <div className="relative h-img-md">
             <Img src={howItWorks} alt="Sample" fill className="object-cover rounded-lg" />
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-stretch py-16 tablet:py-40 px-4 tablet:px-[var(--spacing-xl)] bg-lynxWhite rounded-2xl mx-0 tablet:mx-6 mb-0 tablet:mb-20">
-        <div className="space-y-20">
-          {howToData.map((item, i) => (
-            <div className="flex items-center tablet:items-start justify-center gap-8" key={i}>
-              <div className="flex flex-col items-center">
-                <div className="h-12 tablet:h-16 w-12 tablet:w-16 -mt-2 flex items-center justify-center rounded-full bg-quarterdeck text-24 font-albert-sans font-medium text-white">
-                  {i + 1}
-                </div>
-                {/* {index < length - 1 && <div className="hidden tablet:block w-px h-32 bg-blue-600/20" />} */}
+      <section className="flex flex-col items-stretch gap-16 bg-lynx-white rounded-2xl py-16 tablet:py-40 px-4 tablet:px-[var(--spacing-xl)]">
+        {howToData.map((item, i) => (
+          <div
+            className="flex flex-col tablet:flex-row items-center tablet:items-start justify-center gap-5 tablet:gap-10"
+            key={i}
+          >
+            <div className="h-12 w-12 tablet:h-14 tablet:w-14 -mt-2 flex items-center justify-center rounded-full bg-quarterdeck text-24 font-albert-sans font-medium text-white flex-shrink-0">
+              {i + 1}
+            </div>
+            <div className="flex flex-col-reverse items-center tablet:flex-row tablet:items-start justify-center tablet:grid grid-cols-12 gap-5 tablet:gap-12">
+              <div className="col-span-6 text-center tablet:text-left tablet:max-w-lg">
+                <h3 className="font-albert-sans font-normal text-24 tablet:text-30 mb-4 tracking-tighter leading-tight">
+                  {item.title}
+                </h3>
+                <p className="font-mukta font-thin text-18 tablet:text-20 tablet:max-w-lg">{item.description}</p>
               </div>
-              <div className="flex flex-col-reverse tablet:flex-row justify-center tablet:grid grid-cols-12 gap-5 tablet:gap-20">
-                <div className="col-span-6">
-                  <h3 className="font-albert-sans font-normal text-24 tablet:text-30 mb-4 text-center tablet:text-left tracking-tighter leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="font-mukta font-thin text-18 tablet:text-20 max-w-lg text-center tablet:text-left">
-                    {item.description}
-                  </p>
-                </div>
-                <div className="col-span-6 rounded-lg overflow-hidden">
-                  <Img src={item.image.src} alt={item.image.alt} className="object-cover" height={1000} width={1000} />
-                </div>
+              <div className="col-span-6 rounded-lg overflow-hidden h-img-md">
+                <Img src={item.image.src} alt={item.image.alt} className="object-cover" height={1000} width={1000} />
               </div>
             </div>
-          ))}
-        </div>
-        <Button className="mt-8 mx-auto tablet:mt-24" size="lg" padding="wide" asChild>
+          </div>
+        ))}
+        <Button className="mt-0 tablet:mt-24 mx-auto" size="lg" padding="wide" asChild>
           <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
         </Button>
       </section>

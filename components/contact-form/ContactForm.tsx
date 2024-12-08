@@ -118,7 +118,7 @@ export default function ContactForm() {
   return (
     <FormProvider {...form}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center tablet:items-start">
           <div className="space-y-3">
             <div className="flex space-x-3">
               <FormField

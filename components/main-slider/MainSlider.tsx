@@ -11,66 +11,11 @@ import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { MainSliderProps } from "@/types"
 
-// const items = [
-//   {
-//     title: <>Lorem ipsum dolor sit amet consectetur. - 1</>,
-//     description: <>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis?</>,
-//     media: {
-//       type: MediaType.image,
-//       src: sample,
-//     },
-//     duration: 2,
-//     button: { ui: <>Lorem, ipsum</>, link: "/" },
-//   },
-//   {
-//     title: <>Lorem ipsum dolor sit amet. - 2</>,
-//     description: <>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis?</>,
-//     media: {
-//       type: MediaType.image,
-//       src: sample2,
-//     },
-//     duration: 6,
-//     button: { ui: <>Lorem, ipsum</>, link: "/" },
-//   },
-//   {
-//     title: <>Lorem ipsum dolor sit amet consectetur. - 3</>,
-//     description: <>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis?</>,
-//     media: {
-//       type: MediaType.image,
-//       src: sample3,
-//     },
-//     duration: 1,
-//     button: { ui: <>Lorem, ipsum</>, link: "/" },
-//   },
-//   {
-//     title: <>Lorem ipsum dolor sit amet consectetur. - 4</>,
-//     description: <>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis?</>,
-//     media: {
-//       type: MediaType.image,
-//       src: sample4,
-//     },
-//     duration: 5,
-//     button: { ui: <>Lorem, ipsum</>, link: "/" },
-//   },
-//   {
-//     title: <>Lorem ipsum dolor sit amet consectetur. - 5</>,
-//     description: <>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis?</>,
-//     media: {
-//       type: MediaType.image,
-//       src: sample5,
-//     },
-//     duration: 8,
-//     button: { ui: <>Lorem, ipsum</>, link: "/" },
-//   },
-// ]
-
 interface Props {
   items: MainSliderProps[]
 }
 
 export default function MainSlider(props: Props) {
-  console.log(props)
-
   const ref = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
   const tl = useRef(gsap.timeline())

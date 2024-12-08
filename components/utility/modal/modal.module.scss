@@ -10,7 +10,7 @@
   .iconClose {
     @include position(absolute, desktop-vw(50px), desktop-vw(50px), auto, auto);
     @include dims(desktop-vw(50px));
-    color: var(--laurens-lace);
+    color: var(--white);
 
     @include mobile {
       @include dims(mobile-vw(30px));

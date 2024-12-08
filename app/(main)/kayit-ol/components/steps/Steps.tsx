@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react"
 
-import { RegisterForm } from "@/components/auth/register-form"
+import { RegisterForm } from "@/components/register-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from "@/components/utility/link"

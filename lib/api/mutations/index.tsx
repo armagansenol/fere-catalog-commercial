@@ -32,7 +32,7 @@ export async function submitContactForm(
 
 /////////////
 
-import { formSchema as registerFormSchema } from "@/components/auth/register-form/RegisterForm"
+import { formSchema as registerFormSchema } from "@/components/register-form/RegisterForm"
 
 type RegisterFormData = z.infer<typeof registerFormSchema>
 

@@ -7,7 +7,7 @@ import { Img } from "@/components/utility/img"
 import { X } from "lucide-react"
 import Link from "next/link"
 
-import { LoginForm } from "@/components/auth/login-form"
+import { LoginForm } from "@/components/login-form"
 
 export default function Page() {
   return (

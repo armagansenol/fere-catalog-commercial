@@ -11,6 +11,7 @@ import Logo from "@/components/icons/logo"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/utility/link"
 import { useLenisStore } from "@/lib/store/lenis"
+import Lenis from "lenis"
 
 export default function Header() {
   const { lenis } = useLenisStore()
@@ -23,20 +24,18 @@ export default function Header() {
   }, [hamburgerOpen, lenis])
 
   useEffect(() => {
-    lenis?.on("scroll", () => {
-      if (lenis.scroll < window.innerHeight - window.innerHeight / 4) return
-
-      if (lenis.velocity > 0) {
-        if (!hidden) {
-          setHidden(true)
-        }
+    const handleEvents = (e: Lenis) => {
+      if (lenis?.direction === 1 && e.actualScroll > window.innerHeight / 2) {
+        setHidden(true)
       } else {
-        if (hidden) {
-          setHidden(false)
-        }
+        setHidden(false)
       }
-    })
-  }, [hidden, lenis])
+    }
+
+    lenis?.on("scroll", handleEvents)
+
+    return () => lenis?.off("scroll", handleEvents)
+  }, [lenis])
 
   useEffect(() => {
     setHamburgerOpen(false)

@@ -2,15 +2,15 @@
 
 import s from "./pricing-toggle.module.scss"
 
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import cn from "clsx"
+import { useRouter } from "next/navigation"
 import { useMemo, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { Toggle } from "@/components/ui/toggle"
 import { Plan } from "@/types"
-import { useRouter } from "next/navigation"
 
 interface Props {
   plans: Plan[]
@@ -18,24 +18,15 @@ interface Props {
 
 export default function PricingToggle(props: Props) {
   const [isYearly, setIsYearly] = useState(false)
-
-  const p = useMemo(() => {
-    if (isYearly) {
-      return props.plans.filter((item) => {
-        return item.planType === "monthly"
-      })
-    } else {
-      return props.plans.filter((item) => {
-        return item.planType === "annual"
-      })
-    }
-  }, [props.plans, isYearly])
-
   const router = useRouter()
 
+  const p = useMemo(() => {
+    const targetPlanType = isYearly ? "annual" : "monthly"
+    return props.plans.filter((item) => item.planType === targetPlanType)
+  }, [props.plans, isYearly])
+
   function handleSelectedPlan(id: number) {
-    sessionStorage.setItem("selectedPlan", id.toString())
-    router.push("/kayit-ol")
+    router.push(`/kayit-ol?selectedPlan=${id.toString()}`)
   }
 
   return (
@@ -64,24 +55,28 @@ export default function PricingToggle(props: Props) {
         {p.map((plan, index) => (
           <Card
             key={index}
-            className={cn(s.planCard, `${plan.recommended ? "border-primary" : ""} relative rounded-3xl`, {
-              [s.active]: plan.recommended,
-            })}
+            className={cn(
+              s.planCard,
+              `${plan.recommended ? "border-primary" : ""} relative rounded-3xl flex flex-col border`,
+              {
+                [s.active]: plan.recommended,
+              }
+            )}
           >
             {plan.recommended && (
-              <div className="absolute -top-2 right-5 bg-[var(--white)] text-[var(--quarterdeck)] text-20 border-[1px] border-[var(--quarterdeck)] border-solid px-4 py-2 text-xs rounded-full rotate-3">
+              <div className="absolute -top-2 right-5 bg-[var(--white)] text-quarterdeck text-20 border-[1px] border-quarterdeck border-solid px-4 py-2 text-xs rounded-full rotate-3">
                 En Çok Tercih Edilen
               </div>
             )}
-            <CardHeader>
+            <CardHeader className="flex-1">
               <CardTitle className="text-30 font-albert-sans font-medium mb-3 text-center pt-5">{plan.title}</CardTitle>
               <CardDescription className="text-18 font-mukta font-thin leading-tight text-center">
                 {plan.description}
               </CardDescription>
             </CardHeader>
-            <CardContent className="flex flex-col justify-between gap-4">
+            <CardContent className="flex flex-col justify-between gap-4 mt-auto">
               <p className="text-50 font-mukta font-normal tracking-tight leading-none text-center mb-auto">
-                {isYearly ? plan.price : plan.price}
+                {plan.price}
                 <span className="text-14 font-mukta font-thin ml-1 tracking-normal">{plan.priceText}</span>
               </p>
               <Button

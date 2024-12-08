@@ -34,6 +34,7 @@ const buttonVariants = cva(
         none: "w-full h-full",
         square: "p-4",
         wide: "py-4 px-6 tablet:py-6 tablet:px-20",
+        never: "p-0",
       },
     },
     defaultVariants: {

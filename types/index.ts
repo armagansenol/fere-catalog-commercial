@@ -208,3 +208,14 @@ export interface Plan {
   recommended: boolean
   features: string[]
 }
+
+export interface PlanCartData {
+  id: string
+  title: string
+  description: string
+  price: string
+  priceDetail: string
+  packageType: string
+  tax: string
+  total: string
+}

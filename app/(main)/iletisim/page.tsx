@@ -1,8 +1,9 @@
+import { Metadata } from "next"
+
 import { ContactForm } from "@/components/contact-form"
 import { Img } from "@/components/utility/img"
 
-import howItWorks from "@/public/img/how-it-works.jpg"
-import { Metadata } from "next"
+import employee from "@/public/img/employee.jpg"
 
 export const metadata: Metadata = {
   title: "Fere Catalog | İletişim",
@@ -20,13 +21,12 @@ export default function Page() {
               Bizimle İletişime Geçin
             </h1>
             <p className="font-mukta font-extralight text-20 max-w-xl text-center tablet:text-left">
-              Bu rehber, Fere’yi en etkili şekilde kullanabilmeniz için adım adım açıklamalar ve görsellerle
-              hazırlanmıştır. Bu kılavuzu takip ederek hem zamandan tasarruf edebilir hem de yapının tüm potansiyelinden
-              faydalanabilirsiniz.
+              Sürekli olarak kendimizi yeniliyor ve sizlere daha iyi hizmet verebilmek için çalışıyoruz. Fere Catalog’un
+              sizin ihtiyaçlarınıza en iyi şekilde hizmet etmesi için önerilerinizi ve yorumlarınızı bekliyoruz.
             </p>
           </div>
           <div className="relative h-60 tablet:h-[400px]">
-            <Img src={howItWorks} alt="Sample" fill className="object-cover rounded-lg" />
+            <Img src={employee} alt="Sample" fill className="object-cover rounded-lg" />
           </div>
         </div>
       </section>

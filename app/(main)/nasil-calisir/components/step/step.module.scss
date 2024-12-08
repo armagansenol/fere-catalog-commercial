@@ -1,7 +1,0 @@
-.imgC {
-  @include dims(auto, desktop-vw(400px));
-
-  @include mobile {
-    @include dims(100%, mobile-vw(250px));
-  }
-}

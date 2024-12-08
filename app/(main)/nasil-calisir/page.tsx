@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { getHowTo } from "@/services/how-to"
-import { Step } from "./components/step"
 
 import howItWorks from "@/public/img/how-it-works.jpg"
 
@@ -38,13 +37,33 @@ export default async function HowItWorksPage() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center py-16 tablet:py-40 px-4 tablet:px-[var(--spacing-xl)] bg-lynxWhite rounded-2xl mx-0 tablet:mx-6 mb-0 tablet:mb-20">
+      <section className="flex flex-col items-stretch py-16 tablet:py-40 px-4 tablet:px-[var(--spacing-xl)] bg-lynxWhite rounded-2xl mx-0 tablet:mx-6 mb-0 tablet:mb-20">
         <div className="space-y-20">
           {howToData.map((item, i) => (
-            <Step key={i} {...item} index={i} length={howToData.length} />
+            <div className="flex items-center tablet:items-start justify-center gap-8" key={i}>
+              <div className="flex flex-col items-center">
+                <div className="h-12 tablet:h-16 w-12 tablet:w-16 -mt-2 flex items-center justify-center rounded-full bg-quarterdeck text-24 font-albert-sans font-medium text-white">
+                  {i + 1}
+                </div>
+                {/* {index < length - 1 && <div className="hidden tablet:block w-px h-32 bg-blue-600/20" />} */}
+              </div>
+              <div className="flex flex-col-reverse tablet:flex-row justify-center tablet:grid grid-cols-12 gap-5 tablet:gap-20">
+                <div className="col-span-6">
+                  <h3 className="font-albert-sans font-normal text-24 tablet:text-30 mb-4 text-center tablet:text-left tracking-tighter leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="font-mukta font-thin text-18 tablet:text-20 max-w-lg text-center tablet:text-left">
+                    {item.description}
+                  </p>
+                </div>
+                <div className="col-span-6 rounded-lg overflow-hidden">
+                  <Img src={item.image.src} alt={item.image.alt} className="object-cover" height={1000} width={1000} />
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-        <Button className="mt-8 mx-auto tablet:mt-8" size="lg" padding="wide" asChild>
+        <Button className="mt-8 mx-auto tablet:mt-24" size="lg" padding="wide" asChild>
           <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
         </Button>
       </section>

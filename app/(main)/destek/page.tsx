@@ -21,7 +21,7 @@ export default function Page() {
     queryFn: () => getSupportCards(),
   })
 
-  const [searchResults, setSearchResults] = useState<FAQItem[]>([])
+  const [searchResults, setSearchResults] = useState<FAQItem[] | null>(null)
   const { searchArticles, isSearching } = useSearchSupport()
 
   const handleSearch = async (query: string) => {
@@ -53,8 +53,7 @@ export default function Page() {
             )}
           </>
         )}
-
-        {searchResults ? (
+        {Array.isArray(searchResults) ? (
           <>
             {searchResults.length === 0 ? (
               <div className="w-full min-h-[500px] flex items-center justify-center">
@@ -77,7 +76,7 @@ export default function Page() {
           </>
         ) : (
           <>
-            {cards && cards.length > 0 && (
+            {Array.isArray(cards) && cards.length > 0 && (
               <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-16 gap-16 tablet:gap-x-5 tablet:gap-y-24 mt-5">
                 {cards.map((item) => (
                   <Link href={`/${routes.tr.support.path}/${item.url}`} key={item.id}>

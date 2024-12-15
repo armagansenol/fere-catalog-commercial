@@ -35,6 +35,7 @@ export const formSchema = z
     whereDidYouHear: z.string().min(1, { message: "Bu alan boş bırakılamaz" }),
     taxOffice: z.string().min(1, { message: "Vergi dairesi boş bırakılamaz" }),
     taxNumber: z.string().min(1, { message: "Vergi numarası boş bırakılamaz" }),
+    planId: z.string().min(1, { message: "Plan seçiniz." }),
     consent: z.boolean(),
   })
   .superRefine((data, ctx) => {
@@ -57,7 +58,11 @@ export const formSchema = z
 
 type FormValues = z.infer<typeof formSchema>
 
-export default function RegisterForm() {
+interface RegisterFormProps {
+  planId: string
+}
+
+export default function RegisterForm(props: RegisterFormProps) {
   const [showMessage, setShowMessage] = useState(false)
 
   const { data: channels } = useQuery<Sector[], Error>({
@@ -86,6 +91,7 @@ export default function RegisterForm() {
       whereDidYouHear: "",
       taxOffice: "",
       taxNumber: "",
+      planId: props.planId,
       consent: false,
     },
   })
@@ -112,8 +118,6 @@ export default function RegisterForm() {
   }, [mutation.isSuccess, mutation.isError])
 
   const onSubmit = (data: FormValues) => {
-    console.log("form data", data)
-
     let newData
 
     if (data.sector === "other") {
@@ -188,8 +192,8 @@ export default function RegisterForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent data-lenis-prevent className="shadcn-select">
-                      {countryPhoneCodes.map((code, i) => (
-                        <SelectItem key={i} value={code.code}>
+                      {countryPhoneCodes.map((code) => (
+                        <SelectItem key={code.code} value={code.code}>
                           {code.name} - {code.code}
                         </SelectItem>
                       ))}
@@ -238,8 +242,8 @@ export default function RegisterForm() {
                   <SelectContent data-lenis-prevent className="shadcn-select">
                     {sectors &&
                       sectors.length > 0 &&
-                      sectors.map((item, i) => (
-                        <SelectItem key={i} value={item.name}>
+                      sectors.map((item) => (
+                        <SelectItem key={item.id} value={item.name}>
                           {item.name}
                         </SelectItem>
                       ))}
@@ -264,7 +268,7 @@ export default function RegisterForm() {
               )}
             />
           )}
-          <div>
+          <div className="flex gap-3">
             <FormField
               control={form.control}
               name="taxOffice"
@@ -342,8 +346,8 @@ export default function RegisterForm() {
                   <SelectContent data-lenis-prevent className="shadcn-select">
                     {channels &&
                       channels.length > 0 &&
-                      channels.map((item, i) => (
-                        <SelectItem key={i} value={item.name}>
+                      channels.map((item) => (
+                        <SelectItem key={item.id} value={item.name}>
                           {item.name}
                         </SelectItem>
                       ))}

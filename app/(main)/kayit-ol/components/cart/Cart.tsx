@@ -8,12 +8,12 @@ export default function Cart(props: PlanCartData) {
       <Card className="w-full max-w-sm mx-auto bg-[var(--lynx-white)] rounded-3xl">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">{props.title}</CardTitle>
-          <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p className="text-sm text-muted-foreground">{props.description}</p>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="font-mukta text-left">
-            <span className="text-4xl font-semibold">$30</span>
-            <span className="text-sm text-muted-foreground">/aylık ücret</span>
+            <span className="text-4xl font-semibold">{props.price}</span>
+            <span className="text-sm text-muted-foreground">{props.priceDetail}</span>
           </div>
         </CardContent>
       </Card>
@@ -30,11 +30,11 @@ export default function Cart(props: PlanCartData) {
             </div>
             <div className="flex justify-between items-center">
               <span>Vergi</span>
-              <span>$0.00</span>
+              <span>{props.tax}</span>
             </div>
             <div className="flex justify-between items-center pt-2 border-t">
               <span className="font-medium">Toplam</span>
-              <span className="font-medium">$310</span>
+              <span className="font-medium">{props.total}</span>
             </div>
           </div>
         </CardContent>

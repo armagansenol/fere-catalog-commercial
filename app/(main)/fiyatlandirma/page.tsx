@@ -1,5 +1,6 @@
-import { getPlans } from "@/services/pricing"
 import { Metadata } from "next"
+
+import { getPlans } from "@/services/pricing"
 import { PricingToggle } from "./components/pricing-toggle"
 
 export const metadata: Metadata = {

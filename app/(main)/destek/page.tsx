@@ -42,23 +42,25 @@ export default function Page() {
         <Searchbar onSearch={handleSearch} />
       </section>
       <section className="px-4 tablet:px-[var(--spacing-lg)] pb-10 tablet:pb-20">
-        <>
-          {(isSearching || !cards) && (
-            <>
-              {isSearching && (
-                <div className="w-full h-screen flex items-center justify-center">
-                  <div>
-                    <IconLoading />
-                  </div>
+        {(isSearching || !cards) && (
+          <>
+            {isSearching && (
+              <div className="w-full min-h-[500px] flex items-center justify-center">
+                <div>
+                  <IconLoading />
                 </div>
-              )}
-            </>
-          )}
-        </>
+              </div>
+            )}
+          </>
+        )}
 
-        <>
-          {searchResults && searchResults.length > 0 ? (
-            <>
+        {searchResults ? (
+          <>
+            {searchResults.length === 0 ? (
+              <div className="w-full min-h-[500px] flex items-center justify-center">
+                <div className="font-mukta text-2xl">SONUÇ BULUNAMADI</div>
+              </div>
+            ) : (
               <Accordion type="multiple">
                 {searchResults.map((item) => (
                   <AccordionItem key={item.id} value={item.id}>
@@ -71,44 +73,42 @@ export default function Page() {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </>
-          ) : (
-            <>
-              {cards && cards.length > 0 && (
-                <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-16 gap-16 tablet:gap-x-5 tablet:gap-y-24 mt-5">
-                  {cards.map((item) => (
-                    <Link href={`/${routes.tr.support.path}/${item.url}`} key={item.id}>
-                      <Card className="w-full h-full flex flex-col items-center tablet:items-start justify-start">
-                        <CardHeader className="p-0 h-img-sm w-full rounded-lg overflow-hidden">
-                          <Img
-                            src={item.image.src}
-                            height={500}
-                            width={500}
-                            alt={item.image.alt}
-                            className="object-cover"
-                          />
-                        </CardHeader>
-                        <CardContent className="mt-4 mb-8 space-y-2 p-0">
-                          <h2 className="text-30 font-albert-sans font-normal text-center tablet:text-left tracking-tighter">
-                            {item.title}
-                          </h2>
-                          <p className="text-16 font-mukta font-light text-center tablet:text-left">
-                            {item.description}
-                          </p>
-                        </CardContent>
-                        <CardFooter className="p-0 w-2/4 tablet:w-2/4 mt-auto">
-                          <Button variant="bw" size="lg" className="w-full">
-                            Tümünü Gör
-                          </Button>
-                        </CardFooter>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </>
-          )}
-        </>
+            )}
+          </>
+        ) : (
+          <>
+            {cards && cards.length > 0 && (
+              <div className="flex flex-col tablet:grid lg:grid-cols-3 pb-16 tablet:pb-16 gap-16 tablet:gap-x-5 tablet:gap-y-24 mt-5">
+                {cards.map((item) => (
+                  <Link href={`/${routes.tr.support.path}/${item.url}`} key={item.id}>
+                    <Card className="w-full h-full flex flex-col items-center tablet:items-start justify-start">
+                      <CardHeader className="p-0 h-img-sm w-full rounded-lg overflow-hidden">
+                        <Img
+                          src={item.image.src}
+                          height={500}
+                          width={500}
+                          alt={item.image.alt}
+                          className="object-cover"
+                        />
+                      </CardHeader>
+                      <CardContent className="mt-4 mb-8 space-y-2 p-0">
+                        <h2 className="text-30 font-albert-sans font-normal text-center tablet:text-left tracking-tighter">
+                          {item.title}
+                        </h2>
+                        <p className="text-16 font-mukta font-light text-center tablet:text-left">{item.description}</p>
+                      </CardContent>
+                      <CardFooter className="p-0 w-2/4 tablet:w-2/4 mt-auto">
+                        <Button variant="bw" size="lg" className="w-full">
+                          Tümünü Gör
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </section>
     </>
   )

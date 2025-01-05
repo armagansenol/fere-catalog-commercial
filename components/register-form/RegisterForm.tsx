@@ -193,7 +193,7 @@ export default function RegisterForm(props: RegisterFormProps) {
                     </FormControl>
                     <SelectContent data-lenis-prevent className="shadcn-select">
                       {countryPhoneCodes.map((code) => (
-                        <SelectItem key={code.code} value={code.code}>
+                        <SelectItem key={`${code.code}-${code.name}`} value={code.code}>
                           {code.name} - {code.code}
                         </SelectItem>
                       ))}
@@ -346,11 +346,14 @@ export default function RegisterForm(props: RegisterFormProps) {
                   <SelectContent data-lenis-prevent className="shadcn-select">
                     {channels &&
                       channels.length > 0 &&
-                      channels.map((item) => (
-                        <SelectItem key={item.id} value={item.name}>
-                          {item.name}
-                        </SelectItem>
-                      ))}
+                      channels.map((item) => {
+                        console.log("item", item)
+                        return (
+                          <SelectItem key={item.id} value={item.name}>
+                            {item.name}
+                          </SelectItem>
+                        )
+                      })}
                     <SelectItem value="other">Diğer</SelectItem>
                   </SelectContent>
                 </Select>

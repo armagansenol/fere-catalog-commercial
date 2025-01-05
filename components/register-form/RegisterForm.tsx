@@ -141,7 +141,7 @@ export default function RegisterForm(props: RegisterFormProps) {
     <FormProvider {...form}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-stretch gap-3">
-          <div className="flex gap-3">
+          <div className="flex flex-col tablet:flex-row gap-3">
             <FormField
               control={form.control}
               name="name"

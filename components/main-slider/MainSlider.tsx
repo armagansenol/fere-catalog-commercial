@@ -52,10 +52,10 @@ export default function MainSlider(props: Props) {
 
   useGSAP(
     () => {
-      console.table([
-        ["currentSlide", currentSlide],
-        ["duration", props.items[currentSlide].duration],
-      ])
+      // console.table([
+      //   ["currentSlide", currentSlide],
+      //   ["duration", props.items[currentSlide].duration],
+      // ])
 
       tl.current.play(timelineSection(currentSlide))
     },

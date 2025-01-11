@@ -59,9 +59,6 @@ export default async function HowItWorksPage() {
             </div>
           </div>
         ))}
-        <Button className="mt-0 tablet:mt-24 mx-auto" size="lg" padding="wide" asChild>
-          <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
-        </Button>
       </section>
     </>
   )

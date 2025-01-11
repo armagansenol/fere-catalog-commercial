@@ -15,7 +15,7 @@ export default async function Page() {
   return (
     <div className="flex flex-col items-center mx-auto px-4 tablet:px-10 py-8 pb-8 tablet:pb-32">
       <h1 className="text-30 font-normal font-albert-sans leading-tight text-center max-w-lg mb-8 tracking-tighter">
-        Üyelik oluşturmak için öncelikle size en uygun paketi seçin.
+        Ücretsiz denemeye başlamak için öncelikle size en uygun paketi seçin.
       </h1>
       <PricingToggle plans={plans} />
     </div>

@@ -91,6 +91,11 @@ export default function MainSlider(props: Props) {
     })
   })
 
+  function handleClick(i: number) {
+    tl.current.pause()
+    setCurrentSlide(i)
+  }
+
   return (
     <div
       className={cx(
@@ -146,7 +151,7 @@ export default function MainSlider(props: Props) {
               <div
                 className={cx(s.media, "cursor-pointer", { [s.visible]: currentSlide === i })}
                 key={i}
-                onClick={() => setCurrentSlide(i)}
+                onClick={() => handleClick(i)}
               >
                 <Img
                   className="object-cover"

@@ -18,6 +18,7 @@ import { countryPhoneCodes } from "@/lib/constants"
 import { getChannels } from "@/services/form-field-channels"
 import { getSectors } from "@/services/form-field-sector"
 import { Sector } from "@/types"
+import { useRouter } from "next/navigation"
 
 export const formSchema = z
   .object({
@@ -33,6 +34,7 @@ export const formSchema = z
     sector: z.string().min(1, { message: "Sektör boş bırakılamaz" }),
     sectorOther: z.string().optional(),
     whereDidYouHear: z.string().min(1, { message: "Bu alan boş bırakılamaz" }),
+    whereDidYouHearOther: z.string().optional(),
     taxOffice: z.string().min(1, { message: "Vergi dairesi boş bırakılamaz" }),
     taxNumber: z.string().min(1, { message: "Vergi numarası boş bırakılamaz" }),
     planId: z.string().min(1, { message: "Plan seçiniz." }),
@@ -44,6 +46,14 @@ export const formSchema = z
         code: z.ZodIssueCode.custom,
         message: "Diğer sektör belirtilmelidir",
         path: ["sectorOther"],
+      })
+    }
+
+    if (data.whereDidYouHear === "other" && (!data.whereDidYouHearOther || data.whereDidYouHearOther.trim() === "")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Diğer sektör belirtilmelidir",
+        path: ["whereDidYouHearOther"],
       })
     }
 
@@ -96,10 +106,15 @@ export default function RegisterForm(props: RegisterFormProps) {
     },
   })
 
+  const router = useRouter()
+
   const mutation = useMutation({
     mutationFn: submitRegisterForm,
-    onSuccess: () => {
-      form.reset()
+    onSuccess: (response) => {
+      if (response.success) {
+        router.push("/tesekkurler")
+        form.reset()
+      }
     },
     onError: (error) => {
       console.error("Form submission error:", error)
@@ -134,8 +149,8 @@ export default function RegisterForm(props: RegisterFormProps) {
     mutation.mutate(newData as FormValues)
   }
 
-  // const isFormValid = form.formState.isValid
   const sector = form.watch("sector")
+  const whereDidYouHear = form.watch("whereDidYouHear")
 
   return (
     <FormProvider {...form}>
@@ -361,6 +376,20 @@ export default function RegisterForm(props: RegisterFormProps) {
               </FormItem>
             )}
           />
+          {whereDidYouHear === "other" && (
+            <FormField
+              control={form.control}
+              name="whereDidYouHearOther"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Diğer bizi nereden duydunuz" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <FormField
             control={form.control}
             name="consent"

@@ -1,68 +1,68 @@
 "use client"
 
-import React, { useCallback, useRef, useState } from "react"
-import { gsap } from "@/lib/gsap"
-import { useGSAP } from "@gsap/react"
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { useMeasure } from "@uidotdev/usehooks"
 import { usePathname } from "next/navigation"
+import React, { useEffect, useRef } from "react"
 
 interface FooterRevealProps {
   children: React.ReactNode
 }
 
 export default function FooterReveal({ children }: FooterRevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [height, setHeight] = useState<number>(0)
+  const ref = useRef<HTMLDivElement>(null)
+  const [measureRef, { height }] = useMeasure<HTMLDivElement>()
   const pathname = usePathname()
 
-  const refCallback = useCallback((node: HTMLDivElement | null) => {
-    if (node === null) return
-    setHeight(node.getBoundingClientRect().height)
-    ref.current = node
-  }, [])
+  useEffect(() => {
+    if (ref.current) {
+      measureRef(ref.current)
+    }
+  }, [measureRef])
 
   useGSAP(
     () => {
-      if (!ref.current) return
+      const footer = ref.current
 
-      gsap.set(ref.current, {
-        yPercent: -50,
-      })
+      if (!footer) return
 
-      gsap.set(".overlay", {
-        opacity: 1,
-      })
+      gsap.registerPlugin(ScrollTrigger)
 
-      gsap.to(ref.current, {
-        yPercent: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ref.current,
-          start: "center bottom",
-          end: () => `center bottom-=${height}`,
-          scrub: true,
-          refreshPriority: 100,
-        },
-      })
-
-      gsap.to(".overlay", {
+      const tl = gsap.timeline().to(".overlay", {
         opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ref.current,
-          start: "center bottom",
-          end: () => `center bottom-=${height}`,
-          scrub: true,
-          refreshPriority: 110,
-        },
       })
+
+      const getOverlap = () => Math.min(window.innerHeight, height as number)
+      const adjustFooterOverlap = () => {
+        footer.style.marginTop = -getOverlap() + "px"
+      }
+
+      adjustFooterOverlap()
+
+      ScrollTrigger.addEventListener("refresh", adjustFooterOverlap)
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: footer,
+        start: () => "top " + (window.innerHeight - getOverlap()),
+        end: () => "+=" + getOverlap(),
+        pin: true,
+        scrub: true,
+      })
+
+      return () => {
+        ScrollTrigger.removeEventListener("refresh", adjustFooterOverlap)
+      }
     },
-    { scope: ref, dependencies: [height, pathname], revertOnUpdate: true }
+    { dependencies: [height, pathname], revertOnUpdate: true }
   )
 
   return (
-    <div ref={refCallback} className="relative">
-      {children}
-      <div className="overlay absolute inset-0 bg-black pointer-events-none"></div>
+    <div>
+      <div ref={ref} className="relative flex">
+        {children}
+        <div className="overlay absolute inset-0 bg-black pointer-events-none opacity-100"></div>
+      </div>
     </div>
   )
 }

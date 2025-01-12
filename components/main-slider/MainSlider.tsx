@@ -52,11 +52,6 @@ export default function MainSlider(props: Props) {
 
   useGSAP(
     () => {
-      // console.table([
-      //   ["currentSlide", currentSlide],
-      //   ["duration", props.items[currentSlide].duration],
-      // ])
-
       tl.current.play(timelineSection(currentSlide))
     },
     {
@@ -66,12 +61,10 @@ export default function MainSlider(props: Props) {
   )
 
   function mouseEnter() {
-    // setHovered(true)
     tl.current.pause()
   }
 
   function mouseLeave() {
-    // setHovered(false)
     tl.current.resume()
   }
 
@@ -92,8 +85,8 @@ export default function MainSlider(props: Props) {
   })
 
   function handleClick(i: number) {
-    tl.current.pause()
     setCurrentSlide(i)
+    tl.current.revert()
   }
 
   return (

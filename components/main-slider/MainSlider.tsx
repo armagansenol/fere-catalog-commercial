@@ -19,6 +19,7 @@ export default function MainSlider(props: Props) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const tl = useRef(gsap.timeline())
   const ref = useRef(null)
+  const [paused, setPaused] = useState(false)
 
   function timelineSection(index: number) {
     return `part-${index}`
@@ -26,6 +27,11 @@ export default function MainSlider(props: Props) {
 
   useGSAP(
     () => {
+      if (paused) {
+        tl.current.revert()
+        return
+      }
+
       props.items.forEach((item, i) => {
         tl.current.fromTo(
           ".bar",
@@ -45,16 +51,22 @@ export default function MainSlider(props: Props) {
       })
     },
     {
+      dependencies: [paused],
       scope: ref,
     }
   )
 
   useGSAP(
     () => {
+      if (paused) {
+        tl.current.revert()
+        return
+      }
+
       tl.current.play(timelineSection(currentSlide))
     },
     {
-      dependencies: [currentSlide],
+      dependencies: [currentSlide, paused],
       scope: ref,
     }
   )
@@ -84,6 +96,7 @@ export default function MainSlider(props: Props) {
 
   function handleClick(i: number) {
     setCurrentSlide(i)
+    setPaused(true)
   }
 
   return (
@@ -150,7 +163,7 @@ export default function MainSlider(props: Props) {
                   priority={true}
                   width={100}
                   height={100}
-                  onClick={() => tl.current.kill()}
+                  onClick={() => setPaused(true)}
                 />
               </div>
             )

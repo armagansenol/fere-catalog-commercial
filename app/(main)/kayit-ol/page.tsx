@@ -38,7 +38,7 @@ export default async function Page({ searchParams }: { searchParams: { selectedP
                 Lütfen bilgilerinizi eksiksiz giriniz.
               </CardDescription>
             </CardHeader>
-            <Button className="absolute bottom-3 left-0" variant="naked" size="md" padding="never" asChild>
+            <Button className="absolute bottom-3 left-0" size="md" asChild>
               <Link className="flex gap-2" href="/fiyatlandirma">
                 <ChevronLeft className="w-4 h-4" />
                 Geri

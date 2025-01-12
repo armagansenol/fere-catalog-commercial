@@ -85,7 +85,7 @@ export default function MainSlider(props: Props) {
 
   function handleClick(i: number) {
     setCurrentSlide(i)
-    tl.current.pause()
+    tl.current.kill()
   }
 
   return (

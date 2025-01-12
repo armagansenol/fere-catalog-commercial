@@ -84,10 +84,22 @@ export default function Header() {
           </div>
         </div>
         <div className={"flex flex-col tablet:flex-row items-center gap-5"}>
-          <Button className={cx(s.navItem, "cursor-pointer")} variant="inverted" size="sm" asChild>
+          <Button
+            className={cx(
+              s.navItem,
+              "cursor-pointer py-3 px-12 border-[1px] border-quarterdeck text-quarterdeck rounded-full hover:bg-quarterdeck hover:text-white transition-all duration-300"
+            )}
+            asChild
+          >
             <Link href="https://panel.ferecatalog.com">Giriş Yap</Link>
           </Button>
-          <Button className={cx(s.navItem, "cursor-pointer")} size="sm" asChild>
+          <Button
+            className={cx(
+              s.navItem,
+              "cursor-pointer py-3 px-8 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+            )}
+            asChild
+          >
             <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
           </Button>
           {/* <div className={cx(s.navItem, "cursor-pointer")}>

@@ -410,11 +410,10 @@ export default function RegisterForm(props: RegisterFormProps) {
             )}
           />
           <Button
-            className="mt-12 w-72 mx-auto tablet:mx-0"
+            className={
+              "mt-8 w-full lg:w-72 cursor-pointer py-3 px-8 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+            }
             type="submit"
-            size="md"
-            padding="fat"
-            // disabled={mutation.isPending || !isFormValid}
           >
             {mutation.isPending ? <IconLoading /> : "Gönder"}
           </Button>

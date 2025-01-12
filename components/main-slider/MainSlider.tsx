@@ -121,7 +121,10 @@ export default function MainSlider(props: Props) {
               <h2>{item.title}</h2>
               <p>{item.description}</p>
               {item.button && (
-                <Button variant="bw" asChild size="sm">
+                <Button
+                  className="cursor-pointer py-3 px-8 border-[1px] border-black bg-white text-black rounded-full hover:bg-black hover:text-white transition-all duration-300"
+                  asChild
+                >
                   <Link href={item.button?.url}>{item.button?.ui}</Link>
                 </Button>
               )}

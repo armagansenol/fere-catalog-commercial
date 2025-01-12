@@ -97,7 +97,7 @@ export default function Page() {
                         <p className="text-16 font-mukta font-light text-center tablet:text-left">{item.description}</p>
                       </CardContent>
                       <CardFooter className="p-0 w-2/4 tablet:w-2/4 mt-auto">
-                        <Button variant="bw" size="lg" className="w-full">
+                        <Button className="w-full cursor-pointer py-3 px-8 border-[1px] border-black bg-white text-black rounded-full hover:bg-black hover:text-white transition-all duration-300">
                           Tümünü Gör
                         </Button>
                       </CardFooter>

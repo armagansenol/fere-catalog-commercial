@@ -231,9 +231,12 @@ export default async function HomePage() {
                 Her işletmeye özel olarak hazırlanmış paketlerimiz arasından ihtiyacınıza en uygun olanı seçebilir ve 1
                 ay boyunca ücretsiz deneyebilirsiniz.
               </p>
-              <Link href="/fiyatlandirma">
-                <Button className="px-16">Paketleri Gör</Button>
-              </Link>
+              <Button
+                className="cursor-pointer py-3 px-16 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+                asChild
+              >
+                <Link href="/fiyatlandirma">Paketleri Gör</Link>
+              </Button>
             </div>
             <div className={s.imgC}>
               <Img alt="Employee on phone" className="object-cover" src={employee} />

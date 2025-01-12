@@ -25,7 +25,7 @@ export const formSchema = z
     email: z.string().email({ message: "Geçerli bir e-posta adresi giriniz" }),
     countryCode: z.string().min(1, { message: "Ülke kodu seçiniz" }),
     phone: z.string().min(1, { message: "Geçerli bir telefon numarası giriniz" }),
-    message: z.string().min(5, { message: "Mesaj boş bırakılamaz" }),
+    message: z.string().min(1, { message: "Mesaj boş bırakılamaz" }),
     sector: z.string().min(1, { message: "Sektör seçiniz" }),
     sectorOther: z.string().optional(),
     consent: z.boolean(),
@@ -268,7 +268,12 @@ export default function ContactForm() {
               )}
             />
           </div>
-          <Button className="w-64 mt-12" type="submit" size="md" padding="fat">
+          <Button
+            className={
+              "mt-12 cursor-pointer py-3 px-24 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+            }
+            type="submit"
+          >
             {mutation.isPending ? <IconLoading /> : "Gönder"}
           </Button>
           {showMessage && mutation.isSuccess && (

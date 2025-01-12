@@ -3,7 +3,7 @@
 import s from "./pricing-toggle.module.scss"
 
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
-import cn from "clsx"
+import { cn } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import { useMemo, useRef, useState } from "react"
 
@@ -103,8 +103,12 @@ export default function PricingToggle(props: Props) {
                 <span className="text-14 font-mukta font-thin ml-1 tracking-normal">{plan.priceText}</span>
               </p>
               <Button
-                className="w-full"
-                variant={plan.recommended ? "inverted" : "bw"}
+                className={cn(
+                  "w-full cursor-pointer py-4 px-8 border-[1px] rounded-full transition-all duration-300 my-4 text-lg",
+                  plan.recommended
+                    ? "bg-transparent text-white hover:bg-white hover:text-quarterdeck"
+                    : "bg-transparent text-black border-black hover:bg-black hover:text-white"
+                )}
                 onClick={() => handleSelectedPlan(plan.id)}
               >
                 Paketi Seç
@@ -125,8 +129,12 @@ export default function PricingToggle(props: Props) {
             </CardContent>
             <CardFooter>
               <Button
-                className="w-full"
-                variant={plan.recommended ? "inverted" : "bw"}
+                className={cn(
+                  "w-full cursor-pointer py-4 px-8 border-[1px] rounded-full transition-all duration-300 my-2 text-lg",
+                  plan.recommended
+                    ? "bg-transparent text-white hover:bg-white hover:text-quarterdeck"
+                    : "bg-transparent text-black border-black hover:bg-black hover:text-white"
+                )}
                 onClick={() => handleSelectedPlan(plan.id)}
               >
                 Paketi Seç
@@ -172,8 +180,12 @@ export default function PricingToggle(props: Props) {
                   <span className="text-14 font-mukta font-thin ml-1 tracking-normal">{plan.priceText}</span>
                 </p>
                 <Button
-                  className="w-full"
-                  variant={plan.recommended ? "inverted" : "bw"}
+                  className={cn(
+                    "w-full cursor-pointer py-4 px-8 border-[1px] rounded-full transition-all duration-300 my-4 text-lg",
+                    plan.recommended
+                      ? "bg-transparent text-white hover:bg-white hover:text-quarterdeck"
+                      : "bg-transparent text-black border-black hover:bg-black hover:text-white"
+                  )}
                   onClick={() => handleSelectedPlan(plan.id)}
                 >
                   Paketi Seç
@@ -194,8 +206,12 @@ export default function PricingToggle(props: Props) {
               </CardContent>
               <CardFooter>
                 <Button
-                  className="w-full"
-                  variant={plan.recommended ? "inverted" : "bw"}
+                  className={cn(
+                    "w-full cursor-pointer py-4 px-8 border-[1px] rounded-full transition-all duration-300 my-2 text-lg",
+                    plan.recommended
+                      ? "bg-transparent text-white hover:bg-white hover:text-quarterdeck"
+                      : "bg-transparent text-black border-black hover:bg-black hover:text-white"
+                  )}
                   onClick={() => handleSelectedPlan(plan.id)}
                 >
                   Paketi Seç

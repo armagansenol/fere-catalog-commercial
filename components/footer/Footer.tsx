@@ -14,7 +14,12 @@ export default function Footer() {
     <footer className={cx(s.footer, "flex flex-col")}>
       <div className={cx(s.punchC, "flex flex-col tablet:flex-row items-center justify-between")}>
         <h5 className={s.punch}>Hazırsanız Başlayalım.</h5>
-        <Button size="lg" padding="wide" asChild>
+
+        <Button
+          className="cursor-pointer py-4 px-20 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+          asChild
+          size="lg"
+        >
           <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
         </Button>
       </div>

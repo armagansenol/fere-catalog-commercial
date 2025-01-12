@@ -6,7 +6,6 @@ import { Marquee } from "@/components/animations/marquee"
 import { ScaleIn } from "@/components/animations/scale-in"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { CardTestimonial } from "@/components/card-testimonial"
-import { HowItWorks } from "@/components/how-it-works"
 import Logo from "@/components/icons/logo"
 import { MainSlider } from "@/components/main-slider"
 import { Teaser } from "@/components/teaser"
@@ -16,6 +15,7 @@ import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { getMainSlider, getTestimonials } from "@/lib/api/queries"
 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import employee from "@/public/img/employee.jpg"
 
 const companies = [
@@ -99,9 +99,9 @@ export default async function HomePage() {
           </div>
         </section>
       </ScaleIn>
-      <HowItWorks />
+      {/* <HowItWorks /> */}
       <section className={s.specs}>
-        <div className={"flex flex-col items-center tablet:grid grid-cols-3 tablet:items-start gap-16 tablet:gap-32"}>
+        <div className="grid-cols-3 tablet:items-start gap-16 tablet:gap-32 hidden tablet:grid">
           <div className={s.cardSpec}>
             <h4>Kolay Ürün Yönetimi</h4>
             <p>
@@ -147,6 +147,79 @@ export default async function HomePage() {
               toptan sipariş sıklığını takip ederek satış stratejisi geliştirebilirsiniz.
             </p>
           </div>
+        </div>
+        <div>
+          <Accordion type="multiple" className="block tablet:hidden">
+            <AccordionItem className="border-b border-text-foreground" value="item-1">
+              <AccordionTrigger className="text-[var(--quarterdeck)] ">
+                <h4>Kolay Ürün Yönetimi</h4>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Fere Catalog sizi sınırlamaz! Ürünlerinizi kendi oluşturduğunuz kategorilerde sergileyip ürün
+                  çeşidinize uygun özellikler, varyantlar ekleyebilir ve düzenleyebilirsiniz. Müşterileriniz ihtiyacına
+                  göre filtreler kullanarak ürünlerinize ulaşabilir.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem className="border-b border-text-foreground" value="item-2">
+              <AccordionTrigger className="text-[var(--quarterdeck)]">
+                <h4>Online Sipariş Oluşturma</h4>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Müşterileriniz, mağazanızın linkine tıklayarak tüm ürünlerinize kolayca erişebilir ve toptan
+                  siparişlerini online olarak oluşturabilir. Sipariş vermek isteyen müşterileriniz için manuel katalog
+                  hazırlamanıza veya ürün görseli göndermenize gerek kalmaz.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem className="border-b border-text-foreground" value="item-3">
+              <AccordionTrigger className="text-[var(--quarterdeck)]">
+                <h4>Ürün Gizliliği ve Koruma</h4>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Ürünlerinizin gizliliğini önemsiyoruz. Ürünleriniz, yalnızca sizin oluşturduğunuz katalogta yer alır,
+                  aynı sektördeki diğer işletmelerin ürünleriyle bir arada satışa sunulmaz.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem className="border-b border-text-foreground" value="item-4">
+              <AccordionTrigger className="text-[var(--quarterdeck)]">
+                <h4>Gelişmiş Yetki ve Erişim Kontrolü</h4>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Çalışanlarınız için detaylı erişim seviyeleri belirleyebilirsiniz. Dilerseniz gelir, sipariş, ürün
+                  yönetimi gibi özel olduğunu düşündüğünüz tüm alanlarda sadece yetkili kişilerin işlem yapabilmesini
+                  sağlayabilirsiniz.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem className="border-b border-text-foreground" value="item-5">
+              <AccordionTrigger className="text-[var(--quarterdeck)]">
+                <h4>Çoklu Dil Desteğiyle Global Müşteri Erişimi</h4>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Platformumuz, çoklu dil desteğiyle yurt dışındaki müşterilerinize de hizmet verir ve rahatlıkla
+                  sipariş verebilmelerini sağlar, böylece uluslararası pazarda büyümenize katkıda bulunur.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem className="border-b border-text-foreground" value="item-6">
+              <AccordionTrigger className="text-[var(--quarterdeck)]">
+                <h4>Toplam Satış & Gelir Analizi</h4>
+              </AccordionTrigger>
+              <AccordionContent>
+                <p>
+                  Gelir ve satış raporları ile, ürün bazında zamana dayalı performans analizi yapabilir ve
+                  müşterilerinizin toptan sipariş sıklığını takip ederek satış stratejisi geliştirebilirsiniz.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
       <ScaleIn>

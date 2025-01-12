@@ -1,10 +1,10 @@
 import { CheckCircle } from "lucide-react"
-import Link from "next/link"
 
 import { IconInstagram } from "@/components/icons/icon-instagram"
 import { IconLinkedin } from "@/components/icons/icon-linkedin"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { Link } from "@/components/utility/link"
 
 export default function ThankYou() {
   return (
@@ -41,11 +41,18 @@ export default function ThankYou() {
               </div>
             </div>
             <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-3">
-              <Button variant="inverted" className="h-11 text-base font-normal" asChild>
-                <Link href="/support">Destek Sayfası</Link>
+              <Button
+                className={
+                  "cursor-pointer py-3 px-12 border-[1px] border-quarterdeck text-quarterdeck rounded-full hover:bg-quarterdeck hover:text-white transition-all duration-300"
+                }
+                asChild
+              >
+                <Link href="/destek">Destek</Link>
               </Button>
               <Button
-                className="h-11 text-base font-normal bg-[var(--quarterdeck)] hover:bg-[var(--quarterdeck)]/90"
+                className={
+                  "cursor-pointer py-3 px-12 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+                }
                 asChild
               >
                 <Link href="https://catalog.ferecatalog.com/logoipsum">Demo Mağaza</Link>

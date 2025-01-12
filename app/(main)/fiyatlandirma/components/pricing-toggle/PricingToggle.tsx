@@ -57,7 +57,7 @@ export default function PricingToggle(props: Props) {
       <Toggle
         pressed={isYearly}
         onPressedChange={setIsYearly}
-        className={cn(s.toggle, "flex items-stretch rounded-full mb-10 tablet:mb-20")}
+        className={cn(s.toggle, "flex items-stretch rounded-full mb-14 tablet:mb-20")}
       >
         <span
           className={cn(s.toggleItem, `rounded-full flex items-center justify-center cursor-pointer`, {
@@ -87,7 +87,7 @@ export default function PricingToggle(props: Props) {
             )}
           >
             {plan.recommended && (
-              <div className="absolute -top-2 right-5 bg-[var(--white)] text-quarterdeck text-20 border-[1px] border-quarterdeck border-solid px-4 py-2 text-xs rounded-full rotate-3">
+              <div className="absolute -top-4 right-5 bg-[var(--white)] text-quarterdeck border-[1px] border-quarterdeck border-solid px-4 py-2 text-lg rounded-full rotate-3">
                 En Çok Tercih Edilen
               </div>
             )}
@@ -162,7 +162,7 @@ export default function PricingToggle(props: Props) {
               )}
             >
               {plan.recommended && (
-                <div className="absolute -top-2 right-5 bg-[var(--white)] text-quarterdeck text-20 border-[1px] border-quarterdeck border-solid px-4 py-2 text-xs rounded-full rotate-3">
+                <div className="absolute -top-4 right-3 bg-[var(--white)] text-quarterdeck border-[1px] border-quarterdeck border-solid px-4 py-2 text-md rounded-full rotate-3">
                   En Çok Tercih Edilen
                 </div>
               )}
@@ -181,7 +181,7 @@ export default function PricingToggle(props: Props) {
                 </p>
                 <Button
                   className={cn(
-                    "w-full cursor-pointer py-4 px-8 border-[1px] rounded-full transition-all duration-300 my-4 text-lg",
+                    "w-full cursor-pointer py-2 px-8 border-[1px] rounded-full transition-all duration-300 my-4 text-lg",
                     plan.recommended
                       ? "bg-transparent text-white hover:bg-white hover:text-quarterdeck"
                       : "bg-transparent text-black border-black hover:bg-black hover:text-white"
@@ -207,7 +207,7 @@ export default function PricingToggle(props: Props) {
               <CardFooter>
                 <Button
                   className={cn(
-                    "w-full cursor-pointer py-4 px-8 border-[1px] rounded-full transition-all duration-300 my-2 text-lg",
+                    "w-full cursor-pointer py-2 px-8 border-[1px] rounded-full transition-all duration-300 my-2 text-lg",
                     plan.recommended
                       ? "bg-transparent text-white hover:bg-white hover:text-quarterdeck"
                       : "bg-transparent text-black border-black hover:bg-black hover:text-white"

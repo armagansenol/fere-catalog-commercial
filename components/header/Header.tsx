@@ -87,7 +87,7 @@ export default function Header() {
           <Button
             className={cx(
               s.navItem,
-              "cursor-pointer py-3 px-12 border-[1px] border-quarterdeck text-quarterdeck rounded-full hover:bg-quarterdeck hover:text-white transition-all duration-300"
+              "cursor-pointer py-2 px-10 lg:py-3 lg:px-12 border-[1px] border-quarterdeck text-quarterdeck rounded-full hover:bg-quarterdeck hover:text-white transition-all duration-300"
             )}
             asChild
           >
@@ -96,7 +96,7 @@ export default function Header() {
           <Button
             className={cx(
               s.navItem,
-              "cursor-pointer py-3 px-8 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+              "cursor-pointer py-2 px-10 lg:py-3 lg:px-8 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
             )}
             asChild
           >

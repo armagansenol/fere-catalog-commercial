@@ -191,4 +191,8 @@ sup {
 
 [data-radix-popper-content-wrapper] {
   z-index: z-index("preloader") !important;
+
+  @include mobile {
+    max-height: mobile-vw(160px);
+  }
 }

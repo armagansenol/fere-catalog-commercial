@@ -16,7 +16,7 @@ export default function Footer() {
         <h5 className={s.punch}>Hazırsanız Başlayalım.</h5>
 
         <Button
-          className="cursor-pointer py-4 px-20 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+          className="cursor-pointer py-4 px-10 lg:px-20 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
           asChild
           size="lg"
         >

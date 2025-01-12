@@ -410,7 +410,7 @@ export default function RegisterForm(props: RegisterFormProps) {
             )}
           />
           <Button
-            className="mt-12"
+            className="mt-12 w-72 mx-auto tablet:mx-0"
             type="submit"
             size="md"
             padding="fat"

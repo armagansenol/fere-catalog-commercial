@@ -3,7 +3,7 @@
 import s from "./main-slider.module.scss"
 
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
-import cx from "clsx"
+import { cn } from "@/lib/utils"
 import { useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -101,17 +101,17 @@ export default function MainSlider(props: Props) {
 
   return (
     <div
-      className={cx(
+      className={cn(
         s.mainSlider,
         "flex flex-col tablet:flex-row items-center tablet:items-stretch justify-between gap-2"
       )}
       ref={ref}
     >
-      <div className={cx(s.textC, "text-c")}>
+      <div className={cn(s.textC, "text-c")}>
         {props.items.map((item, i) => {
           return (
             <div
-              className={cx(s.text, "flex flex-col items-center tablet:items-start justify-between", {
+              className={cn(s.text, "flex flex-col items-center tablet:items-start justify-between", {
                 [s.visible]: currentSlide === i,
               })}
               key={item.id}
@@ -122,7 +122,7 @@ export default function MainSlider(props: Props) {
               <p>{item.description}</p>
               {item.button && (
                 <Button
-                  className="cursor-pointer py-3 px-8 border-[1px] border-black bg-white text-black rounded-full hover:bg-black hover:text-white transition-all duration-300"
+                  className="cursor-pointer py-3 px-10 border-[1px] border-black bg-white text-black rounded-full hover:bg-black hover:text-white transition-all duration-300"
                   asChild
                 >
                   <Link href={item.button?.url}>{item.button?.ui}</Link>
@@ -136,7 +136,7 @@ export default function MainSlider(props: Props) {
         <div className={s.mediaC} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
           {props.items.map((item, i) => {
             return (
-              <div className={cx(s.media, { [s.visible]: currentSlide === i || currentSlide === i + 1 })} key={i}>
+              <div className={cn(s.media, { [s.visible]: currentSlide === i || currentSlide === i + 1 })} key={i}>
                 <Img
                   className="object-cover"
                   src={item.image.src}
@@ -150,12 +150,12 @@ export default function MainSlider(props: Props) {
           })}
         </div>
       </div>
-      <div className={cx(s.miniMapC, "flex flex-col")}>
-        <div className={cx(s.miniMap, "flex items-center")}>
+      <div className={cn(s.miniMapC, "flex flex-col")}>
+        <div className={cn(s.miniMap, "flex items-center")}>
           {props.items.map((item, i) => {
             return (
               <div
-                className={cx(s.media, "cursor-pointer", { [s.visible]: currentSlide === i })}
+                className={cn(s.media, "cursor-pointer", { [s.visible]: currentSlide === i })}
                 key={i}
                 onClick={() => handleClick(i)}
               >
@@ -173,7 +173,7 @@ export default function MainSlider(props: Props) {
           })}
         </div>
         <div className={s.progressBar}>
-          <div className={cx(s.bar, "bar")}></div>
+          <div className={cn(s.bar, "bar")}></div>
         </div>
       </div>
     </div>

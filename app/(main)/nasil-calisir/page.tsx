@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+import { CardHowItWorks } from "@/components/card-how-it-works"
 import { Button } from "@/components/ui/button"
 import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
@@ -28,7 +29,10 @@ export default async function HowItWorksPage() {
               Platformumuzu nasıl kullanacağınızı adım adım keşfedin. Aşağıda yer alan yönergeleri takip ederek
               mağazanızı oluşturabilir, demo mağazamızı inceleyebilirsiniz.
             </p>
-            <Button className="mt-4 tablet:mt-8" variant="bw" asChild>
+            <Button
+              className="mt-4 tablet:mt-8 cursor-pointer py-3 px-16 border-[1px] border-black bg-white text-black rounded-full hover:bg-black hover:text-white transition-all duration-300"
+              asChild
+            >
               <Link href="https://catalog.ferecatalog.com/logoipsum">Demo Mağazayı İncele</Link>
             </Button>
           </div>
@@ -38,27 +42,19 @@ export default async function HowItWorksPage() {
         </div>
       </section>
       <section className="flex flex-col items-stretch gap-16 bg-lynx-white rounded-2xl py-16 tablet:py-40 px-4 tablet:px-[var(--spacing-xl)]">
-        {howToData.map((item, i) => (
-          <div
-            className="flex flex-col tablet:flex-row items-center tablet:items-start justify-center gap-5 tablet:gap-10"
-            key={i}
-          >
-            <div className="h-12 w-12 tablet:h-14 tablet:w-14 -mt-2 flex items-center justify-center rounded-full bg-quarterdeck text-24 font-albert-sans font-medium text-white flex-shrink-0">
-              {i + 1}
-            </div>
-            <div className="flex flex-col-reverse items-center tablet:flex-row tablet:items-start justify-center tablet:grid grid-cols-12 gap-5 tablet:gap-12">
-              <div className="col-span-6 text-center tablet:text-left tablet:max-w-lg">
-                <h3 className="font-albert-sans font-normal text-24 tablet:text-30 mb-4 tracking-tighter leading-tight">
-                  {item.title}
-                </h3>
-                <p className="font-mukta font-thin text-18 tablet:text-20 tablet:max-w-lg">{item.description}</p>
-              </div>
-              <div className="col-span-6 rounded-lg overflow-hidden h-img-md">
-                <Img src={item.image.src} alt={item.image.alt} className="object-cover" height={1000} width={1000} />
-              </div>
-            </div>
-          </div>
-        ))}
+        {howToData.map((item, i) => {
+          return (
+            <CardHowItWorks
+              key={i}
+              item={{
+                title: item.title,
+                description: item.description,
+                image: item.image,
+              }}
+              index={i}
+            />
+          )
+        })}
       </section>
     </>
   )

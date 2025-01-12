@@ -145,6 +145,7 @@ export default function MainSlider(props: Props) {
                 className={cx(s.media, "cursor-pointer", { [s.visible]: currentSlide === i })}
                 key={i}
                 onClick={() => handleClick(i)}
+                onTouchEnd={() => handleClick(i)}
               >
                 <Img
                   className="object-cover"

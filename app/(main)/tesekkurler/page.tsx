@@ -1,7 +1,6 @@
 import { CheckCircle } from "lucide-react"
 
-import { IconInstagram } from "@/components/icons/icon-instagram"
-import { IconLinkedin } from "@/components/icons/icon-linkedin"
+import { IconInstagram, IconLinkedin } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Link } from "@/components/utility/link"

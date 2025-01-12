@@ -27,7 +27,7 @@ export default async function Page({ searchParams }: { searchParams: { selectedP
         "flex flex-col-reverse items-center tablet:items-start tablet:grid grid-cols-12 gap-10 px-4 tablet:px-[var(--spacing-lg)] pb-20"
       )}
     >
-      <div className="col-span-9 flex flex-col items-center">
+      <div className="col-span-8 flex flex-col items-center xl:col-span-9">
         <div className="w-full">
           <Card className="relative">
             <CardHeader className="pt-2">
@@ -52,9 +52,9 @@ export default async function Page({ searchParams }: { searchParams: { selectedP
           </div>
         </div>
       </div>
-      <div className="col-span-3">
+      <div className="col-span-4 xl:col-span-3">
         <div className="space-y-3">
-          <Card className="w-full mx-auto bg-[var(--lynx-white)] rounded-2xl tablet:rounded-3xl">
+          <Card className="w-full mx-auto bg-[var(--lynx-white)] rounded-2xl tablet:rounded-3xl sticky top-20">
             <CardHeader className="p-4 tablet:p-6">
               <CardTitle className="text-xl tablet:text-2xl font-bold mb-2">{planCartData.title}</CardTitle>
               <p className="text-xs tablet:text-sm text-muted-foreground mb-2 tablet:mb-5">

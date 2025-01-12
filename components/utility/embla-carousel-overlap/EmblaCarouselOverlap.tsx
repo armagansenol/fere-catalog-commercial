@@ -7,6 +7,7 @@ import React, { ReactNode, useCallback, useEffect, useState } from "react"
 
 import { NextButton, PrevButton } from "./buttons"
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface Props {
   children: ReactNode[]
@@ -79,13 +80,12 @@ const EmblaCarouselOverlap = (props: Props) => {
 
       {props.prevButton && props.nextButton && (
         <div className={props.btnsClassName}>
-          <div className={s.emblaButtons}>
+          <div className={cn(s.emblaButtons, "gsap-slider-btn")}>
             <PrevButton className={s.prev} onClick={scrollPrev} disabled={prevBtnDisabled}>
               <ArrowLeft className="w-full h-full" />
             </PrevButton>
           </div>
-
-          <div className={s.emblaButtons}>
+          <div className={cn(s.emblaButtons, "gsap-slider-btn")}>
             <NextButton className={s.next} onClick={scrollNext} disabled={nextBtnDisabled}>
               <ArrowRight className="w-full h-full" />
             </NextButton>

@@ -73,7 +73,7 @@
     transition: 400ms opacity ease;
 
     &:disabled {
-      opacity: 0.2;
+      opacity: 0;
     }
 
     * {

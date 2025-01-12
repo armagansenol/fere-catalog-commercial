@@ -2,9 +2,10 @@
 
 import s from "./pricing-toggle.module.scss"
 
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
 import cn from "clsx"
 import { useRouter } from "next/navigation"
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -29,6 +30,27 @@ export default function PricingToggle(props: Props) {
   function handleSelectedPlan(id: number) {
     router.push(`/kayit-ol?selectedPlan=${id.toString()}`)
   }
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline()
+
+      tl.from(".gsap-slider-btn", { yPercent: -600 })
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: ref.current,
+        start: "top center",
+        end: "bottom-=50% bottom-=50%",
+        scrub: true,
+      })
+    },
+    {
+      scope: ref,
+    }
+  )
 
   return (
     <div className="flex flex-col items-center">
@@ -113,7 +135,7 @@ export default function PricingToggle(props: Props) {
           </Card>
         ))}
       </div>
-      <div className={cn(s.cardsMobile, "block tablet:hidden w-screen")}>
+      <div className={cn(s.cardsMobile, "block tablet:hidden w-screen")} ref={ref}>
         <EmblaCarouselOverlap
           nextButton={<div className={cn(s.btn, s.next)}>next</div>}
           prevButton={<div className={cn(s.btn, s.prev)}>prev</div>}

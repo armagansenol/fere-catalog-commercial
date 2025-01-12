@@ -22,7 +22,7 @@ export default function ThankYou() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center space-y-10 lg:space-y-20 w-full">
+          <div className="flex flex-col items-center space-y-10 lg:space-y-12 w-full">
             <div className="flex flex-col items-center space-y-5">
               <h2 className="text-xl font-medium text-gray-900 font-albert-sans">Bizi Takip Edin</h2>
               <div className="flex space-x-5 lg:space-x-10">
@@ -40,10 +40,10 @@ export default function ThankYou() {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-col tablet:flex-row gap-3 tablet:gap-3">
+            <div className="flex flex-col tablet:flex-row gap-3">
               <Button
                 className={
-                  "cursor-pointer py-3 px-12 border-[1px] border-quarterdeck text-quarterdeck rounded-full hover:bg-quarterdeck hover:text-white transition-all duration-300"
+                  "cursor-pointer py-2 px-10 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-transparent hover:text-quarterdeck transition-all duration-300"
                 }
                 asChild
               >
@@ -51,7 +51,7 @@ export default function ThankYou() {
               </Button>
               <Button
                 className={
-                  "cursor-pointer py-3 px-12 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
+                  "cursor-pointer py-2 px-10 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-transparent hover:text-quarterdeck transition-all duration-300"
                 }
                 asChild
               >

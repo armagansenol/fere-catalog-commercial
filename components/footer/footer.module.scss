@@ -64,7 +64,7 @@
       }
 
       .iconC {
-        @include dims(desktop-vw(16px));
+        @include dims(desktop-vw(28px));
         align-items: center;
         display: flex;
         justify-content: center;
@@ -100,7 +100,7 @@
 
       &:last-child {
         margin-left: auto;
-        margin-right: desktop-vw(120px);
+        margin-right: desktop-vw(200px);
 
         @include mobile {
           margin-right: auto;

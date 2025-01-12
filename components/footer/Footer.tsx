@@ -1,20 +1,16 @@
 import s from "./footer.module.scss"
 
-import cx from "clsx"
+import { cn } from "@/lib/utils"
 
-import { IconYoutube } from "@/components/icons"
-import { IconFacebook } from "@/components/icons/icon-facebook"
-import { IconInstagram } from "@/components/icons/icon-instagram"
-import { IconLinkedin } from "@/components/icons/icon-linkedin"
+import { IconFacebook, IconInstagram, IconLinkedin, IconYoutube } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/components/utility/link"
 
 export default function Footer() {
   return (
-    <footer className={cx(s.footer, "flex flex-col")}>
-      <div className={cx(s.punchC, "flex flex-col tablet:flex-row items-center justify-between")}>
+    <footer className={cn(s.footer, "flex flex-col")}>
+      <div className={cn(s.punchC, "flex flex-col tablet:flex-row items-center justify-between")}>
         <h5 className={s.punch}>Hazırsanız Başlayalım.</h5>
-
         <Button
           className="cursor-pointer py-4 px-10 lg:px-20 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
           asChild
@@ -23,7 +19,7 @@ export default function Footer() {
           <Link href="/fiyatlandirma">Ücretsiz Denemeye Başla</Link>
         </Button>
       </div>
-      <nav className={cx(s.links, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
+      <nav className={cn(s.links, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
         <div className={s.col}>
           <h6 className={s.title}>Fere Katalog</h6>
           <div className={s.items}>
@@ -63,7 +59,7 @@ export default function Footer() {
         </div>
         <div className={s.col}>
           <h6 className={s.title}>Bizi Takip Edin</h6>
-          <div className={cx(s.items, s.social)}>
+          <div className={cn(s.items, s.social)}>
             <Link href="https://www.facebook.com/share/1AQUXPjcfS/?mibextid=LQQJ4d" className={s.iconC}>
               <IconFacebook fill="var(--black)" />
             </Link>
@@ -79,8 +75,8 @@ export default function Footer() {
           </div>
         </div>
       </nav>
-      <div className={cx(s.bottom, "flex flex-col gap-5 tablet:flex-row items-center justify-between")}>
-        <small>© 2024 FERE CATALOG</small>
+      <div className={cn(s.bottom, "flex flex-col gap-5 tablet:flex-row items-center justify-between")}>
+        <small>© 2025 FERE CATALOG</small>
         <small>
           Made by{" "}
           <Link className="underline" href="https://bytemywork.com">

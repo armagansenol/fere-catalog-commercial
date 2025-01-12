@@ -37,7 +37,7 @@ export const formSchema = z
     whereDidYouHearOther: z.string().optional(),
     taxOffice: z.string().min(1, { message: "Vergi dairesi boş bırakılamaz" }),
     taxNumber: z.string().min(1, { message: "Vergi numarası boş bırakılamaz" }),
-    planId: z.string().min(1, { message: "Plan seçiniz." }),
+    planId: z.string().min(1, { message: "Plan seçiniz" }),
     consent: z.boolean(),
   })
   .superRefine((data, ctx) => {
@@ -209,7 +209,7 @@ export default function RegisterForm(props: RegisterFormProps) {
                     <SelectContent data-lenis-prevent className="shadcn-select">
                       {countryPhoneCodes.map((code) => (
                         <SelectItem key={`${code.code}-${code.name}`} value={code.code}>
-                          {code.name} - {code.code}
+                          {code.name} ({code.code})
                         </SelectItem>
                       ))}
                     </SelectContent>

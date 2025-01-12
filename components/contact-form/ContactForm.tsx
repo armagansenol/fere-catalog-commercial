@@ -38,7 +38,6 @@ export const formSchema = z
         path: ["sectorOther"],
       })
     }
-
     if (!data.consent) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -214,7 +213,7 @@ export default function ContactForm() {
                       <SelectContent data-lenis-prevent className="shadcn-select">
                         {countryPhoneCodes.map((code) => (
                           <SelectItem key={code.name} value={code.code}>
-                            {code.name} - {code.code}
+                            {code.name} ({code.code})
                           </SelectItem>
                         ))}
                       </SelectContent>

@@ -16,9 +16,9 @@ interface Props {
 }
 
 export default function MainSlider(props: Props) {
-  const ref = useRef(null)
   const [currentSlide, setCurrentSlide] = useState(0)
   const tl = useRef(gsap.timeline())
+  const ref = useRef(null)
 
   function timelineSection(index: number) {
     return `part-${index}`
@@ -45,7 +45,6 @@ export default function MainSlider(props: Props) {
       })
     },
     {
-      dependencies: [],
       scope: ref,
     }
   )
@@ -85,7 +84,6 @@ export default function MainSlider(props: Props) {
 
   function handleClick(i: number) {
     setCurrentSlide(i)
-    tl.current.kill()
   }
 
   return (
@@ -144,7 +142,6 @@ export default function MainSlider(props: Props) {
                 className={cx(s.media, "cursor-pointer", { [s.visible]: currentSlide === i })}
                 key={i}
                 onClick={() => handleClick(i)}
-                onTouchEnd={() => handleClick(i)}
               >
                 <Img
                   className="object-cover"
@@ -153,6 +150,7 @@ export default function MainSlider(props: Props) {
                   priority={true}
                   width={100}
                   height={100}
+                  onClick={() => tl.current.kill()}
                 />
               </div>
             )

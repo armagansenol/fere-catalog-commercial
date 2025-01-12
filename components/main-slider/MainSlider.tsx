@@ -75,7 +75,6 @@ export default function MainSlider(props: Props) {
       markers: false,
       onUpdate: (self) => {
         if (!self.isActive) {
-          // tl.current.revert()
           tl.current.pause()
           return
         }
@@ -86,7 +85,7 @@ export default function MainSlider(props: Props) {
 
   function handleClick(i: number) {
     setCurrentSlide(i)
-    tl.current.revert()
+    tl.current.pause()
   }
 
   return (

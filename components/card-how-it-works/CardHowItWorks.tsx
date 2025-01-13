@@ -1,10 +1,7 @@
 "use client"
 
 import { Img } from "@/components/utility/img"
-import { gsap, ScrollTrigger } from "@/lib/gsap"
 import { cn } from "@/lib/utils"
-import { useGSAP } from "@gsap/react"
-import { useRef } from "react"
 
 export interface CardHowItWorksProps {
   item: {
@@ -19,49 +16,47 @@ export interface CardHowItWorksProps {
 }
 
 export default function CardHowItWorks({ item, index }: CardHowItWorksProps) {
-  const ref = useRef<HTMLDivElement>(null)
+  // const ref = useRef<HTMLDivElement>(null)
 
-  useGSAP(
-    () => {
-      if (index === 0) {
-        return
-      }
+  // useGSAP(
+  //   () => {
+  //     if (index === 0) {
+  //       return
+  //     }
 
-      const tl = gsap.timeline({ paused: true })
+  //     const tl = gsap.timeline({ paused: true })
 
-      tl.to(".gsap-index", {
-        backgroundColor: "#166EA2",
-        color: "white",
-        duration: 0.5,
-      }).from(".gsap-content", {
-        opacity: 0,
-        duration: 0.5,
-        delay: -0.5,
-      })
+  //     tl.to(".gsap-index", {
+  //       backgroundColor: "#166EA2",
+  //       color: "white",
+  //       duration: 0.5,
+  //     }).from(".gsap-content", {
+  //       opacity: 0,
+  //       duration: 0.5,
+  //       delay: -0.5,
+  //     })
 
-      ScrollTrigger.create({
-        animation: tl,
-        trigger: ref.current,
-        markers: true,
-        start: "top bottom-=10%",
-        toggleActions: "play reverse play reverse",
-      })
-    },
-    {
-      scope: ref,
-    }
-  )
+  //     ScrollTrigger.create({
+  //       animation: tl,
+  //       trigger: ref.current,
+  //       markers: true,
+  //       start: "top bottom-=10%",
+  //       toggleActions: "play reverse play reverse",
+  //     })
+  //   },
+  //   {
+  //     scope: ref,
+  //   }
+  // )
 
   return (
     <div
       className="flex flex-col tablet:flex-row items-center tablet:items-start justify-center gap-5 tablet:gap-10"
-      ref={ref}
+      // ref={ref}
     >
       <div
         className={cn(
-          `h-12 w-12 tablet:h-14 tablet:w-14 -mt-2 flex items-center justify-center rounded-full text-24 font-albert-sans font-medium flex-shrink-0 border-2 bg-transparent border-quarterdeck
-          ${index !== 0 ? "gsap-index bg-quarterdeck" : ""}
-          `
+          `h-12 w-12 tablet:h-14 tablet:w-14 -mt-2 flex items-center justify-center rounded-full text-24 font-albert-sans font-medium flex-shrink-0 border-2 bg-transparent border-quarterdeck`
         )}
       >
         {index + 1}

@@ -17,7 +17,7 @@ export default function Teaser() {
     modalStore.setContent(
       <div className={cn(s.modalContent, "w-full h-full flex items-center justify-center")}>
         <div className={s.videoC}>
-          <Video primaryVideoUrl="/video/sample.mp4#t=0.01" controls autoPlay />
+          <Video primaryVideoUrl="https://cms.ferecatalog.com/assets/video/ferecatalog.mp4#t=0.01" controls autoPlay />
         </div>
       </div>
     )
@@ -34,7 +34,7 @@ export default function Teaser() {
 
   return (
     <div className={s.teaser}>
-      <Video primaryVideoUrl="/video/sample.mp4" autoPlay loop playsInline muted ref={teaserRef} />
+      <Video primaryVideoUrl="/video/fere-teaser.mp4" autoPlay loop playsInline muted ref={teaserRef} />
       <div className={cn(s.play, "flex items-center justify-center cursor-pointer")} onClick={handleShowcase}>
         <div className={s.iconC}>
           <IconPlay />

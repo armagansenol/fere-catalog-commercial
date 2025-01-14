@@ -34,7 +34,14 @@ export default function Teaser() {
 
   return (
     <div className={s.teaser}>
-      <Video primaryVideoUrl="/video/fere-teaser.mp4" autoPlay loop playsInline muted ref={teaserRef} />
+      <Video
+        primaryVideoUrl="https://cms.ferecatalog.com/assets/video/teaser.mp4"
+        autoPlay
+        loop
+        playsInline
+        muted
+        ref={teaserRef}
+      />
       <div className={cn(s.play, "flex items-center justify-center cursor-pointer")} onClick={handleShowcase}>
         <div className={s.iconC}>
           <IconPlay />

@@ -24,22 +24,32 @@ export default function Footer() {
           <h6 className={s.title}>Fere Katalog</h6>
           <div className={s.items}>
             <div className={s.navItem}>
-              <Link href="/hakkimizda">Hakkımızda</Link>
+              <Link className="animated-underline-single" href="/hakkimizda">
+                Hakkımızda
+              </Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/nasil-calisir">Nasıl Çalışır?</Link>
+              <Link className="animated-underline-single" href="/nasil-calisir">
+                Nasıl Çalışır?
+              </Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/fiyatlandirma">Fiyatlandırma</Link>
+              <Link className="animated-underline-single" href="/fiyatlandirma">
+                Fiyatlandırma
+              </Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/destek">Destek</Link>
+              <Link className="animated-underline-single" href="/destek">
+                Destek
+              </Link>
             </div>
             {/* <div className={s.navItem}>
               <Link href="/blog">Blog</Link>
             </div> */}
             <div className={s.navItem}>
-              <Link href="/iletisim">İletişim</Link>
+              <Link className="animated-underline-single" href="/iletisim">
+                İletişim
+              </Link>
             </div>
           </div>
         </div>
@@ -47,13 +57,19 @@ export default function Footer() {
           <h6 className={s.title}>Legal</h6>
           <div className={s.items}>
             <div className={s.navItem}>
-              <Link href="/kvkk">KVKK</Link>
+              <Link className="animated-underline-single" href="/kvkk">
+                KVKK
+              </Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/gizlilik-politikası">Gizlilik Politikası</Link>
+              <Link className="animated-underline-single" href="/gizlilik-politikası">
+                Gizlilik Politikası
+              </Link>
             </div>
             <div className={s.navItem}>
-              <Link href="/cerez-politikası">Çerez Politikası</Link>
+              <Link className="animated-underline-single" href="/cerez-politikası">
+                Çerez Politikası
+              </Link>
             </div>
           </div>
         </div>

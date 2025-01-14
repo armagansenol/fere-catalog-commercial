@@ -65,22 +65,32 @@ export default function Header() {
       >
         <div className={"flex flex-col tablet:flex-row items-center gap-8"}>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/hakkimizda">Hakkımızda</Link>
+            <Link className="animated-underline-single" href="/hakkimizda">
+              Hakkımızda
+            </Link>
           </div>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/nasil-calisir">Nasıl Çalışır?</Link>
+            <Link className="animated-underline-single" href="/nasil-calisir">
+              Nasıl Çalışır?
+            </Link>
           </div>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/fiyatlandirma">Fiyatlandırma</Link>
+            <Link className="animated-underline-single" href="/fiyatlandirma">
+              Fiyatlandırma
+            </Link>
           </div>
           {/* <div className={cx(s.navItem, "cursor-pointer")}>
             <Link href="/blog">Blog</Link>
           </div> */}
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/destek">Destek</Link>
+            <Link className="animated-underline-single" href="/destek">
+              Destek
+            </Link>
           </div>
           <div className={cx(s.navItem, "cursor-pointer")}>
-            <Link href="/iletisim">İletişim</Link>
+            <Link className="animated-underline-single" href="/iletisim">
+              İletişim
+            </Link>
           </div>
         </div>
         <div className={"flex flex-col tablet:flex-row items-center gap-5"}>

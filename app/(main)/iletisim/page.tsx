@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact-form"
 import { Img } from "@/components/utility/img"
 
 import employee from "@/public/img/employee.jpg"
+import { Link } from "@/components/utility/link"
 
 export const metadata: Metadata = {
   title: "Fere Catalog | İletişim",
@@ -32,26 +33,34 @@ export default function Page() {
       </section>
       <section className="flex flex-col tablet:grid grid-cols-12 items-center tablet:items-start gap-10 tablet:gap-18 py-8 tablet:py-16 tablet:pb-32 px-4 tablet:px-[var(--spacing-xl)]">
         <div className="col-span-6 space-y-8">
-          <div>
+          <div className="flex flex-col items-center tablet:items-start">
             <h2 className="font-albert-sans font-medium text-18 leading-snug text-center tablet:text-left tracking-tighter">
               Telefon
             </h2>
-            <p className="font-mukta font-extralight text-18 max-w-xl text-center tablet:text-left">00000000000</p>
+            <Link
+              className="font-mukta font-extralight text-18 max-w-xl text-center tablet:text-left"
+              href="tel:05354080888"
+            >
+              0535 408 08 88
+            </Link>
           </div>
-          <div>
+          <div className="flex flex-col items-center tablet:items-start">
             <h2 className="font-albert-sans font-medium text-18 leading-snug text-center tablet:text-left tracking-tighter">
               Email
             </h2>
-            <p className="font-mukta font-extralight text-18 max-w-xl text-center tablet:text-left">
-              ferecatalog@fere.com
-            </p>
+            <Link
+              className="font-mukta font-extralight text-18 max-w-xl text-center tablet:text-left"
+              href="mailto:destek@ferecatalog.com"
+            >
+              destek@ferecatalog.com
+            </Link>
           </div>
-          <div>
+          <div className="flex flex-col items-center tablet:items-start">
             <h2 className="font-albert-sans font-medium text-18 leading-snug text-center tablet:text-left tracking-tighter">
               Adres
             </h2>
             <p className="font-mukta font-extralight text-18 text-center tablet:text-left max-w-sm">
-              Contoso Ltd 215 E Tasman Dr Po Box 65502 CA 95134 San Jose
+              Adil, Demokrasi Cd. Manolya İş Merkezi No 1 Kat 2 D.4-5, 34935 Sultanbeyli/İstanbul
             </p>
           </div>
         </div>

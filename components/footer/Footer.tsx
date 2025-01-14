@@ -21,7 +21,7 @@ export default function Footer() {
       </div>
       <nav className={cn(s.links, "flex flex-col items-center tablet:flex-row tablet:items-start")}>
         <div className={s.col}>
-          <h6 className={s.title}>Fere Katalog</h6>
+          <h6 className={s.title}>Fere Catalog</h6>
           <div className={s.items}>
             <div className={s.navItem}>
               <Link className="animated-underline-single" href="/hakkimizda">

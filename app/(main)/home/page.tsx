@@ -74,7 +74,7 @@ export default async function HomePage() {
                 +40
                 <span>%</span>
               </h3>
-              <p>Fere Katalog kullanan müşterilerimizin ortalama satış oranı artışı.</p>
+              <p>Fere Catalog kullanan müşterilerimizin ortalama satış oranı artışı.</p>
             </div>
             <div>
               <h3>

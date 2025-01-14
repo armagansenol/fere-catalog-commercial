@@ -245,7 +245,7 @@ export default async function HomePage() {
                 className="cursor-pointer py-3 px-16 border-[1px] border-quarterdeck bg-quarterdeck text-white rounded-full hover:bg-white hover:text-quarterdeck transition-all duration-300"
                 asChild
               >
-                <Link href="/fiyatlandirma">Paketleri Gör</Link>
+                <Link href="/fiyatlandirma">Paketleri İncele</Link>
               </Button>
             </div>
             <div className={s.imgC}>

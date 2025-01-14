@@ -6,7 +6,6 @@ import { Marquee } from "@/components/animations/marquee"
 import { ScaleIn } from "@/components/animations/scale-in"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { CardTestimonial } from "@/components/card-testimonial"
-import Logo from "@/components/icons/logo"
 import { MainSlider } from "@/components/main-slider"
 import { Teaser } from "@/components/teaser"
 import { Button } from "@/components/ui/button"
@@ -15,24 +14,30 @@ import { Img } from "@/components/utility/img"
 import { Link } from "@/components/utility/link"
 import { getMainSlider, getTestimonials } from "@/lib/api/queries"
 
+import r1 from "@/public/img/r-1.png"
+import r2 from "@/public/img/r-2.png"
+import r3 from "@/public/img/r-3.png"
+import r4 from "@/public/img/r-4.png"
+import r5 from "@/public/img/r-5.png"
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import employee from "@/public/img/employee.jpg"
 
 const companies = [
   {
-    logo: <Logo />,
+    logo: <Img className="object-contain" src={r1} alt="r1" />,
   },
   {
-    logo: <Logo />,
+    logo: <Img className="object-contain" src={r2} alt="r2" />,
   },
   {
-    logo: <Logo />,
+    logo: <Img className="object-contain" src={r3} alt="r3" />,
   },
   {
-    logo: <Logo />,
+    logo: <Img className="object-contain" src={r4} alt="r4" />,
   },
   {
-    logo: <Logo />,
+    logo: <Img className="object-contain" src={r5} alt="r5" />,
   },
 ]
 
@@ -89,7 +94,7 @@ export default async function HomePage() {
               <>
                 {companies.map((item, i) => {
                   return (
-                    <div className={s.item} key={i}>
+                    <div className={cn(s.item)} key={i}>
                       {item.logo}
                     </div>
                   )

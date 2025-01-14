@@ -56,7 +56,7 @@ export default function CardHowItWorks({ item, index }: CardHowItWorksProps) {
     >
       <div
         className={cn(
-          `h-12 w-12 tablet:h-14 tablet:w-14 -mt-2 flex items-center justify-center rounded-full text-24 font-albert-sans font-medium flex-shrink-0 border-2 bg-transparent border-quarterdeck`
+          `h-12 w-12 tablet:h-14 tablet:w-14 -mt-2 flex items-center justify-center rounded-full font-albert-sans font-medium flex-shrink-0 border-2 bg-quarterdeck border-quarterdeck text-white text-2xl `
         )}
       >
         {index + 1}

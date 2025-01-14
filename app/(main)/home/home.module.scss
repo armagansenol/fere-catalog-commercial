@@ -70,7 +70,7 @@
   }
 
   .teaserC {
-    @include dims(desktop-vw(770px), desktop-vw(300px));
+    @include dims(desktop-vw(770px), desktop-vw(420px));
     border-radius: desktop-vw(5px);
     margin-bottom: desktop-vw(60px);
     overflow: hidden;

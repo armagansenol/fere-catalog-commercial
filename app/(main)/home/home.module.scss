@@ -76,7 +76,7 @@
     overflow: hidden;
 
     @include mobile {
-      @include dims(auto, mobile-vw(240px));
+      @include dims(auto, mobile-vw(200px));
       border-radius: mobile-vw(5px);
       margin-bottom: mobile-vw(30px);
     }

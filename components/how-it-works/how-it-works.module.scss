@@ -110,7 +110,7 @@
     @include dims(auto, 100vh);
 
     @include mobile {
-      @include dims(auto, mobile-vw(400px));
+      @include dims(auto, mobile-vw(390px));
       border-radius: mobile-vw(10px);
       overflow: hidden;
     }

@@ -19,7 +19,9 @@ import r2 from "@/public/img/r-2.png"
 import r3 from "@/public/img/r-3.png"
 import r4 from "@/public/img/r-4.png"
 import r5 from "@/public/img/r-5.png"
+import r6 from "@/public/img/r-6.png"
 
+import { HowItWorks } from "@/components/how-it-works"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import employee from "@/public/img/employee.jpg"
 
@@ -38,6 +40,9 @@ const companies = [
   },
   {
     logo: <Img className="object-contain" src={r5} alt="r5" />,
+  },
+  {
+    logo: <Img className="object-contain" src={r6} alt="r6" />,
   },
 ]
 
@@ -90,7 +95,7 @@ export default async function HomePage() {
             işletmenizin satış oranlarını artırmak için bize katılın.
           </h2>
           <div className={s.marqueeC}>
-            <Marquee duration={40} repeat={2}>
+            <Marquee duration={40} repeat={4}>
               <>
                 {companies.map((item, i) => {
                   return (
@@ -104,7 +109,7 @@ export default async function HomePage() {
           </div>
         </section>
       </ScaleIn>
-      {/* <HowItWorks /> */}
+      <HowItWorks />
       <section className={s.specs}>
         <div className="grid-cols-3 tablet:items-start gap-16 tablet:gap-32 hidden tablet:grid">
           <div className={s.cardSpec}>
